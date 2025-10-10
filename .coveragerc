@@ -1,0 +1,12 @@
+[run]
+source = praktikum
+omit = praktikum/praktikum.py
+
+[report]
+show_missing = true
+fail_under = 100
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self\.debug:
+    raise NotImplementedError
