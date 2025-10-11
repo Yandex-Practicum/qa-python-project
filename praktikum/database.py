@@ -13,7 +13,8 @@ class Database:
     def __init__(self):
         self.buns: List[Bun] = []
         self.ingredients: List[Ingredient] = []
-
+        # [Bun("black bun", 100), Bun("white bun", 200), Bun("red bun", 300)]
+        # self.buns[0].name
         self.buns.append(Bun("black bun", 100))
         self.buns.append(Bun("white bun", 200))
         self.buns.append(Bun("red bun", 300))
