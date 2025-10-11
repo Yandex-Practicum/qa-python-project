@@ -1,7 +1,7 @@
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
+from bun import Bun
+from ingredient import Ingredient
 
 
 class Burger:
@@ -40,9 +40,10 @@ class Burger:
         receipt: List[str] = [f'(==== {self.bun.get_name()} ====)']
 
         for ingredient in self.ingredients:
-            receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
+            receipt.append(f'= {ingredient.get_type().lower()} {ingredient.get_name()} =')
 
-        receipt.append(f'(==== {self.bun.get_name()} ====)\n')
+        receipt.append(f'(==== {self.bun.get_name()} ====)')
         receipt.append(f'Price: {self.get_price()}')
 
         return '\n'.join(receipt)
+
