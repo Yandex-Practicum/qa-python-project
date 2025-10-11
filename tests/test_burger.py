@@ -1,28 +1,34 @@
 import pytest
+from praktikum.burger import Burger
 
 
 class TestBurger:
     # Проверяем, что новый бургер создаётся без булки
-    def test_burger_init_no_buns_in_new(self, burger):
+    def test_burger_init_no_buns_in_new(self):
+        burger = Burger()
         assert burger.bun is None
 
     # Проверяем, что список ингредиентов пуст при создании нового бургера
-    def test_burger_init_no_ingredients_in_new(self, burger):
+    def test_burger_init_no_ingredients_in_new(self):
+        burger = Burger()
         assert burger.ingredients == []
 
     # Проверяем, что метод set_buns корректно сохраняет объект булки в атрибуте bun
-    def test_set_bun_added_to_burger(self, burger, mock_bun):
+    def test_set_bun_added_to_burger(self,  mock_bun):
+        burger = Burger()
         burger.set_buns(mock_bun)
         assert burger.bun == mock_bun
 
     # Проверяем, что метод add_ingredient добавляет ингредиент в список burger.ingredients
-    def test_add_ingredient_added_to_burger(self, burger, mock_filling):
+    def test_add_ingredient_added_to_burger(self, mock_filling):
+        burger = Burger()
         burger.add_ingredient(mock_filling)
         assert len(burger.ingredients) == 1
         assert burger.ingredients[0] == mock_filling
 
     # Проверяем, что метод remove_ingredient удаляет ингредиент из списка burger.ingredients
-    def test_remove_ingredient_deleted_from_burger(self, burger, mock_filling):
+    def test_remove_ingredient_deleted_from_burger(self, mock_filling):
+        burger = Burger()
         burger.add_ingredient(mock_filling)
         burger.remove_ingredient(0)
         assert len(burger.ingredients) == 0
@@ -30,8 +36,9 @@ class TestBurger:
 
     # Проверяем, что метод move_ingredient перемещает ингредиенты внутри списка burger.ingredients
     def test_move_ingredient_replaced_ingredient(
-        self, burger, mock_filling, mock_sause
+        self,  mock_filling, mock_sause
     ):
+        burger = Burger()
         burger.add_ingredient(mock_filling)
         burger.add_ingredient(mock_sause)
         burger.move_ingredient(1, 0)
@@ -50,8 +57,9 @@ class TestBurger:
         ],
     )
     def test_get_price_of_burger(
-        self, burger, mock_bun, mock_filling, mock_sause, ingredients
+        self, mock_bun, mock_filling, mock_sause, ingredients
     ):
+        burger = Burger()
         mock_map = {"filling": mock_filling, "sause": mock_sause}
 
         burger.set_buns(mock_bun)
@@ -75,8 +83,9 @@ class TestBurger:
         ],
     )
     def test_get_receipt_with_ingredients(
-        self, burger, mock_bun, mock_filling, mock_sause, ingredients
+        self, mock_bun, mock_filling, mock_sause, ingredients
     ):
+        burger = Burger()
         mock_map = {"filling": mock_filling, "sause": mock_sause}
 
         burger.set_buns(mock_bun)

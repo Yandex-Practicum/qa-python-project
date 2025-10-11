@@ -1,13 +1,6 @@
 import pytest
-from praktikum.burger import Burger
 from unittest.mock import Mock
 from ..data import BUNS_DATA, FILLINGS_DATA, SAUSES_DATA
-
-
-@pytest.fixture
-def burger():
-    # Фикстура создаёт и возвращает новый объект Burger
-    return Burger()
 
 
 # Фикстура возвращает мок булки
