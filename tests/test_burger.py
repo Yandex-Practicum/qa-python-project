@@ -135,11 +135,18 @@ class TestBurger:
         
         receipt = burger.get_receipt()
         
-        # Проверяем основные части чека
-        assert "(==== red bun ====)" in receipt
-        assert "= sauce chili sauce =" in receipt
-        assert "= filling dinosaur =" in receipt
-        assert "Price: 1100" in receipt  # 300*2 + 300 + 200 = 1100
+        # Ожидаемый чек
+        expected_receipt = (
+            "(==== red bun ====)\n"
+            "= sauce chili sauce =\n"
+            "= filling dinosaur =\n"
+            "(==== red bun ====)\n"
+            "\n"
+            "Price: 1100"
+        )
+        
+        # Проверяем полное соответствие чека
+        assert receipt == expected_receipt
     
     def test_get_receipt_with_real_objects(self):
         burger = Burger()
@@ -153,11 +160,18 @@ class TestBurger:
         
         receipt = burger.get_receipt()
         
-        # Проверяем основные части чека
-        assert "(==== white bun ====)" in receipt
-        assert "= sauce sour cream =" in receipt
-        assert "= filling sausage =" in receipt
-        assert "Price: 900" in receipt  # 200*2 + 200 + 300 = 900
+        # Ожидаемый чек
+        expected_receipt = (
+            "(==== white bun ====)\n"
+            "= sauce sour cream =\n"
+            "= filling sausage =\n"
+            "(==== white bun ====)\n"
+            "\n"
+            "Price: 900"
+        )
+        
+        # Проверяем полное соответствие чека
+        assert receipt == expected_receipt
     
     def test_complex_burger_operations(self):
         burger = Burger()
@@ -200,8 +214,15 @@ class TestBurger:
         # Проверяем финальную цену
         assert burger.get_price() == 310  # 100*2 + 75 + 60 - 50 (удалили первый)
         
-        # Проверяем чек
+        # Проверяем чек - полное соответствие
         receipt = burger.get_receipt()
-        assert "= filling cutlet =" in receipt
-        assert "= sauce sour cream =" in receipt
-        assert "hot sauce" not in receipt  # Удаленный ингредиент не должен быть в чеке
+        expected_receipt = (
+            "(==== black bun ====)\n"
+            "= sauce sour cream =\n"
+            "= filling cutlet =\n"
+            "(==== black bun ====)\n"
+            "\n"
+            "Price: 310"
+        )
+        
+        assert receipt == expected_receipt
