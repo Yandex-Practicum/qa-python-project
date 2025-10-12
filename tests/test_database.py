@@ -1,39 +1,46 @@
 from unittest.mock import patch, Mock
 from praktikum.database import Database
 from ingredient_types import INGREDIENT_TYPE_SAUCE
-
+import pytest
 
 class TestDatabase:
-    @patch('praktikum.database.Database')
-    def test_available_buns(self, mock_database_class):
-        mock_buns = [
-            Mock(get_name=Mock(return_value="black bun"), get_price=Mock(return_value=100))
-        ]
+    @pytest.fixture
+    def mock_database(self):
         mock_database = Mock()
-        mock_database.buns = mock_buns
+        return mock_database
+
+    @patch('praktikum.database.Database')
+    def test_available_buns_name(self, mock_database_class, mock_database):
+        mock_buns = [Mock(name="black bun", price=100)]
         mock_database.available_buns.return_value = mock_buns
         mock_database_class.return_value = mock_database
         db = Database()
-        actual_name = "black bun"
-        actual_price = 100
         result = db.available_buns()
-
-        assert result[0].get_name() == actual_name
-        assert result[0].get_price() == actual_price
+        assert result[0].name == "black bun"
 
     @patch('praktikum.database.Database')
-    def test_available_ingredients(self, mock_database_class):
-        mock_ingredients = [
-            Mock(get_type=Mock(return_value=INGREDIENT_TYPE_SAUCE), get_name=Mock(return_value="hot sauce"))
-        ]
-        mock_database = Mock()
-        mock_database.ingredients = mock_ingredients
+    def test_available_buns_price(self, mock_database_class, mock_database):
+        mock_buns = [Mock(name="black bun", price=100)]
+        mock_database.available_buns.return_value = mock_buns
+        mock_database_class.return_value = mock_database
+        db = Database()
+        result = db.available_buns()
+        assert result[0].price == 100
+
+    @patch('praktikum.database.Database')
+    def test_available_ingredients_type(self, mock_database_class, mock_database):
+        mock_ingredients = [Mock(type=INGREDIENT_TYPE_SAUCE, name="hot sauce")]
         mock_database.available_ingredients.return_value = mock_ingredients
         mock_database_class.return_value = mock_database
         db = Database()
-        actual_type = INGREDIENT_TYPE_SAUCE
-        actual_name = "hot sauce"
         result = db.available_ingredients()
+        assert result[0].type == INGREDIENT_TYPE_SAUCE
 
-        assert result[0].get_type() == actual_type
-        assert result[0].get_name() == actual_name
+    @patch('praktikum.database.Database')
+    def test_available_ingredients_name(self, mock_database_class, mock_database):
+        mock_ingredients = [Mock(type=INGREDIENT_TYPE_SAUCE, name="hot sauce")]
+        mock_database.available_ingredients.return_value = mock_ingredients
+        mock_database_class.return_value = mock_database
+        db = Database()
+        result = db.available_ingredients()
+        assert result[0].name == "hot sauce"
