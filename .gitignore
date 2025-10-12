@@ -12,3 +12,5 @@ venv/
 
 # OS
 .DS_Store
+
+tests/__pycache__/test_burger.cpython-313-pytest-8.4.1.pyc
