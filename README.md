@@ -14,8 +14,12 @@ Diplom1/
 │   ├── ingredient_types.py
 │   └── praktikum.py
 └── tests/
+    ├── data/
+    │    ├── __init__.py
+    │    └── test_data.py
     ├── __init__.py
     ├── conftest.py
+    ├── test_burger_parametrized.py
     └── test_burger.py
 
     # Установка зависимостей

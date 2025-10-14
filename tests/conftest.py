@@ -1,5 +1,23 @@
 import pytest
 from unittest.mock import Mock
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+class BunData:
+    BLACK_BUN = {"name": "black bun", "price": 100}
+    WHITE_BUN = {"name": "white bun", "price": 200}
+    RED_BUN = {"name": "red bun", "price": 150}
+
+
+class IngredientData:
+    HOT_SAUCE = {"type": "SAUCE", "name": "hot sauce", "price": 50}
+    SOUR_CREAM = {"type": "SAUCE", "name": "sour cream", "price": 40}
+    CHILI_SAUCE = {"type": "SAUCE", "name": "chili sauce", "price": 60}
+    CUTLET = {"type": "FILLING", "name": "cutlet", "price": 80}
+    SALAD = {"type": "FILLING", "name": "salad", "price": 30}
+    CHEESE = {"type": "FILLING", "name": "cheese", "price": 70}
 
 
 @pytest.fixture
@@ -11,15 +29,66 @@ def burger():
 @pytest.fixture
 def bun_mock():
     bun = Mock()
-    bun.get_name.return_value = "black bun"
-    bun.get_price.return_value = 100
+    bun.get_name.return_value = BunData.BLACK_BUN["name"]
+    bun.get_price.return_value = BunData.BLACK_BUN["price"]
+    return bun
+
+
+@pytest.fixture
+def white_bun_mock():
+    bun = Mock()
+    bun.get_name.return_value = BunData.WHITE_BUN["name"]
+    bun.get_price.return_value = BunData.WHITE_BUN["price"]
+    return bun
+
+
+@pytest.fixture
+def red_bun_mock():
+    bun = Mock()
+    bun.get_name.return_value = BunData.RED_BUN["name"]
+    bun.get_price.return_value = BunData.RED_BUN["price"]
     return bun
 
 
 @pytest.fixture
 def ingredient_mock():
     ingredient = Mock()
-    ingredient.get_type.return_value = "SAUCE"
-    ingredient.get_name.return_value = "hot sauce"
-    ingredient.get_price.return_value = 50
+    ingredient.get_type.return_value = IngredientData.HOT_SAUCE["type"]
+    ingredient.get_name.return_value = IngredientData.HOT_SAUCE["name"]
+    ingredient.get_price.return_value = IngredientData.HOT_SAUCE["price"]
     return ingredient
+
+
+@pytest.fixture
+def cutlet_ingredient_mock():
+    ingredient = Mock()
+    ingredient.get_type.return_value = IngredientData.CUTLET["type"]
+    ingredient.get_name.return_value = IngredientData.CUTLET["name"]
+    ingredient.get_price.return_value = IngredientData.CUTLET["price"]
+    return ingredient
+
+
+@pytest.fixture
+def cheese_ingredient_mock():
+    ingredient = Mock()
+    ingredient.get_type.return_value = IngredientData.CHEESE["type"]
+    ingredient.get_name.return_value = IngredientData.CHEESE["name"]
+    ingredient.get_price.return_value = IngredientData.CHEESE["price"]
+    return ingredient
+
+
+@pytest.fixture
+def sour_cream_ingredient_mock():
+    ingredient = Mock()
+    ingredient.get_type.return_value = IngredientData.SOUR_CREAM["type"]
+    ingredient.get_name.return_value = IngredientData.SOUR_CREAM["name"]
+    ingredient.get_price.return_value = IngredientData.SOUR_CREAM["price"]
+    return ingredient
+
+
+@pytest.fixture
+def basic_burger_setup(burger, bun_mock, ingredient_mock, cutlet_ingredient_mock):
+    burger.set_buns(bun_mock)
+    burger.add_ingredient(ingredient_mock)
+    burger.add_ingredient(cutlet_ingredient_mock)
+    return burger
