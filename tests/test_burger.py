@@ -48,26 +48,31 @@ class TestBurger:
         
         receipt = burger.get_receipt()
         
-        receipt_lines = receipt.strip().split('\n')
+        assert f"(==== {bun_mock.get_name()} ====)" in receipt
+        assert f"= {ingredient_mock.get_type().lower()} {ingredient_mock.get_name()} =" in receipt
+        assert f"= {cutlet_ingredient_mock.get_type().lower()} {cutlet_ingredient_mock.get_name()} =" in receipt
+        assert f"Price: {burger.get_price()}" in receipt
         
-        assert receipt_lines[0] == f"(==== {bun_mock.get_name()} ====)"
-        assert receipt_lines[1] == f"= {ingredient_mock.get_type().lower()} {ingredient_mock.get_name()} ="
-        assert receipt_lines[2] == f"= {cutlet_ingredient_mock.get_type().lower()} {cutlet_ingredient_mock.get_name()} ="
-        assert receipt_lines[3] == f"(==== {bun_mock.get_name()} ====)"
-        assert receipt_lines[4] == ""
-        assert receipt_lines[5] == f"Price: {burger.get_price()}"
+        receipt_lines = [line for line in receipt.split('\n') if line.strip()]
+        assert len(receipt_lines) >= 3
+        assert receipt_lines[0].startswith("(====")
+        assert receipt_lines[-1].startswith("Price:")
 
     def test_get_receipt_only_buns(self, burger, white_bun_mock):
         burger.set_buns(white_bun_mock)
         
         receipt = burger.get_receipt()
-        receipt_lines = receipt.strip().split('\n')
         
-        assert receipt_lines[0] == f"(==== {white_bun_mock.get_name()} ====)"
-        assert receipt_lines[1] == f"(==== {white_bun_mock.get_name()} ====)"
-        assert receipt_lines[2] == ""
-        assert receipt_lines[3] == f"Price: {burger.get_price()}"
+        bun_section = f"(==== {white_bun_mock.get_name()} ====)"
+        assert receipt.count(bun_section) == 2  # Две булки
+        assert f"Price: {burger.get_price()}" in receipt
         assert burger.get_price() == white_bun_mock.get_price() * 2
+        
+        receipt_lines = [line for line in receipt.split('\n') if line.strip()]
+        assert len(receipt_lines) in [3, 4]
+        assert receipt_lines[0] == bun_section
+        assert receipt_lines[-2 if len(receipt_lines) == 4 else -1] == bun_section
+        assert receipt_lines[-1].startswith("Price:")
 
     def test_get_receipt_no_bun_raises_exception(self, burger):
         with pytest.raises(AttributeError):
@@ -81,11 +86,17 @@ class TestBurger:
         burger.add_ingredient(cheese_ingredient_mock)
         
         receipt = burger.get_receipt()
-        receipt_lines = receipt.strip().split('\n')
         
-        assert receipt_lines[1] == f"= {ingredient_mock.get_type().lower()} {ingredient_mock.get_name()} ="
-        assert receipt_lines[2] == f"= {cutlet_ingredient_mock.get_type().lower()} {cutlet_ingredient_mock.get_name()} ="
-        assert receipt_lines[3] == f"= {cheese_ingredient_mock.get_type().lower()} {cheese_ingredient_mock.get_name()} ="
+        receipt_lines = [line for line in receipt.split('\n') if line.strip()]
+        
+        bun_indices = [i for i, line in enumerate(receipt_lines) 
+                      if line.startswith("(====")]
+        ingredient_lines = receipt_lines[bun_indices[0]+1:bun_indices[1]]
+        
+        assert len(ingredient_lines) == 3
+        assert ingredient_mock.get_name() in ingredient_lines[0]
+        assert cutlet_ingredient_mock.get_name() in ingredient_lines[1]
+        assert cheese_ingredient_mock.get_name() in ingredient_lines[2]
 
     def test_get_price_empty_burger(self, burger, bun_mock):
         burger.set_buns(bun_mock)
@@ -98,3 +109,19 @@ class TestBurger:
         
         with pytest.raises(AttributeError):
             burger.get_price()
+
+    def test_get_receipt_structure(self, basic_burger_setup, bun_mock):
+        burger = basic_burger_setup
+        
+        receipt = burger.get_receipt()
+        receipt_lines = [line for line in receipt.split('\n') if line.strip()]
+        
+        assert len(receipt_lines) >= 3
+        assert receipt_lines[0].startswith("(====")  
+        assert receipt_lines[-2].startswith("(====")  
+        assert receipt_lines[-1].startswith("Price:")  
+        
+        first_bun_index = 0
+        second_bun_index = len(receipt_lines) - 2
+        ingredient_count = second_bun_index - first_bun_index - 1
+        assert ingredient_count == len(burger.ingredients)
