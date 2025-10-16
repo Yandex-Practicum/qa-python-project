@@ -22,3 +22,8 @@
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
 >  `$ pytest --cov=praktikum --cov-report=html`
+
+**Отчет о покрытии**
+
+> `htmlcov/index.html`
+> `pytest --cov=Diplom_1 --cov-report=term-missing --cov-report=html tests/` 
