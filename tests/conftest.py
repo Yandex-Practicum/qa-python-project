@@ -51,6 +51,14 @@ def red_bun_mock():
 
 
 @pytest.fixture
+def black_bun_mock():
+    bun = Mock()
+    bun.get_name.return_value = BunData.BLACK_BUN["name"]
+    bun.get_price.return_value = BunData.BLACK_BUN["price"]
+    return bun
+
+
+@pytest.fixture
 def ingredient_mock():
     ingredient = Mock()
     ingredient.get_type.return_value = IngredientData.HOT_SAUCE["type"]
@@ -83,6 +91,24 @@ def sour_cream_ingredient_mock():
     ingredient.get_type.return_value = IngredientData.SOUR_CREAM["type"]
     ingredient.get_name.return_value = IngredientData.SOUR_CREAM["name"]
     ingredient.get_price.return_value = IngredientData.SOUR_CREAM["price"]
+    return ingredient
+
+
+@pytest.fixture
+def chili_sauce_ingredient_mock():
+    ingredient = Mock()
+    ingredient.get_type.return_value = IngredientData.CHILI_SAUCE["type"]
+    ingredient.get_name.return_value = IngredientData.CHILI_SAUCE["name"]
+    ingredient.get_price.return_value = IngredientData.CHILI_SAUCE["price"]
+    return ingredient
+
+
+@pytest.fixture
+def salad_ingredient_mock():
+    ingredient = Mock()
+    ingredient.get_type.return_value = IngredientData.SALAD["type"]
+    ingredient.get_name.return_value = IngredientData.SALAD["name"]
+    ingredient.get_price.return_value = IngredientData.SALAD["price"]
     return ingredient
 
 
