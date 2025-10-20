@@ -16,9 +16,16 @@ from praktikum.ingredient_types import (
         (INGREDIENT_TYPE_FILLING, "cheese", 1.25),
     ],
 )
-def test_ingredient_getters(ingredient_type, name, price):
-    ing = Ingredient(ingredient_type, name, price)
-    assert ing.get_type() == ingredient_type
-    assert ing.get_name() == name
-    assert ing.get_price() == price
+class TestIngredient:
+    def test_get_type(self, ingredient_type, name, price):
+        ing = Ingredient(ingredient_type, name, price)
+        assert ing.get_type() == ingredient_type
+
+    def test_get_name(self, ingredient_type, name, price):
+        ing = Ingredient(ingredient_type, name, price)
+        assert ing.get_name() == name
+
+    def test_get_price(self, ingredient_type, name, price):
+        ing = Ingredient(ingredient_type, name, price)
+        assert ing.get_price() == price
 
