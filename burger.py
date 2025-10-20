@@ -1,7 +1,7 @@
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
+from bun import Bun
+from ingredient import Ingredient
 
 
 class Burger:
@@ -23,9 +23,15 @@ class Burger:
         self.ingredients.append(ingredient)
 
     def remove_ingredient(self, index: int):
+        if index < 0 or index >= len(self.ingredients):
+            raise IndexError("Ingredient index out of range")
         del self.ingredients[index]
 
     def move_ingredient(self, index: int, new_index: int):
+        if index < 0 or index >= len(self.ingredients):
+            raise IndexError("Source ingredient index out of range")
+        if new_index < 0 or new_index > len(self.ingredients):
+            raise IndexError("Target ingredient index out of range")
         self.ingredients.insert(new_index, self.ingredients.pop(index))
 
     def get_price(self) -> float:
@@ -42,7 +48,8 @@ class Burger:
         for ingredient in self.ingredients:
             receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
 
-        receipt.append(f'(==== {self.bun.get_name()} ====)\n')
+        receipt.append(f'(==== {self.bun.get_name()} ====)')
+        receipt.append('')
         receipt.append(f'Price: {self.get_price()}')
 
         return '\n'.join(receipt)
