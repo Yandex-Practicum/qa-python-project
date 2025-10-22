@@ -1,24 +1,29 @@
-## Задание 1: Юнит-тесты
+Задание 1 Юнит-тесты
 
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
+Косач Евгений 29-я когорта
 
-### Реализованные сценарии
+Diplom1/
+├── .gitignore
+├── requirements.txt
+├── praktikum/
+│   ├── __init__.py
+│   ├── bun.py
+│   ├── burger.py
+│   ├── database.py
+│   ├── ingredient.py
+│   ├── ingredient_types.py
+│   └── praktikum.py
+└── tests/
+    ├── data/
+    │    ├── __init__.py
+    │    └── test_data.py
+    ├── __init__.py
+    ├── conftest.py
+    ├── test_burger_parametrized.py
+    └── test_burger.py
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+    # Установка зависимостей
+pip install -r requirements.txt
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
-
-### Структура проекта
-
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
-
-### Запуск автотестов
-
-**Установка зависимостей**
-
-> `$ pip install -r requirements.txt`
-
-**Запуск автотестов и создание HTML-отчета о покрытии**
-
->  `$ pytest --cov=praktikum --cov-report=html`
+# Запуск тестов с проверкой покрытия
+pytest --cov=praktikum --cov-report=html
