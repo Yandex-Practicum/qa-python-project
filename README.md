@@ -1,24 +1,69 @@
-## Задание 1: Юнит-тесты
+# Юнит-тесты для Stellar Burgers
 
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
+Автоматизированные юнит-тесты для программы заказа бургеров в Stellar Burgers.
 
-### Реализованные сценарии
+## Структура проекта
+project/
+├── praktikum/ # Исходный код программы
+│ ├── init.py
+│ ├── bun.py
+│ ├── burger.py
+│ ├── database.py
+│ ├── ingredient.py
+│ ├── ingredient_types.py
+│ └── praktikum.py
+├── tests/ # Тесты
+│ ├── init.py
+│ ├── conftest.py
+│ ├── test_bun.py
+│ ├── test_burger.py
+│ ├── test_ingredient.py
+│ └── test_database.py
+├── requirements.txt
+├── pytest.ini
+└── README.md
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+## Запуск тестов
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+### Установка зависимостей
+```bash
+pip install -r requirements.txt
+Запуск всех тестов с отчетом о покрытии
+pytest
+Запуск конкретных тестов
+# Только тесты для Burger
+pytest tests/test_burger.py -v
 
-### Структура проекта
+# Тесты с детальным отчетом о покрытии
+pytest --cov=praktikum --cov-report=term-missing
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+# Генерация HTML отчета
+pytest --cov=praktikum --cov-report=html
+Покрытие кода
+После запуска тестов будет сгенерирован HTML отчет в папке htmlcov/.
+Откройте htmlcov/index.html в браузере для просмотра детального отчета о покрытии.
 
-### Запуск автотестов
+Требуемое покрытие: 100%
 
-**Установка зависимостей**
+## 4. Команды для запуска
 
-> `$ pip install -r requirements.txt`
+```bash
+# Установка зависимостей
+pip install -r requirements.txt
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+# Запуск всех тестов
+pytest
 
->  `$ pytest --cov=praktikum --cov-report=html`
+# Запуск с детальным отчетом
+pytest -v
+
+# Проверка покрытия
+pytest --cov=praktikum --cov-report=term-missing
+
+# Генерация HTML отчета
+pytest --cov=praktikum --cov-report=html
+
+# Просмотр отчета
+open htmlcov/index.html  # Mac
+# или
+start htmlcov/index.html  # Windows
