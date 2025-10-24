@@ -1,24 +1,38 @@
-## Задание 1: Юнит-тесты
+# API Tests for Stellar Burgers
 
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
+Автотесты для API сервиса Stellar Burgers.
 
-### Реализованные сценарии
+## Структура проекта
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+- `tests/` - тестовые сценарии
+- `helpers/` - вспомогательные классы
+- `utils/` - утилиты для работы с Allure
+- `requirements.txt` - зависимости
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+## Установка и запуск
 
-### Структура проекта
+1. Клонировать репозиторий:
+```bash
+git clone <repository-url>
+cd api-tests
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+## Команды для запуска
+```bash
+# Установка зависимостей
+pip install -r requirements.txt
 
-### Запуск автотестов
+# Запуск всех тестов
+pytest
 
-**Установка зависимостей**
+# Запуск с детальным выводом
+pytest -v
 
-> `$ pip install -r requirements.txt`
+# Запуск конкретного тестового файла
+pytest tests/test_user_api.py -v
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+# Запуск с генерацией Allure отчетов
+pytest --alluredir=allure-results
 
->  `$ pytest --cov=praktikum --cov-report=html`
+# Просмотр Allure отчета
+allure serve allure-results
+
