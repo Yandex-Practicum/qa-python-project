@@ -1,10 +1,13 @@
 class Bun:
     """
-    Модель булочки для бургера.
-    Булочке можно дать название и назначить цену.
+    Модель булки.
+    У булки есть название и цена.
     """
 
     def __init__(self, name: str, price: float):
+        if not name or price < 0:
+            raise ValueError("Неверные данные для булки.")
+        
         self.name = name
         self.price = price
 

@@ -6,6 +6,9 @@ class Ingredient:
     """
 
     def __init__(self, ingredient_type: str, name: str, price: float):
+        if not name or price < 0 or not ingredient_type:
+            raise ValueError("Неверные данные для ингредиента.")
+        
         self.type = ingredient_type
         self.name = name
         self.price = price
