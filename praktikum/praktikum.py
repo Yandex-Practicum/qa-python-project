@@ -1,12 +1,11 @@
 from typing import List
-
 from praktikum.bun import Bun
 from praktikum.burger import Burger
 from praktikum.database import Database
 from praktikum.ingredient import Ingredient
 
 
-def main():
+def main() -> str:
     # Инициализируем базу данных
     database: Database = Database()
 
@@ -33,9 +32,9 @@ def main():
     # Удалим ингредиент
     burger.remove_ingredient(3)
 
-    # Распечатаем рецепт бургера
-    print(burger.get_receipt())
+    # Вернём чек вместо печати
+    return burger.get_receipt()
 
 
 if __name__ == "__main__":
-    main()
+    print(main())
