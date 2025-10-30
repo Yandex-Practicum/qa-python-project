@@ -1,0 +1,10 @@
+echo "venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+*.egg-info/
+.DS_Store
+*.log
+htmlcov/
+.coverage.*" > .gitignore
