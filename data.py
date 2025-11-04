@@ -23,3 +23,4 @@ class DataBaseBurger:
                             [3, 'FILLING', 'cutlet', 100],
                             [4, 'FILLING', 'dinosaur', 200],
                             [5, 'FILLING', 'sausage', 300]]
+    
