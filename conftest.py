@@ -46,7 +46,6 @@ def sample_burger():
 
 @pytest.fixture
 def russian_ingredients_data():
-    """Фикстура с реальными русскими названиями ингредиентов из Stellar Burgers"""
     return {
         "buns": [
             ("Краторная булка N-200i", 1255),
