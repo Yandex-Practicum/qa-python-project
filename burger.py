@@ -1,10 +1,10 @@
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
-
+from bun import Bun
+from ingredient import Ingredient
 
 class Burger:
+    
     """
     Модель бургера.
     Бургер состоит из булочек и ингредиентов (начинка или соус).
@@ -29,20 +29,24 @@ class Burger:
         self.ingredients.insert(new_index, self.ingredients.pop(index))
 
     def get_price(self) -> float:
+        if self.bun is None:
+            return 0
         price = self.bun.get_price() * 2
-
         for ingredient in self.ingredients:
             price += ingredient.get_price()
-
         return price
 
     def get_receipt(self) -> str:
+        if self.bun is None:
+            raise ValueError("Cannot generate receipt: bun is not set")
+        
         receipt: List[str] = [f'(==== {self.bun.get_name()} ====)']
 
         for ingredient in self.ingredients:
-            receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
+            receipt.append(f'= {ingredient.get_type().lower()} {ingredient.get_name()} =')
 
-        receipt.append(f'(==== {self.bun.get_name()} ====)\n')
+        receipt.append(f'(==== {self.bun.get_name()} ====)')
         receipt.append(f'Price: {self.get_price()}')
+
 
         return '\n'.join(receipt)

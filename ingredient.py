@@ -5,8 +5,8 @@ class Ingredient:
     У ингредиента есть тип (начинка или соус), название и цена.
     """
 
-    def __init__(self, ingredient_type: str, name: str, price: float):
-        self.type = ingredient_type
+    def __init__(self, type: str, name: str, price: float):
+        self.type = type
         self.name = name
         self.price = price
 
