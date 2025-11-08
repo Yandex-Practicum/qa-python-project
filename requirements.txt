@@ -1,0 +1,9 @@
+pytest>=8.2,<9
+pytest-cov>=5.0,<6
+pytest-xdist>=3.6,<4
+pytest-rerunfailures>=14.0,<15
+allure-pytest>=2.13,<3
+selenium>=4.21,<5
+webdriver-manager>=4,<5
+faker>=25,<26
+python-dotenv>=1.0,<2
