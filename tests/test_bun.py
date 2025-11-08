@@ -12,14 +12,24 @@ class TestBun:
         bun = Bun("Флюоресцентная булка R2-D3", 988)
         assert bun.get_price() == 988
     
-    @pytest.mark.parametrize("name,price", [
-        ("Краторная булка N-200i", 1255),
-        ("Флюоресцентная булка R2-D3", 988),
-        ("Специальная космическая булка", 1500),
-        ("", 0),
-        ("Очень длинное название булочки для бургера", 999.99)
+    @pytest.mark.parametrize("name", [
+        "Краторная булка N-200i",
+        "Флюоресцентная булка R2-D3",
+        "Специальная космическая булка",
+        "",
+        "Очень длинное название булочки для бургера"
     ])
-    def test_bun_initialization_with_different_values(self, name, price):
-        bun = Bun(name, price)
+    def test_bun_initialization_with_different_names(self, name):
+        bun = Bun(name, 100)
         assert bun.get_name() == name
+    
+    @pytest.mark.parametrize("price", [
+        1255,
+        988,
+        1500,
+        0,
+        999.99
+    ])
+    def test_bun_initialization_with_different_prices(self, price):
+        bun = Bun("Тестовая булка", price)
         assert bun.get_price() == price

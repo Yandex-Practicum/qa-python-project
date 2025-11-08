@@ -28,3 +28,16 @@ class TestIngredient:
     def test_get_type(self):
         ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, "Соус с шипами Антарианского плоскоходца", 88)
         assert ingredient.get_type() == INGREDIENT_TYPE_SAUCE
+    
+    @pytest.mark.parametrize("ingredient_type", [
+        INGREDIENT_TYPE_SAUCE,
+        INGREDIENT_TYPE_FILLING
+    ])
+    def test_ingredient_with_different_types(self, ingredient_type):
+        ingredient = Ingredient(ingredient_type, "Тестовый ингредиент", 100)
+        assert ingredient.get_type() == ingredient_type
+    
+    @pytest.mark.parametrize("price", [0, 100, 999.99])
+    def test_ingredient_with_different_prices(self, price):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, "Тестовый соус", price)
+        assert ingredient.get_price() == price

@@ -36,6 +36,7 @@ class TestBurger:
         
         with pytest.raises(IndexError):
             self.burger.remove_ingredient(5)
+        assert len(self.burger.ingredients) == 1
     
     def test_move_ingredient(self):
         self.burger.add_ingredient(self.mock_ingredient1)
@@ -58,6 +59,7 @@ class TestBurger:
         
         with pytest.raises(IndexError):
             self.burger.move_ingredient(5, 0)
+        assert len(self.burger.ingredients) == 1
     
     def test_get_price_with_bun_and_ingredients(self):
         self.mock_bun.get_price.return_value = 1255
@@ -76,13 +78,12 @@ class TestBurger:
         
         self.burger.set_buns(self.mock_bun)
         
-        assert self.burger.get_price() == 1976 
+        assert self.burger.get_price() == 1976
     
     def test_get_price_no_bun_raises_error(self):
         self.burger.add_ingredient(self.mock_ingredient1)
         self.mock_ingredient1.get_price.return_value = 424
         
-        # Бургер без булки должен вызывать ошибку
         with pytest.raises(AttributeError):
             self.burger.get_price()
     
@@ -144,7 +145,6 @@ class TestBurger:
         
         self.burger.add_ingredient(mock_ingredient)
         
-        # Бургер без булки должен вызывать ошибку
         with pytest.raises(AttributeError):
             self.burger.get_receipt()
     
@@ -164,7 +164,7 @@ class TestBurger:
         
         assert self.burger.get_price() == expected_total
     
-    def test_get_receipt_with_russian_ingredients(self):
+    def test_get_receipt_with_multiple_ingredients(self):
         self.mock_bun.get_name.return_value = "Краторная булка N-200i"
         self.mock_bun.get_price.return_value = 1255
         
@@ -191,10 +191,9 @@ class TestBurger:
         assert "Говяжий метеорит (отбивная)" in receipt
         assert "Биокотлета из марсианской Магнолии" in receipt
         assert "Хрустящие минеральные кольца" in receipt
-        assert "Price: 6324" in receipt 
+        assert "Price: 6324" in receipt
     
     def test_get_price_with_zero_bun_price(self):
-        """Тест с нулевой ценой булки"""
         self.mock_bun.get_price.return_value = 0
         self.mock_ingredient1.get_price.return_value = 424
         self.mock_ingredient2.get_price.return_value = 762
@@ -203,5 +202,4 @@ class TestBurger:
         self.burger.add_ingredient(self.mock_ingredient1)
         self.burger.add_ingredient(self.mock_ingredient2)
         
-        # 0*2 + 424 + 762 = 1186
         assert self.burger.get_price() == 1186
