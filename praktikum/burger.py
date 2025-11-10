@@ -1,11 +1,9 @@
 from typing import List
-
 from praktikum.bun import Bun
 from praktikum.ingredient import Ingredient
 
 
 class Burger:
-
     def __init__(self):
         self.bun = None
         self.ingredients: List[Ingredient] = []

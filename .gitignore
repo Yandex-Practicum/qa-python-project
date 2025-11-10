@@ -1,10 +1,44 @@
-echo "venv/
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python
 __pycache__/
-*.pyc
-.pytest_cache/
-.coverage
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
+*.egg
+
+# pytest
+.pytest_cache/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# OS
 .DS_Store
-*.log
-htmlcov/
-.coverage.*" > .gitignore
+Thumbs.db

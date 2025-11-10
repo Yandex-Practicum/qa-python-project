@@ -14,54 +14,64 @@ class TestBurger:
         self.mock_ingredient1 = Mock(spec=Ingredient)
         self.mock_ingredient2 = Mock(spec=Ingredient)
     
-    def test_set_buns(self):
+    def test_set_buns_sets_bun_correctly(self):
         self.burger.set_buns(self.mock_bun)
         assert self.burger.bun == self.mock_bun
     
-    def test_add_ingredient(self):
+    def test_add_ingredient_adds_ingredient_to_list(self):
+        initial_count = len(self.burger.ingredients)
         self.burger.add_ingredient(self.mock_ingredient1)
-        assert len(self.burger.ingredients) == 1
+        
+        assert len(self.burger.ingredients) == initial_count + 1
         assert self.burger.ingredients[0] == self.mock_ingredient1
     
-    def test_remove_ingredient(self):
+    def test_remove_ingredient_removes_ingredient_by_index(self):
         self.burger.add_ingredient(self.mock_ingredient1)
         self.burger.add_ingredient(self.mock_ingredient2)
         
+        initial_count = len(self.burger.ingredients)
         self.burger.remove_ingredient(0)
-        assert len(self.burger.ingredients) == 1
+        
+        assert len(self.burger.ingredients) == initial_count - 1
         assert self.burger.ingredients[0] == self.mock_ingredient2
     
-    def test_remove_ingredient_index_error(self):
+    def test_remove_ingredient_raises_index_error_for_invalid_index(self):
         self.burger.add_ingredient(self.mock_ingredient1)
+        initial_count = len(self.burger.ingredients)
         
         with pytest.raises(IndexError):
             self.burger.remove_ingredient(5)
-        assert len(self.burger.ingredients) == 1
+        
+        assert len(self.burger.ingredients) == initial_count
     
-    def test_move_ingredient(self):
+    def test_move_ingredient_changes_ingredient_position(self):
         self.burger.add_ingredient(self.mock_ingredient1)
         self.burger.add_ingredient(self.mock_ingredient2)
         
         self.burger.move_ingredient(0, 1)
+        
         assert self.burger.ingredients[0] == self.mock_ingredient2
         assert self.burger.ingredients[1] == self.mock_ingredient1
     
-    def test_move_ingredient_same_position(self):
+    def test_move_ingredient_to_same_position_does_nothing(self):
         self.burger.add_ingredient(self.mock_ingredient1)
         self.burger.add_ingredient(self.mock_ingredient2)
         
         original_order = self.burger.ingredients.copy()
         self.burger.move_ingredient(0, 0)
+        
         assert self.burger.ingredients == original_order
     
-    def test_move_ingredient_index_error(self):
+    def test_move_ingredient_raises_index_error_for_invalid_index(self):
         self.burger.add_ingredient(self.mock_ingredient1)
+        initial_count = len(self.burger.ingredients)
         
         with pytest.raises(IndexError):
             self.burger.move_ingredient(5, 0)
-        assert len(self.burger.ingredients) == 1
+        
+        assert len(self.burger.ingredients) == initial_count
     
-    def test_get_price_with_bun_and_ingredients(self):
+    def test_get_price_calculates_total_with_bun_and_ingredients(self):
         self.mock_bun.get_price.return_value = 1255
         self.mock_ingredient1.get_price.return_value = 3000
         self.mock_ingredient2.get_price.return_value = 4400
@@ -71,23 +81,26 @@ class TestBurger:
         self.burger.add_ingredient(self.mock_ingredient2)
         
         expected_price = 1255 * 2 + 3000 + 4400 
-        assert self.burger.get_price() == expected_price
+        actual_price = self.burger.get_price()
+        
+        assert actual_price == expected_price
     
-    def test_get_price_only_bun(self):
+    def test_get_price_calculates_total_with_only_bun(self):
         self.mock_bun.get_price.return_value = 988
         
         self.burger.set_buns(self.mock_bun)
+        actual_price = self.burger.get_price()
         
-        assert self.burger.get_price() == 1976
+        assert actual_price == 1976
     
-    def test_get_price_no_bun_raises_error(self):
+    def test_get_price_raises_error_without_bun(self):
         self.burger.add_ingredient(self.mock_ingredient1)
         self.mock_ingredient1.get_price.return_value = 424
         
         with pytest.raises(AttributeError):
             self.burger.get_price()
     
-    def test_get_receipt_with_bun_and_ingredients(self):
+    def test_get_receipt_returns_correct_format_with_ingredients(self):
         self.mock_bun.get_name.return_value = "Краторная булка N-200i"
         self.mock_bun.get_price.return_value = 1255
         
@@ -119,12 +132,11 @@ class TestBurger:
         
         assert receipt == expected_receipt
     
-    def test_get_receipt_only_bun(self):
+    def test_get_receipt_returns_correct_format_with_only_bun(self):
         self.mock_bun.get_name.return_value = "Флюоресцентная булка R2-D3"
         self.mock_bun.get_price.return_value = 988
         
         self.burger.set_buns(self.mock_bun)
-        
         receipt = self.burger.get_receipt()
         
         expected_lines = [
@@ -137,7 +149,7 @@ class TestBurger:
         
         assert receipt == expected_receipt
     
-    def test_get_receipt_no_bun_raises_error(self):
+    def test_get_receipt_raises_error_without_bun(self):
         mock_ingredient = Mock(spec=Ingredient)
         mock_ingredient.get_type.return_value = INGREDIENT_TYPE_SAUCE
         mock_ingredient.get_name.return_value = "Соус традиционный галактический"
@@ -153,7 +165,7 @@ class TestBurger:
         (988, [], 1976),
         (200, [100], 500),
     ])
-    def test_get_price_parametrized(self, bun_price, ingredient_prices, expected_total):
+    def test_get_price_with_different_combinations(self, bun_price, ingredient_prices, expected_total):
         self.mock_bun.get_price.return_value = bun_price
         self.burger.set_buns(self.mock_bun)
         
@@ -162,9 +174,10 @@ class TestBurger:
             mock_ingredient.get_price.return_value = price
             self.burger.add_ingredient(mock_ingredient)
         
-        assert self.burger.get_price() == expected_total
+        actual_price = self.burger.get_price()
+        assert actual_price == expected_total
     
-    def test_get_receipt_with_multiple_ingredients(self):
+    def test_get_receipt_includes_all_ingredients(self):
         self.mock_bun.get_name.return_value = "Краторная булка N-200i"
         self.mock_bun.get_price.return_value = 1255
         
@@ -202,4 +215,14 @@ class TestBurger:
         self.burger.add_ingredient(self.mock_ingredient1)
         self.burger.add_ingredient(self.mock_ingredient2)
         
-        assert self.burger.get_price() == 1186
+        actual_price = self.burger.get_price()
+        assert actual_price == 1186
+    
+    def test_add_multiple_ingredients_increases_count(self):
+        initial_count = len(self.burger.ingredients)
+        self.burger.add_ingredient(self.mock_ingredient1)
+        self.burger.add_ingredient(self.mock_ingredient2)
+        
+        assert len(self.burger.ingredients) == initial_count + 2
+        assert self.burger.ingredients[0] == self.mock_ingredient1
+        assert self.burger.ingredients[1] == self.mock_ingredient2
