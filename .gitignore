@@ -1,0 +1,9 @@
+# created by virtualenv automatically
+.venv/
+*.venv/
+htmlcov/
+!htmlcov/index.html
+.coverage
+__pycache__/
+praktikum/__pycache__/
+*/__init__.py
