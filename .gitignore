@@ -1,0 +1,52 @@
+# Исключить каталоги среды разработки и зависимости
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg
+*.egg-info/
+.eggs/
+env/
+venv/
+.venv/
+.coverage
+
+# Исключить виртуальные окружения
+.Python
+
+# Исключить кэшированные файлы pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Исключить логи и временные файлы
+*.log
+*.tmp
+*.swp
+
+# Исключить настройки редактора
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Исключить файлы конфигурации и данных
+*.db
+*.sqlite3
+
+# Исключить конфигурации окружения и ключи
+*.env
+.env.*
+.DS_Store
+
+*.iml
+*.xml
+*.pyc
+*.csv
+*.txt
+*.html
+*.ico
+*.js
+*.css
+.idea/
+data/
+history/
+widgets/
