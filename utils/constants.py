@@ -1,0 +1,19 @@
+BUN_BURGER = "Булочка для бургера"
+
+TYPE_INGREDIENT = "начинка"
+INGREDIENT_ONION = "Лук"
+INGREDIENT_BACON = "Бекон"
+INGREDIENT_CUTLET = "Котлета"
+
+
+TYPE_SAUCE = "соус"
+SAUCE_MUSTARD = "Горчица"
+SAUCE_KETCHUP = "Кетчуп"
+
+PRICE_SAUCE = 0.5
+PRICE_INGREDIENT = 3.0
+PRICE_BUN = 2.5
+PRICE_325 = 325
+PRICE_100 = 100
+PRICE_75 = 75
+PRICE_50 = 50
