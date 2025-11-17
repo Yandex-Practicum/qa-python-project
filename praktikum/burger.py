@@ -2,6 +2,8 @@ from typing import List
 
 from praktikum.bun import Bun
 from praktikum.ingredient import Ingredient
+from helpers import data
+from helpers import ingredients
 
 
 class Burger:
