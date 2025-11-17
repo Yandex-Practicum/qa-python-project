@@ -2,23 +2,61 @@
 
 ### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
 
-### Реализованные сценарии
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+В этом проекте протестирован класс `Burger` из приложения Stellar Burgers.
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+Тесты находятся в каталоге:
 
-### Структура проекта
+```
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+tests/test_burger.py
 
-### Запуск автотестов
+````
 
-**Установка зависимостей**
+В тестах используются:
 
-> `$ pip install -r requirements.txt`
+- `pytest`
+- `pytest-cov`
+- `unittest.mock.MagicMock`
+- параметризация `@pytest.mark.parametrize`
+- фикстуры (`@pytest.fixture`)
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+Покрытие выполняется **только файла burger.py**.
 
->  `$ pytest --cov=praktikum --cov-report=html`
+
+---
+
+## Установка зависимостей
+
+```bash
+pip install -r requirements.txt
+````
+
+---
+
+## Запуск тестов
+
+```bash
+pytest -v
+```
+
+---
+
+## Запуск тестов с покрытием только для burger.py
+
+```bash
+pytest --cov=prakticum/burger.py --cov-report=term-missing -v
+```
+
+После выполнения покрытие должно быть 100%.
+
+---
+
+## Ожидаемый вывод (пример)
+
+```
+Burger ... PASSED
+---------------------------------------
+prakticum/burger.py      100%
+---------------------------------------
+
