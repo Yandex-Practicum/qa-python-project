@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / temporary Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# VSCode settings
+.vscode/
+
+# PyCharm settings
+.idea/
+*.iml
+
+# Pytest and test cache
+.pytest_cache/
+.cache/
+
+# Test reports and logs
+*.log
+*.out
+
+# Coverage reports
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+*.py.cover
+coverage.xml
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# System files (macOS / Windows)
+.DS_Store
+Thumbs.db
+
+# mypy type checker cache
+.mypy_cache/
+
+# If you use Ruff linter
+.ruff_cache/
+
+# If you use Cursor editor
+.cursorignore
+.cursorindexingignore
+
