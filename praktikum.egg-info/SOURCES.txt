@@ -1,0 +1,17 @@
+README.md
+setup.py
+praktikum/__init__.py
+praktikum/bun.py
+praktikum/burger.py
+praktikum/database.py
+praktikum/ingredient.py
+praktikum/ingredient_types.py
+praktikum/praktikum.py
+praktikum.egg-info/PKG-INFO
+praktikum.egg-info/SOURCES.txt
+praktikum.egg-info/dependency_links.txt
+praktikum.egg-info/top_level.txt
+tests/test_bun.py
+tests/test_burger.py
+tests/test_database.py
+tests/test_ingredient.py
