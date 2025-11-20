@@ -1,0 +1,13 @@
+"""
+Перечисление с типами ингредиентов.
+SAUCE – соус
+FILLING – начинка
+"""
+INGREDIENT_TYPE_SAUCE = 'SAUCE'
+INGREDIENT_TYPE_FILLING = 'FILLING'
+
+#SAUCE_1 = (INGREDIENT_TYPE_SAUCE, 'sauce_1', 1.1)
+#SAUCE_2 = (INGREDIENT_TYPE_SAUCE, 'sauce_2', 0.8)
+
+#FILLING_1 = (INGREDIENT_TYPE_FILLING, 'filling_1', 2.5)
+#FILLING_2 = (INGREDIENT_TYPE_FILLING, 'filling_2', 2.9)
