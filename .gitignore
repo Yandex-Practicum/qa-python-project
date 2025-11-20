@@ -27,9 +27,7 @@ venv.bak/
 *.out
 
 # Coverage reports
-.coverage
-.coverage.*
-htmlcov/
+# (htmlcov и .coverage намеренно НЕ игнорируются)
 *.cover
 *.py.cover
 coverage.xml
@@ -57,4 +55,3 @@ Thumbs.db
 # If you use Cursor editor
 .cursorignore
 .cursorindexingignore
-
