@@ -1,6 +1,10 @@
 import pytest
 from unittest.mock import Mock
 
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 from praktikum.bun import Bun
 from praktikum.ingredient import Ingredient
 from praktikum.burger import Burger
