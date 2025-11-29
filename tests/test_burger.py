@@ -1,5 +1,4 @@
-# version: v1.2
-
+# version: v1.3
 
 from unittest.mock import Mock
 
@@ -8,10 +7,6 @@ from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FI
 
 class TestBurger:
     """Тесты класса Burger."""
-
-    # Тесты set_buns.
-    # - test_set_buns_sets_bun: проверяет базовый сценарий первого вызова метода.
-    # - test_set_buns_uses_latest_bun: проверяет сценарий повторного вызова метода (обновление состояния)
 
     def test_set_buns_sets_bun(self, burger):
         bun = Mock()
@@ -42,12 +37,14 @@ class TestBurger:
 
         receipt = burger.get_receipt()
 
+        expected_price = bun.get_price() * 2 + ing.get_price()
+
         expected_receipt = (
             "(==== black bun ====)\n"
             "= sauce hot sauce =\n"
             "(==== black bun ====)\n"
             "\n"
-            "Price: 250"
+            f"Price: {expected_price}"
         )
 
         assert receipt == expected_receipt
