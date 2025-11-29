@@ -3,7 +3,7 @@ from praktikum.burger import Burger
 class TestBurger:
     def test_burger_init_bun_is_none(self):
         burger = Burger()
-        assert burger.bun is None, 'При инициализации не задана булка'
+        assert burger.bun is None, 'Атрибут bun при инициализации не None'
 
     def test_burger_init_ingredients_is_empty_list(self):
         burger = Burger()

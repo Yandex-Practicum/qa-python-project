@@ -2,7 +2,6 @@ import pytest
 from praktikum.database import Database
 
 class TestIngredient:
-
     @pytest.mark.parametrize('ingredient_type_by_index', [0, 3])
     def test_ingredient_init_is_type(self, ingredient_type_by_index):
         db = Database()
