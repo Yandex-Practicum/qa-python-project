@@ -29,6 +29,9 @@ class Burger:
         self.ingredients.insert(new_index, self.ingredients.pop(index))
 
     def get_price(self) -> float:
+        if self.bun is None:
+            return 0
+
         price = self.bun.get_price() * 2
 
         for ingredient in self.ingredients:
@@ -37,12 +40,18 @@ class Burger:
         return price
 
     def get_receipt(self) -> str:
-        receipt: List[str] = [f'(==== {self.bun.get_name()} ====)']
+        # ДОБАВЛЯЕМ ПРОВЕРКУ НА None ДЛЯ БУЛОЧКИ
+        if self.bun is None:
+            bun_name = "None"
+        else:
+            bun_name = self.bun.get_name()
+
+        receipt: List[str] = [f'(==== {bun_name} ====)']
 
         for ingredient in self.ingredients:
             receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
 
-        receipt.append(f'(==== {self.bun.get_name()} ====)\n')
+        receipt.append(f'(==== {bun_name} ====)\n')
         receipt.append(f'Price: {self.get_price()}')
 
         return '\n'.join(receipt)
