@@ -1,4 +1,4 @@
-# version: v1.3
+# version: v1.4
 
 from unittest.mock import Mock
 
@@ -48,3 +48,29 @@ class TestBurger:
         )
 
         assert receipt == expected_receipt
+
+    def test_remove_ingredient_removes_by_index(self, burger):
+        ing1 = Mock()
+        ing2 = Mock()
+        ing3 = Mock()
+
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+        burger.add_ingredient(ing3)
+
+        burger.remove_ingredient(1)
+
+        assert burger.ingredients == [ing1, ing3]
+
+    def test_move_ingredient_moves_to_new_index(self, burger):
+        ing1 = Mock()
+        ing2 = Mock()
+        ing3 = Mock()
+
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+        burger.add_ingredient(ing3)
+
+        burger.move_ingredient(0, 2)
+
+        assert burger.ingredients == [ing2, ing3, ing1]
