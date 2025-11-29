@@ -1,18 +1,25 @@
 from praktikum.bun import Bun
+from praktikum.database import Database
 
 class TestBun:
     def test_bun_init_is_name(self):
-        bun = Bun(name='Test bun', price=10)
-        assert bun.name
+        db = Database()
+        bun = Bun(db.buns[0].name, db.buns[0].price)
+        assert bun.name, 'У булки не инициализирован атрибут name'
 
     def test_bun_init_is_price(self):
-        bun = Bun(name='Test bun', price=10)
-        assert bun.price
+        db = Database()
+        bun = Bun(db.buns[0].name, db.buns[0].price)
+        assert bun.price, 'У булки не инициализирован атрибут price'
 
     def test_bun_get_name_correct(self):
-        bun = Bun(name='Test bun', price=10)
-        assert bun.get_name() == 'Test bun'
+        db = Database()
+        bun = Bun(db.buns[0].name, db.buns[0].price)
+        bun_name = db.buns[0].name
+        assert bun.get_name() == bun_name, 'Вернулось некорректное имя булки'
 
     def test_bun_get_price_correct(self):
-        bun = Bun(name='Test bun', price=10)
-        assert bun.get_price() == 10
+        db = Database()
+        bun = Bun(db.buns[0].name, db.buns[0].price)
+        bun_price = db.buns[0].price
+        assert bun.get_price() == bun_price, 'Вернулась некорректная цена булки'

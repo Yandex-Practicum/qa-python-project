@@ -1,32 +1,36 @@
 import pytest
-import praktikum.ingredient_types as ingredient_types
-from praktikum.ingredient import Ingredient
+from praktikum.database import Database
 
 class TestIngredient:
-    @pytest.mark.parametrize('ingredient_type', [ingredient_types.INGREDIENT_TYPE_SAUCE,
-                                                 ingredient_types.INGREDIENT_TYPE_FILLING])
-    def test_ingredient_init_is_type(self, ingredient_type):
-        ingredient = Ingredient(ingredient_type=ingredient_type, name='Test ingredient', price=20)
-        assert ingredient.type
+
+    @pytest.mark.parametrize('ingredient_type_by_index', [0, 3])
+    def test_ingredient_init_is_type(self, ingredient_type_by_index):
+        db = Database()
+        ingredient = db.ingredients[ingredient_type_by_index]
+        assert ingredient.type, 'У ингредиента не инициализирован атрибут type'
 
     def test_ingredient_init_is_name(self):
-        ingredient = Ingredient(ingredient_type=ingredient_types.INGREDIENT_TYPE_SAUCE, name='Test ingredient', price=20)
-        assert ingredient.name
+        db = Database()
+        ingredient = db.ingredients[0]
+        assert ingredient.name, 'У ингредиента не инициализирован атрибут name'
 
     def test_ingredient_init_is_price(self):
-        ingredient = Ingredient(ingredient_type='начинка', name='Test ingredient', price=20)
-        assert ingredient.price
+        db = Database()
+        ingredient = db.ingredients[0]
+        assert ingredient.price, 'У ингредиента не инициализирован атрибут price'
 
-    @pytest.mark.parametrize('ingredient_type', [ingredient_types.INGREDIENT_TYPE_SAUCE,
-                                                 ingredient_types.INGREDIENT_TYPE_FILLING])
-    def test_ingredient_get_type_correct(self, ingredient_type):
-        ingredient = Ingredient(ingredient_type=ingredient_type, name='Test ingredient', price=20)
-        assert ingredient.get_type() == ingredient_type
+    @pytest.mark.parametrize('ingredient_type_by_index', [0, 3])
+    def test_ingredient_get_type_correct(self, ingredient_type_by_index):
+        db = Database()
+        ingredient = db.ingredients[ingredient_type_by_index]
+        assert ingredient.get_type() == ingredient.type, 'Вернулся неверный тип ингредиента'
 
     def test_ingredient_get_name_correct(self):
-        ingredient = Ingredient(ingredient_type='начинка', name='Test ingredient', price=20)
-        assert ingredient.get_name() == 'Test ingredient'
+        db = Database()
+        ingredient = db.ingredients[0]
+        assert ingredient.get_name() == ingredient.name, 'Вернулось неверное имя ингредиента'
 
     def test_ingredient_get_price_correct(self):
-        ingredient = Ingredient(ingredient_type='начинка', name='Test ingredient', price=20)
-        assert ingredient.get_price() == 20
+        db = Database()
+        ingredient = db.ingredients[0]
+        assert ingredient.get_price() == ingredient.price, 'Вернулась неверная цена ингредиента'
