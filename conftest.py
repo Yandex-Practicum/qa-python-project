@@ -3,6 +3,7 @@ from unittest.mock import Mock
 from burger import Burger
 
 
+
 @pytest.fixture
 def burger():
     burger = Burger()
@@ -32,4 +33,11 @@ def mock_filling():
     mock.get_name.return_value = "sausage"
     mock.get_price.return_value = 300
     mock.get_type.return_value = "FILLING"
+    return mock
+
+@pytest.fixture
+def mock_burger():
+    mock = Mock()
+    mock.bun = ("white bun", 200)
+    mock.ingredients = [("SAUCE", "hot sauce", 100), ("FILLING", "sausage", 300)]
     return mock
