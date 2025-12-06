@@ -5,7 +5,8 @@ from burger import Burger
 
 @pytest.fixture
 def burger():
-    return Burger()
+    burger = Burger()
+    return burger
 
 
 @pytest.fixture
