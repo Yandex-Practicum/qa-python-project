@@ -1,9 +1,8 @@
 import pytest
 from data import order_data
-from unittest.mock import Mock
+from unittest.mock import patch
 from burger import Burger
-from bun import Bun
-from ingredient import Ingredient
+
 
 class TestBurger:
 
@@ -38,3 +37,16 @@ class TestBurger:
         mock_bun.get_price.assert_called_once()
         mock_sauce.get_price.assert_called_once()
         mock_filling.get_price.assert_called_once()
+
+    @patch.object(Burger, 'get_price', return_value=800)
+    def test_get_receipt_get_check_of_order(self, mock_get_price, burger, mock_bun, mock_sauce, mock_filling):
+        burger.bun = mock_bun
+        burger.ingredients = [mock_sauce, mock_filling]
+        actual_receipt = burger.get_receipt()
+        assert actual_receipt == order_data.expected_check
+        mock_bun.get_name.assert_called()
+        mock_sauce.get_name.assert_called_once()
+        mock_sauce.get_type.assert_called_once()
+        mock_filling.get_name.assert_called_once()
+        mock_filling.get_type.assert_called_once()
+        mock_get_price.assert_called_once()
