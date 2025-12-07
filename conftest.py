@@ -4,13 +4,13 @@ from burger import Burger
 
 
 
-@pytest.fixture
+@pytest.fixture(scope="function")
 def burger():
     burger = Burger()
     return burger
 
 
-@pytest.fixture
+@pytest.fixture(scope="function")
 def mock_bun():
     mock = Mock()
     mock.get_name.return_value = "white bun"
@@ -18,7 +18,7 @@ def mock_bun():
     return mock
 
 
-@pytest.fixture
+@pytest.fixture(scope="function")
 def mock_sauce():
     mock = Mock()
     mock.get_name.return_value = "hot sauce"
@@ -27,17 +27,10 @@ def mock_sauce():
     return mock
 
 
-@pytest.fixture
+@pytest.fixture(scope="function")
 def mock_filling():
     mock = Mock()
     mock.get_name.return_value = "sausage"
     mock.get_price.return_value = 300
     mock.get_type.return_value = "FILLING"
-    return mock
-
-@pytest.fixture
-def mock_burger():
-    mock = Mock()
-    mock.bun = ("white bun", 200)
-    mock.ingredients = [("SAUCE", "hot sauce", 100), ("FILLING", "sausage", 300)]
     return mock
