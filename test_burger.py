@@ -29,23 +29,12 @@ class TestBurger:
         assert burger.ingredients[0] == mock_filling
         assert burger.ingredients[1] == mock_sauce
 
-    @pytest.mark.parametrize("bun_value, sauce_value, filling_value, expected_price", 
-                             [order_data.price_without_order,
-                              order_data.price_of_order_with_bun,
-                              order_data.price_of_order_with_ingredient,
-                              order_data.price_of_order_with_two_ingredients,
-                              order_data.price_of_order_with_bun_and_ingredient,
-                              order_data.price_of_order_with_bun_and_two_ingredients
-                              ]
-                            )
-    def test_get_price_calculate_price_of_order(self,burger, bun_value, sauce_value, filling_value, expected_price):
-        mock_bun = Mock()
-        mock_bun.get_price.return_value = bun_value
-        mock_sauce = Mock()
-        mock_sauce.get_price.return_value = sauce_value
-        mock_filling = Mock()
-        mock_filling.get_price.return_value = filling_value
+    def test_get_price_get_price_of_order(self, burger, mock_bun, mock_sauce, mock_filling):
         burger.bun = mock_bun
         burger.ingredients = [mock_sauce, mock_filling]
-        assert burger.get_price() == expected_price
-
+        actual_price = burger.get_price()
+        expected_price = 800
+        assert actual_price == expected_price
+        mock_bun.get_price.assert_called_once()
+        mock_sauce.get_price.assert_called_once()
+        mock_filling.get_price.assert_called_once()
