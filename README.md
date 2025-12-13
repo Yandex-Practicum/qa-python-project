@@ -1,24 +1,39 @@
-## Задание 1: Юнит-тесты
+# Автотесты для Stellar Burgers
 
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
+## Описание проекта
+Юнит-тесты для проверки программы, которая помогает заказать бургер в Stellar Burgers.
 
-### Реализованные сценарии
+## Структура проекта
+- `praktikum/` - исходный код приложения
+- `tests/` - тесты для приложения
+  - `conftest.py` - фикстуры для тестов
+  - `test_data.py` - тестовые данные
+  - `test_bun.py` - тесты для класса Bun
+  - `test_ingredient.py` - тесты для класса Ingredient
+  - `test_burger.py` - тесты для класса Burger
+  - `test_database.py` - тесты для класса Database
+  - `test_praktikum.py` - тесты для основного модуля
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+## Покрытие кода
+Цель: 100% покрытие кода тестами.
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+## Используемые технологии
+- Python 3.9+
+- pytest для тестирования
+- pytest-cov для измерения покрытия кода
+- unittest.mock для создания моков
 
-### Структура проекта
+## Отчет о покрытии: 100%
+Все тесты успешно пройдены. Покрытие кода составляет 100%.
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+[📊 Посмотреть отчет о покрытии](https://htmlpreview.github.io/?https://github.com/Nadezhda-20/Diplom_1/blob/develop1/htmlcov/index.html) (откроется в новом окне)
 
-### Запуск автотестов
+Отчет также доступен в папке [htmlcov/index.html](htmlcov/index.html)
 
-**Установка зависимостей**
+## Запуск тестов
+```bash
+# Установка зависимостей
+pip install -r requirements.txt
 
-> `$ pip install -r requirements.txt`
-
-**Запуск автотестов и создание HTML-отчета о покрытии**
-
->  `$ pytest --cov=praktikum --cov-report=html`
+# Запуск тестов с отчетом о покрытии
+pytest --cov=praktikum --cov-report=html EOF
