@@ -38,22 +38,11 @@ class TestBurger:
         price = (burger.bun.price * 2) + burger.ingredients[0].price + burger.ingredients[1].price
         assert burger.get_price() == price, 'Вернулась некорректная цена бургера'
 
-    def test_burger_get_receipt_bun_name_in_receipt(self, create_test_burger):
+    def test_burger_receipt_is_correct(self, create_test_burger):
         burger = create_test_burger[0]
-        bun_name = burger.bun.name
-        assert bun_name in burger.get_receipt(), 'Название булки не найдено в рецепте или некорректно'
-
-    def test_burger_get_receipt_sauce_name_in_receipt(self, create_test_burger):
-        burger = create_test_burger[0]
-        sauce_name = burger.ingredients[0].name
-        assert sauce_name in burger.get_receipt(), 'Название соуса не найдено в рецепте или некорректно'
-
-    def test_burger_get_receipt_filling_name_in_receipt(self, create_test_burger):
-        burger = create_test_burger[0]
-        filling_name = burger.ingredients[1].name
-        assert filling_name in burger.get_receipt(), 'Название начинки не найдено в рецепте или некорректно'
-
-    def test_burger_get_receipt_price_in_receipt_and_correct(self, create_test_burger):
-        burger = create_test_burger[0]
-        price = burger.get_price()
-        assert f'Price: {price}' in burger.get_receipt(), 'Цена не найдена в рецепте или некорректна'
+        expected_receipt = (f'(==== {burger.bun.name} ====)\n'
+                            f'= sauce {burger.ingredients[0].name} =\n'
+                            f'= filling {burger.ingredients[1].name} =\n'
+                            f'(==== {burger.bun.name} ====)\n\n'
+                            f'Price: {burger.get_price()}')
+        assert expected_receipt == burger.get_receipt(), 'Вернулся некорректный рецепт'
