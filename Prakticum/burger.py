@@ -1,7 +1,7 @@
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
+from Prakticum.bun import Bun
+from Prakticum.ingredient import Ingredient
 
 
 class Burger:
