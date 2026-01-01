@@ -1,0 +1,6 @@
+BUN_NAME = "black bun"
+BUN_PRICE = 100
+SAUCE_NAME = "sour cream"
+SAUCE_PRICE = 200
+FILLING_NAME = "sausage"
+FILLING_PRICE = 300
