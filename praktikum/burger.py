@@ -43,6 +43,6 @@ class Burger:
             receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
 
         receipt.append(f'(==== {self.bun.get_name()} ====)\n')
-        receipt.append(f'Price: {self.get_price()}')
+        receipt.append(f'Price: {self.get_price()}\n')
 
         return '\n'.join(receipt)
