@@ -11,14 +11,26 @@
 ### Структура проекта
 
 - `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- `tests` - пакет, содержащий тесты, разделенные по классам:
+  - `bun_test.py` - тесты для класса Bun
+  - `burger_test.py` - тесты для класса Burger  
+  - `ingredient_test.py` - тесты для класса Ingredient
+  - `database_test.py` - тесты для класса Database
+- `htmlcov/` - отчет о покрытии тестами 
 
 ### Запуск автотестов
 
 **Установка зависимостей**
+```bash
+pip install -r requirements.txt
+```
 
-> `$ pip install -r requirements.txt`
+**Запуск всех тестов**
+```bash
+python -m pytest tests/
+```
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
-
->  `$ pytest --cov=praktikum --cov-report=html`
+```bash
+python -m pytest --cov=praktikum --cov-report=html tests/
+```
