@@ -6,6 +6,7 @@ class Ingredient:
     """
 
     def __init__(self, ingredient_type: str, name: str, price: float):
+        self.ingredient_type = None
         self.type = ingredient_type
         self.name = name
         self.price = price
