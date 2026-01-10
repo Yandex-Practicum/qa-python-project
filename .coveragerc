@@ -1,0 +1,3 @@
+[run]
+omit =
+    Stellar_Burgers/praktikum.py

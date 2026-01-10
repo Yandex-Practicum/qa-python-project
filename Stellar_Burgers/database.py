@@ -1,8 +1,8 @@
 from typing import List
+from Stellar_Burgers.bun import Bun
+from Stellar_Burgers.ingredient import Ingredient
+from Stellar_Burgers.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
-from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
 
 class Database:
