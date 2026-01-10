@@ -31,3 +31,6 @@ class Database:
 
     def available_ingredients(self) -> List[Ingredient]:
         return self.ingredients
+
+db = Database()
+print(db.available_ingredients())
