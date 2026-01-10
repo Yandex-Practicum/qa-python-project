@@ -11,7 +11,11 @@
 ### Структура проекта
 
 - `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- `tests` - пакет, содержащий тесты, разделенные по классам: `test_bun.py`, `test_burger.py`, `test_database.py`, `test_ingredient.py`
+- `.gitignore` - файл исключений Git
+- `README.md` - инструкции по проекту
+- `praktikum.py` - главный скрипт демонстрации
+- `requirements.txt` - зависимости
 
 ### Запуск автотестов
 
