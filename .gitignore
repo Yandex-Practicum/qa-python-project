@@ -1,0 +1,40 @@
+# ОС и системные файлы
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE и редакторы
+
+.idea/
+*.iml
+.vscode/
+
+# Python
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+.eggs/
+*.log
+
+# Виртуальные окружения
+
+venv/
+ENV/
+env/
+.venv/
+
+# --------------------
+# Pytest / Coverage
+# --------------------
+.pytest_cache/
+.cache/
+.coverage
+coverage.xml
+htmlcov/
+coverage.txt
+
