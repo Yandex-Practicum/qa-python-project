@@ -1,0 +1,28 @@
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.ipynb_checkpoints
+
+# Coverage
+.coverage
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ОС
+.DS_Store
+Thumbs.db
+
+# pytest
+.pytest_cache/
