@@ -1,3 +1,4 @@
+# оставилено в корне, т.к. в задании не надо покрывать тестами
 from typing import List
 
 from praktikum.bun import Bun
