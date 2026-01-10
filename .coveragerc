@@ -1,0 +1,13 @@
+[run]
+# Учитывать ветвления в покрытии (if/else).
+branch = True
+source = praktikum  # Покрывать только код из папки "praktikum".
+
+[report]
+# Исключить из отчета тесты и файлы инициализации.
+omit =
+    */tests/*
+    */__init__.py
+
+[html]
+directory = htmlcov  # Папка для HTML-отчета.
