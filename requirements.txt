@@ -1,0 +1,6 @@
+pip~=24.2
+attrs~=24.2.0
+PySocks~=1.7.1
+cryptography~=44.0.0
+pytest
+pytest-cov
