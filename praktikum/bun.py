@@ -1,9 +1,7 @@
-class Bun:
-    """
-    Модель булочки для бургера.
-    Булочке можно дать название и назначить цену.
-    """
+import pytest
 
+
+class Bun:
     def __init__(self, name: str, price: float):
         self.name = name
         self.price = price

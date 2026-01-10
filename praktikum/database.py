@@ -6,9 +6,6 @@ from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FI
 
 
 class Database:
-    """
-    Класс с методами по работе с базой данных.
-    """
 
     def __init__(self):
         self.buns: List[Bun] = []
