@@ -17,8 +17,12 @@
 
 **Установка зависимостей**
 
-> `$ pip install -r requirements.txt`
+> `$ pip3 install -r requirements.txt`
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+>  `$ python3 -m pytest --cov=praktikum --cov-report=html`
+
+**Allure отчет о тестировании**
+
+>  `$ allure serve allure_results`
