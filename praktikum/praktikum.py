@@ -2,7 +2,7 @@ from typing import List
 
 from praktikum.bun import Bun
 from praktikum.burger import Burger
-from praktikum.database import Database
+from database import Database
 from praktikum.ingredient import Ingredient
 
 
