@@ -1,0 +1,4 @@
+allure-pytest==2.13.5
+allure-python-commons==2.13.5
+pytest==8.3.3
+pytest-cov==5.0.0
