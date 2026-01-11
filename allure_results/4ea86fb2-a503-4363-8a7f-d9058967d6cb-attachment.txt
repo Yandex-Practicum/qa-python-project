@@ -1,0 +1,3 @@
+
+Тест пройден!
+В базе ингредиенты с названием hot sauce, sour cream, chili sauce, cutlet, dinosaur, sausage
