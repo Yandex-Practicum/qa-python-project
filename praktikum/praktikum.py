@@ -7,9 +7,6 @@ from praktikum.ingredient import Ingredient
 
 
 def main():
-    # Инициализируем базу данных
-    database: Database = Database()
-
     # Создадим новый бургер
     burger: Burger = Burger()
 
