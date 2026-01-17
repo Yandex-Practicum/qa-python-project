@@ -18,3 +18,6 @@ class Ingredient:
 
     def get_type(self) -> str:
         return self.type
+
+i = Ingredient("gghg", "uuu", 20)
+print(i.get_price())
