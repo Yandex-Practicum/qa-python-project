@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import Mock
 from burger import Burger
+from bun import Bun
+from ingredient import Ingredient
 
 class TestBurger(unittest.TestCase):
     def setUp(self):
@@ -48,6 +50,25 @@ class TestBurger(unittest.TestCase):
         self.bun.get_name.return_value = "Classic Bun"
         self.ingredient.get_type.return_value = "Meat"
         self.ingredient.get_name.return_value = "Beef"
+
+        # Устанавливаем булочку перед генерацией чека
+        self.burger.set_buns(self.bun)
+
+        # Добавляем ингредиент в бургер
+        self.burger.add_ingredient(self.ingredient)
+
+        # Добавляем настройку для метода get_price
+        self.bun.get_price.return_value = 10.0  # Пример значения цены булочки
+        self.ingredient.get_price.return_value = 5.0  # Добавляем настройку цены для ингредиента
+
         receipt = self.burger.get_receipt()
-        expected_receipt = "(==== Classic Bun ====)\n= meat Beef =\n(==== Classic Bun ====)=\nPrice: 25.0"
+        expected_receipt = "(==== Classic Bun ====)\n= meat Beef =\n(==== Classic Bun ====)\n\nPrice: 25.0"
         self.assertEqual(receipt, expected_receipt)
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+
+
+    
