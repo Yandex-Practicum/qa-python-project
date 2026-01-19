@@ -1,5 +1,5 @@
 from typing import List
-
+import pytest
 from bun import Bun
 from ingredient import Ingredient
 
@@ -44,7 +44,7 @@ class Burger:
         receipt.append(f'Price: {self.get_price()}')    # Завершаем ценой
         return '\n'.join(receipt)
     
-    # receipt.append(f'(==== {self.bun.get_name()} ====)=')
+    
 
 
     

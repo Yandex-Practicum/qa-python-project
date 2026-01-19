@@ -1,0 +1,6 @@
+[run]
+source = .
+omit = tests/*
+branch = True
+parallel = False
+data_file = .coverage
