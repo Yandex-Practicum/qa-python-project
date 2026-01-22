@@ -4,7 +4,17 @@
 Реализованные сценарии
 
 Созданы юнит-тесты, покрывающие классы `Burger`
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+Класс `Burger` покрыт на 100% — согласно отчёту `htmlcov/index.html`.
+Name                            Stmts   Miss  Cover
+---------------------------------------------------
+praktikum\bun.py                    8      1    88%
+praktikum\burger.py                27      0   100%
+praktikum\database.py              21     21     0%
+praktikum\ingredient.py            11      2    82%
+praktikum\ingredient_types.py       2      0   100%
+praktikum\praktikum.py             20     20     0%
+---------------------------------------------------
+TOTAL                              89     44    51%
 
 
 Проверены:

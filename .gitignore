@@ -13,6 +13,7 @@ __pycache__/
 
 # Coverage
 .coverage
+htmlcov/
 
 # IDE
 .vscode/
