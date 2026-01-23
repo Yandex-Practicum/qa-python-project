@@ -1,0 +1,7 @@
+coverage==7.6.7
+iniconfig==2.0.0
+package_name==0.1
+packaging==24.2
+pluggy==1.5.0
+pytest==8.2.2
+pytest-cov==6.0.0
