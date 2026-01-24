@@ -30,18 +30,14 @@ class Burger:
 
     def get_price(self) -> float:
         price = self.bun.get_price() * 2
-
         for ingredient in self.ingredients:
             price += ingredient.get_price()
-
         return price
 
     def get_receipt(self) -> str:
         receipt: List[str] = [f'(==== {self.bun.get_name()} ====)']
-
         for ingredient in self.ingredients:
             receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
-
         receipt.append(f'(==== {self.bun.get_name()} ====)\n')
         receipt.append(f'Price: {self.get_price()}')
 
