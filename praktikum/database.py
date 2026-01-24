@@ -26,8 +26,11 @@ class Database:
         self.ingredients.append(Ingredient(INGREDIENT_TYPE_FILLING, "dinosaur", 200))
         self.ingredients.append(Ingredient(INGREDIENT_TYPE_FILLING, "sausage", 300))
 
+
     def available_buns(self) -> List[Bun]:
         return self.buns
 
     def available_ingredients(self) -> List[Ingredient]:
         return self.ingredients
+
+
