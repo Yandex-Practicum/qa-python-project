@@ -1,9 +1,9 @@
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.burger import Burger
-from praktikum.database import Database
-from praktikum.ingredient import Ingredient
+from Diplom_1.praktikum.bun import Bun
+from Diplom_1.praktikum.burger import Burger
+from Diplom_1.praktikum.database import Database
+from Diplom_1.praktikum.ingredient import Ingredient
 
 
 def main():
