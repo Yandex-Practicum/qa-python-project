@@ -1,0 +1,22 @@
+BUN_NAME = "black bun"
+BUN_PRICE = 50.0
+BUN2_NAME = "white bun"
+BUN2_PRICE = 100.0
+
+SAUCE_TYPE = 'SAUCE'
+SAUCE_NAME = 'hot sauce'
+SAUCE_PRICE = 100.0
+
+FILLING_TYPE = 'FILLING'
+FILLING_NAME = 'cutlet'
+FILLING_PRICE = 200.0
+
+INGREDIENT_PRICE = 150.0
+
+class BurgerGetPrice:
+
+    BUNS_SAUCE_FILLING_PRICE = 400
+    BUNS_PRICE               = 100
+    BUNS_SAUCE_PRICE         = 200
+    SAUCE_PRICE              = 100
+    EMPTY_BURGER_PRICE       = 0
