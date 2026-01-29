@@ -22,6 +22,7 @@ class Burger:
     def add_ingredient(self, ingredient: Ingredient):
         self.ingredients.append(ingredient)
 
+
     def remove_ingredient(self, index: int):
         del self.ingredients[index]
 
