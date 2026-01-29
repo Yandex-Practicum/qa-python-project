@@ -6,7 +6,7 @@
 
 Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+Процент покрытия 75% (отчет: `file:///C:/Users/Alena/PycharmProjects/Diplom_1/htmlcov/index.html`)
 
 ### Структура проекта
 
