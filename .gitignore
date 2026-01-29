@@ -1,0 +1,11 @@
+.venv
+.venv/
+.idea/
+.idea
+__pycache__
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache
+.pytest_cache/
+**/.pytest_cache/
