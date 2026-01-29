@@ -1,0 +1,15 @@
+from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+
+
+class Data:
+
+    BUN_NAME = 'Марсианский хлебушек'
+    BUN_PRICE = 1234.55
+    INGREDIENT_TYPE = INGREDIENT_TYPE_SAUCE
+    INGREDIENT_NAME = 'Алиенский кислый'
+    INGREDIENT_PRICE = 99.77
+    MOCK_BUN_NAME = 'Мокианский хлебец'
+    MOCK_BUN_PRICE = 4321.88
+    MOCK_INGREDIENT_TYPE = INGREDIENT_TYPE_FILLING
+    MOCK_INGREDIENT_NAME = 'Огурчик Рик'
+    MOCK_INGREDIENT_PRICE = 666.01
