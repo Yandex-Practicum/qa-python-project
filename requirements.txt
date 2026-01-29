@@ -1,0 +1,4 @@
+allure-pytest==2.13.2
+pytest==7.4.4
+pytest-cov==4.0.0
+selenium==4.17.2
