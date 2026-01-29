@@ -23,6 +23,7 @@ def main():
     burger.set_buns(buns[0])
 
     burger.add_ingredient(ingredients[1])
+    print(burger.ingredients[0].get_name())
     burger.add_ingredient(ingredients[4])
     burger.add_ingredient(ingredients[3])
     burger.add_ingredient(ingredients[5])
