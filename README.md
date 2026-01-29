@@ -10,8 +10,8 @@
 
 ### Структура проекта
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `test_bun.py`, `test_burger.py` и т. д.
+- В корне лежит код программы, файл `conftest.py` с фикстурами и файл `pytest.ini` для автоматического добавления allure-отчётов в папку allure_results 
 
 ### Запуск автотестов
 
@@ -19,6 +19,7 @@
 
 > `$ pip install -r requirements.txt`
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+**Запуск автотестов, cоздание Allure-отчёта и создание HTML-отчета о покрытии**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+> `$ pytest --cov=praktikum --cov-report=html`
+> `$ allure serve allure_results`
