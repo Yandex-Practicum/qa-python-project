@@ -1,11 +1,18 @@
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.burger import Burger
-from praktikum.database import Database
-from praktikum.ingredient import Ingredient
+from bun import Bun
+from burger import Burger
+from database import Database
+from ingredient import Ingredient
 
-
+# здесь были просто неправильные импорты, которые только в папке названной praktikum сработали б, нет?
+# и то только вот так
+# from ..praktikum.bun import Bun
+# from ..praktikum.burger import Burger
+# from ..praktikum.database import Database
+# from ..praktikum.ingredient import Ingredient
+# поэтому импорты здесь и в других местах изменены для корректной работы
+# ???
 def main():
     # Инициализируем базу данных
     database: Database = Database()
