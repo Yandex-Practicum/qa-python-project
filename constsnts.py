@@ -1,0 +1,10 @@
+class Constants:
+
+    BUN = "black bun"
+    BUT_PRICE = 100
+    INGREDIENT_TYPE = "SAUCE"
+    INGREDIENT_NAME = "hot sauce"
+    INGREDIENT_PRICE = 100
+    INGREDIENT_TYPE_FILLING = "FILLING"
+    INGREDIENT_FILLING_NAME = "cutlet"
+    INGREDIENT_FILLING_PRICE = 100
