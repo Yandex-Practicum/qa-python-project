@@ -1,0 +1,4 @@
+[run]
+omit =
+    */database.py
+    */praktikum.py
