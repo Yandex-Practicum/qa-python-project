@@ -1,15 +1,18 @@
+# burger.py
+
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
+
+from bun import Bun
+from ingredient import Ingredient
 
 
 class Burger:
     """
-    Модель бургера.
+    Модель Бургера.
     Бургер состоит из булочек и ингредиентов (начинка или соус).
     Ингредиенты можно перемещать и удалять.
-    Можно распечать чек с информацией о бургере.
+    Можно распечатать чек с информацией о Бургере.
     """
 
     def __init__(self):

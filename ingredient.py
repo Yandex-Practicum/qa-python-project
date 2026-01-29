@@ -1,3 +1,5 @@
+# ingredient.py
+
 class Ingredient:
     """
     Модель ингредиента.

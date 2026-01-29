@@ -1,0 +1,28 @@
+# Файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VirtualEnv
+venv/
+.env/
+
+# Тестовые отчёты и кэш
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Файлы зависимостей, но не сам requirements.txt
+*.egg-info/
+dist/
+build/
