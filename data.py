@@ -1,0 +1,15 @@
+from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+
+
+class Data:
+
+    BUN_NAME = 'Лунная булка'
+    BUN_PRICE = 1234.00
+    INGREDIENT_TYPE = INGREDIENT_TYPE_SAUCE
+    INGREDIENT_NAME = 'Марсианский острый'
+    INGREDIENT_PRICE = 99.00
+    MOCK_BUN_NAME = 'Мерцающий коржик'
+    MOCK_BUN_PRICE = 4321.00
+    MOCK_INGREDIENT_TYPE = INGREDIENT_TYPE_FILLING
+    MOCK_INGREDIENT_NAME = 'Астросыр'
+    MOCK_INGREDIENT_PRICE = 666.00

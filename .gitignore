@@ -1,0 +1,38 @@
+
+venv/
+env/
+.venv/
+.ENV/
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+*.log
+
+.idea/                # IntelliJ IDEA / PyCharm
+.vscode/              # Visual Studio Code
+*.sublime-workspace
+*.sublime-project
+
+
+*.sublime-settings
+*.kate
+*.kate-sessional
+
+.DS_Store            # macOS
+Thumbs.db            # Windows
+
+build/
+dist/
+*.egg-info/
+.eggs/
+
+*.bak
+*.tmp
+*.swp
+
+.mypy_cache/
+*.mypy_cache/
+.pytest_cache/
