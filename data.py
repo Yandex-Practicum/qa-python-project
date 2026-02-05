@@ -1,30 +1,28 @@
-from practicum.ingredient_types import INGREDIENT_TYPE_SAUCE
+from practicum.ingredient_types import INGREDIENT_TYPE_FILLING, INGREDIENT_TYPE_SAUCE
 
 
-BUN_DATA = {
-    'Флюоресцентная булка R2-D3': 988,
-    'Краторная булка N-200i': 1255
-    }
-SAUCE_DATA = {
-    'Соус Spicy-X': 90, 
-    'Соус фирменный Space Sauce': 80, 
-    'Соус традиционный галактический': 15, 
-    'Соус с шипами Антарианского плоскоходца': 88
-    }
-FILLING_NAMES = {
-    'Мясо бессмертных моллюсков Protostomia': 1337, 
-    'Говяжий метеорит (отбивная)': 3000, 
-    'Биокотлета из марсианской Магнолии': 424,
-    'Филе Люминесцентного тетраодонтимформа': 988, 
-    'Хрустящие минеральные кольца': 300, 
-    'Плоды Фалленианского дерева': 874, 
-    'Кристаллы марсианских альфа-сахаридов': 762,
-    'Мини-салат Экзо-Плантаго': 4400, 
-    'Сыр с астероидной плесенью': 4142
-    }
+BUN_NAME = 'Флюоресцентная булка R2-D3'
+BUN_PRICE = 988
 
-BURGER_PRICE = (BUN_DATA[list(BUN_DATA.keys())[0]] * 2) + SAUCE_DATA[list(SAUCE_DATA.keys())[0]]
-BURGER_FULL_RECEIPT = ('(==== '+list(BUN_DATA.keys())[0]+' ====)\n'
-                       '= '+INGREDIENT_TYPE_SAUCE.lower()+' '+list(SAUCE_DATA.keys())[0]+' =\n'
-                       '(==== '+list(BUN_DATA.keys())[0]+' ====)\n\n'
+INGREDIENT_NAME = 'Соус Spicy-X'
+INGREDIENT_PRICE = 90
+
+BURGER_PRICE = (BUN_PRICE* 2) + INGREDIENT_PRICE
+
+BURGER_FULL_RECEIPT = ('(==== '+BUN_NAME+' ====)\n'
+                       '= '+INGREDIENT_TYPE_SAUCE.lower()+' '+INGREDIENT_NAME+' =\n'
+                       '(==== '+BUN_NAME+' ====)\n\n'
                        'Price: '+str(BURGER_PRICE))
+
+BUNS_NAME_PRICE = [
+        ["black bun", 100],
+        ["white bun", 200],
+        ["red bun", 300]]
+
+INGREDIENTS_TYPE_NAME_PRICE = [
+        [INGREDIENT_TYPE_SAUCE, "hot sauce", 100],
+        [INGREDIENT_TYPE_SAUCE, "sour cream", 200],
+        [INGREDIENT_TYPE_SAUCE, "chili sauce", 300],
+        [INGREDIENT_TYPE_FILLING, "cutlet", 100],
+        [INGREDIENT_TYPE_FILLING, "dinosaur", 200],
+        [INGREDIENT_TYPE_FILLING, "sausage", 300]]

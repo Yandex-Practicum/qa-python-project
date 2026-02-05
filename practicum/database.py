@@ -1,5 +1,4 @@
 from typing import List
-
 from practicum.bun import Bun
 from practicum.ingredient import Ingredient
 from practicum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING

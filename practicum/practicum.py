@@ -1,5 +1,4 @@
 from typing import List
-
 from practicum.bun import Bun
 from practicum.burger import Burger
 from practicum.database import Database
