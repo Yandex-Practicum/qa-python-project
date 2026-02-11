@@ -12,6 +12,7 @@ class Burger:
     Можно распечать чек с информацией о бургере.
     """
 
+
     def __init__(self):
         self.bun = None
         self.ingredients: List[Ingredient] = []
