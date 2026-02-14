@@ -7,6 +7,7 @@ from praktikum.ingredient import Ingredient
 
 
 def main():
+def main():
     # Инициализируем базу данных
     database: Database = Database()
 
