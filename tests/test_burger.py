@@ -3,22 +3,18 @@ import pytest
 from praktikum.burger import Burger
 
 
-def test_set_buns():
+def test_set_buns(bun_mock):
     burger = Burger()
+    burger.set_buns(bun_mock)
 
-    bun = Mock()
-    burger.set_buns(bun)
-
-    assert burger.bun == bun
+    assert burger.bun == bun_mock
 
 
-def test_add_ingredient():
+def test_add_ingredient(ingredient_mock):
     burger = Burger()
+    burger.add_ingredient(ingredient_mock)
 
-    ingredient = Mock()
-    burger.add_ingredient(ingredient)
-
-    assert burger.ingredients == [ingredient]
+    assert burger.ingredients == [ingredient_mock]
 
 
 def test_remove_ingredient():
