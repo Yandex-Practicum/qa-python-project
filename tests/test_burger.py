@@ -64,3 +64,40 @@ def test_get_price(bun_price, ing_prices, expected):
         burger.add_ingredient(ingredient)
 
     assert burger.get_price() == expected
+
+
+def test_get_receipt_without_ingredients(bun_mock):
+    burger = Burger()
+    burger.set_buns(bun_mock)
+
+    expected = '(==== black bun ====)\n(==== black bun ====)\n\nPrice: 200'
+
+    assert burger.get_receipt() == expected
+
+
+def test_get_receipt_with_ingredients(bun_mock):
+    burger = Burger()
+    burger.set_buns(bun_mock)
+
+    sauce = Mock()
+    sauce.get_type.return_value = 'SAUCE'
+    sauce.get_name.return_value = 'hot sauce'
+    sauce.get_price.return_value = 50
+
+    filling = Mock()
+    filling.get_type.return_value = 'FILLING'
+    filling.get_name.return_value = 'cutlet'
+    filling.get_price.return_value = 100
+
+    burger.add_ingredient(sauce)
+    burger.add_ingredient(filling)
+
+    expected = (
+        '(==== black bun ====)\n'
+        '= sauce hot sauce =\n'
+        '= filling cutlet =\n'
+        '(==== black bun ====)\n\n'
+        'Price: 350'
+    )
+
+    assert burger.get_receipt() == expected
