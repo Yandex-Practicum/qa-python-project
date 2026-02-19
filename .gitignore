@@ -1,0 +1,27 @@
+# Virtual environment
+venv/
+.env
+.env.*
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest cache
+.pytest_cache/
+.coverage
+htmlcov/
+pytest_cov/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
