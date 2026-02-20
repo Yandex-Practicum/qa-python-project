@@ -1,0 +1,17 @@
+[run]
+source = praktikum
+omit = 
+    praktikum/praktikum.py
+    */__pycache__/*
+    */.pytest_cache/*
+    tests/*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self.debug:
+    if __name__ == .__main__.:
+    raise AssertionError
+    raise NotImplementedError
+    pass
