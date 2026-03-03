@@ -67,6 +67,6 @@ pytest -v
 pip install -r requirements.txt
 
 ## Отчет о покрытии 
-pytest --cov=praktikum --cov-report=html`
+pytest --cov=praktikum --cov-report=html
 
 

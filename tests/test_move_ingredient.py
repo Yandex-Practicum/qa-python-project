@@ -1,16 +1,12 @@
 from unittest.mock import Mock 
-from unittest.mock import patch
 import pytest
 from praktikum.burger import Burger
-from praktikum.bun import Bun
-from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
-from tests.data import Credentials
 
-class TestRemoveIngdient:
+class TestRemoveIngredient:
 
-        '''
+    '''
     Проверяется метод  перемещения ингредиентов
-    def test_move_ingredient(self, index: int, new_index: int):
+    def move_ingredient(self, index: int, new_index: int):
         self.ingredients.insert(new_index, self.ingredients.pop(index))
     ''' 
 
