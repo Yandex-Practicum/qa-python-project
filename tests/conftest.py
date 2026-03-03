@@ -2,6 +2,7 @@ import pytest
 from unittest.mock import Mock
 from praktikum.burger import Burger
 
+
 @pytest.fixture
 def create_mock_bun():
     """Фикстура возвращает мок булок"""
@@ -36,4 +37,3 @@ def create_mock_burger(create_mock_bun, create_mock_ingredient):
             burger.add_ingredient(ing_mock)
         return burger
     return _create_mock_burger
-

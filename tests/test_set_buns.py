@@ -2,6 +2,7 @@ import pytest
 from praktikum.burger import Burger
 from tests.data import Credentials
 
+
 class TestSetBuns:
 
     '''
@@ -22,5 +23,3 @@ class TestSetBuns:
             f"Ожидалось имя булки '{bun_name}', получено '{burger.bun.get_name()}'"
         assert burger.bun.get_price() == bun_price,\
             f"Ожидалась цена булки '{bun_price}', получено '{burger.bun.get_price()}'"
-
-

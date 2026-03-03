@@ -2,6 +2,7 @@ from unittest.mock import Mock
 import pytest
 from praktikum.burger import Burger
 
+
 class TestGetPrice:
         
     '''Проверяется метод получения цены на бургер

@@ -3,6 +3,7 @@ from praktikum.burger import Burger
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 from tests.data import Credentials
 
+
 class TestAddIngredient:
     '''
     Проверяется метод добавления ингредиентов
@@ -43,5 +44,3 @@ class TestAddIngredient:
        
         assert len(burger.ingredients) == ingredients_count, \
             f"Ожидалось {ingredients_count} ингредиентов, получено {len(burger.ingredients)}"
-
-

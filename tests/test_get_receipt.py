@@ -3,6 +3,7 @@ import pytest
 from tests.data import Credentials
 from praktikum.burger import Burger
 
+
 class TestGetReceipt:
    
     '''Проверяется метод получения рецепта на бургер
