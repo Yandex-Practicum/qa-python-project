@@ -1,0 +1,55 @@
+# Игнорируем виртуальные окружения
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Node.js зависимости
+node_modules/
+
+# Артефакты сборки
+dist/
+build/
+
+# Генерируемые файлы
+*.pyc
+*.log
+*.json
+
+# IDE и системные файлы
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+#Прочее
+*.txt
+__pycache__
+.pytest_cache
+tests/__pycache__/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.htmlcov
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
