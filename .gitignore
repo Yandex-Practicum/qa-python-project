@@ -1,0 +1,41 @@
+# Виртуальное окружение
+venv/
+env/
+.env/
+.venv/
+
+# Кэши Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Отчёты о покрытии
+htmlcov/
+.coverage
+.coverage.*
+*.cover
+*.py,cover
+
+# Файлы IDE (VS Code, PyCharm и др.)
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+
+# Системные файлы (Windows)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Файлы с секретами (если появятся)
+.env
+*.key
+*.pem
