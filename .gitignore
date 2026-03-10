@@ -1,0 +1,32 @@
+gitignore
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.virtualenv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+.coverage.*
+*.cover
+
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Distribution files
+dist/
+build/
+*.egg-info/
+
+# Environment variables
+.env
