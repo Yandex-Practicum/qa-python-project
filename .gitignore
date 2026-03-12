@@ -1,0 +1,35 @@
+# Виртуальные окружения Python
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+
+# Кэш Python
+__pycache__/
+*.pyc
+
+# Настройки IDE и редакторов
+.idea/
+.vscode/
+
+# Системные файлы ОС
+.DS_Store
+Thumbs.db
+
+# Кэш и отчёты тестирования
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Инструменты тестирования
+.tox/
+.nox/
+.cache
+.hypothesis/
+
+# Артефакты сборки
+dist/
+build/

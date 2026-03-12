@@ -18,6 +18,7 @@ class Burger:
 
     def set_buns(self, bun: Bun):
         self.bun = bun
+        
 
     def add_ingredient(self, ingredient: Ingredient):
         self.ingredients.append(ingredient)
