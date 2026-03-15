@@ -1,0 +1,22 @@
+# Папки с кэшем и временными файлами
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+.coverage.*
+
+# Виртуальное окружение
+venv/
+env/
+.env
+
+# Редакторы
+.vscode/
+.idea/
+
+# Логи
+*.log
+
+# Системные файлы
+.DS_Store
+Thumbs.db
