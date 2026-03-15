@@ -1,8 +1,6 @@
-import pytest
 import allure
 
 from praktikum.bun import Bun
-from conftest import *
 from praktikum.ingredient import Ingredient
 
 

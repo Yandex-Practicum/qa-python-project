@@ -1,9 +1,7 @@
 import pytest
 import allure
 from unittest.mock import Mock
-from unittest.mock import patch
 
-from conftest import *
 from helpers import ingredients_list
 from praktikum.ingredient import Ingredient
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING

@@ -1,14 +1,14 @@
 import pytest
 import allure
 
-from conftest import *
 from praktikum.ingredient import Ingredient
 
 
 
 class TestIngredient:
 
-    # В классе Ingredient не выполняются проверки передаваемых значений, поэтому считаю достаточно проверить создание ингредиентов
+    # В классе Ingredient не выполняются проверки передаваемых значений, 
+    # поэтому считаю достаточно проверить создание ингредиентов
     @allure.title("Создание ингредиента")
     @pytest.mark.parametrize(
         "ingredient_type, name, price",
