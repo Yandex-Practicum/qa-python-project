@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="681ced86-279a-4b27-a588-46175a4cf59e" name="Changes" comment="внесены исправления-3">
+      <change beforePath="$PROJECT_DIR$/.idea/Diplom_1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_burger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_burger.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3AHwn0TZypMnU7qGogdsYie7Ocu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.TestBurger.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.TestBurger.test_get_price_calculation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.TestBurger.test_receipt_lowercase_types.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.test_burger_add_ingredient.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.test_clear_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.test_move_and_remove_ingredients_order.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.test_receipt_format_includes_bun_and_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_burger.test_set_bun_and_add_ingredients_and_price.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_burger.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.TestBurger.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.TestBurger.test_get_receipt_includes_bun_and_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.TestBurger.test_move_ingredient_valid_indices.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.test_clear_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.test_get_price_with_single_ingredient.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.test_get_price_without_ingredients_and_bun.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.test_get_receipt_includes_bun_and_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.test_move_ingredient_invalid_index.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for tests.test_burger.test_move_ingredient_valid_indices.executor&quot;: &quot;Run&quot;,
+    &quot;Python.praktikum.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_burger.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rus/PycharmProjects/Diplom/Diplom_1&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rus\PycharmProjects\Diplom\Diplom_1" />
+      <recent name="C:\Users\Rus\PycharmProjects\Diplom\Diplom_1\praktikum" />
+      <recent name="C:\Users\Rus\PycharmProjects\Diplom\Diplom_1\tests" />
+      <recent name="C:\Users\Rus\PycharmProjects\Diplom\Diplom_1\practikum" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.pytest for tests.test_burger.TestBurger.test_get_price_with_single_ingredient">
+    <configuration name="pytest for tests.test_burger.TestBurger" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_burger.TestBurger&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for tests.test_burger.TestBurger.test_get_price_with_single_ingredient" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_burger.TestBurger.test_get_price_with_single_ingredient&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for tests.test_burger.TestBurger.test_get_receipt_includes_bun_and_ingredients" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_burger.TestBurger.test_get_receipt_includes_bun_and_ingredients&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for tests.test_burger.TestBurger.test_move_ingredient_valid_indices" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_burger.TestBurger.test_move_ingredient_valid_indices&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for tests.test_burger.test_clear_ingredients" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_burger.test_clear_ingredients&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for tests.test_burger.TestBurger.test_get_price_with_single_ingredient" />
+        <item itemvalue="Python tests.pytest for tests.test_burger.TestBurger" />
+        <item itemvalue="Python tests.pytest for tests.test_burger.TestBurger.test_get_receipt_includes_bun_and_ingredients" />
+        <item itemvalue="Python tests.pytest for tests.test_burger.TestBurger.test_move_ingredient_valid_indices" />
+        <item itemvalue="Python tests.pytest for tests.test_burger.test_clear_ingredients" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-7e47963ff851-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.515" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="681ced86-279a-4b27-a588-46175a4cf59e" name="Changes" comment="" />
+      <created>1772262969711</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772262969711</updated>
+    </task>
+    <task id="LOCAL-00001" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772352878905</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772352878905</updated>
+    </task>
+    <task id="LOCAL-00002" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772352952812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772352952812</updated>
+    </task>
+    <task id="LOCAL-00003" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772353012417</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1772353012417</updated>
+    </task>
+    <task id="LOCAL-00004" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772353129867</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1772353129867</updated>
+    </task>
+    <task id="LOCAL-00005" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772353168413</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1772353168413</updated>
+    </task>
+    <task id="LOCAL-00006" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772353435003</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772353435003</updated>
+    </task>
+    <task id="LOCAL-00007" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772353534255</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772353534255</updated>
+    </task>
+    <task id="LOCAL-00008" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772359278764</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772359278764</updated>
+    </task>
+    <task id="LOCAL-00009" summary="задание 1">
+      <option name="closed" value="true" />
+      <created>1772360607107</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772360607107</updated>
+    </task>
+    <task id="LOCAL-00010" summary="внесены исправления">
+      <option name="closed" value="true" />
+      <created>1772821210638</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1772821210638</updated>
+    </task>
+    <task id="LOCAL-00011" summary="внесены исправления">
+      <option name="closed" value="true" />
+      <created>1772821238078</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1772821238078</updated>
+    </task>
+    <task id="LOCAL-00012" summary="внесены исправления2">
+      <option name="closed" value="true" />
+      <created>1773055781339</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1773055781339</updated>
+    </task>
+    <task id="LOCAL-00013" summary="внесены исправления2">
+      <option name="closed" value="true" />
+      <created>1773093261825</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1773093261825</updated>
+    </task>
+    <task id="LOCAL-00014" summary="внесены исправления2">
+      <option name="closed" value="true" />
+      <created>1773093537517</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1773093537517</updated>
+    </task>
+    <task id="LOCAL-00015" summary="внесены исправления-3">
+      <option name="closed" value="true" />
+      <created>1773502358759</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1773502358759</updated>
+    </task>
+    <task id="LOCAL-00016" summary="внесены исправления-3">
+      <option name="closed" value="true" />
+      <created>1773502368026</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1773502368026</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="задание 1" />
+    <MESSAGE value="внесены исправления" />
+    <MESSAGE value="внесены исправления2" />
+    <MESSAGE value="внесены исправления-3" />
+    <option name="LAST_COMMIT_MESSAGE" value="внесены исправления-3" />
+  </component>
+</project>
