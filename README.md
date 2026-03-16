@@ -15,9 +15,21 @@
 
 ### Запуск автотестов
 
-**Установка зависимостей**
+Клонируйте репозиторий
+git clone ...
+cd ... # ← ВАЖНО: перейти в папку проекта
 
-> `$ pip install -r requirements.txt`
+Создайте виртуальное окружение
+python -m venv venv или python3 -m venv venv
+
+Активируйте виртуальное окружение
+venv\Scripts\Activate.ps1 # Windows PS venv\Scripts\activate.bat # Windows CMD source venv/bin/activate # MacOS
+
+Деактивация (необязательный шаг)
+deactivate
+
+Установите зависимости
+pip install -r requirements.txt # Установка основных библиотек
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
