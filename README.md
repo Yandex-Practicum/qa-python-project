@@ -33,4 +33,4 @@ pip install -r requirements.txt # Установка основных библи
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+>  `$ pytest --cov=. --cov-report=html`
