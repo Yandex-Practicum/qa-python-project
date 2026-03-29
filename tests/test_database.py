@@ -16,7 +16,7 @@ class TestDatabase:
         assert hasattr(db, 'buns')
         assert hasattr(db, 'ingredients')
 
-    def test_available_buns_returns_list(self):
+    def test_available_buns_list(self):
         db = Database()
         buns = db.available_buns()
 

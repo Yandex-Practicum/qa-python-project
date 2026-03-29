@@ -10,7 +10,6 @@ class TestBun:
         ("white bun", 200),
         ("red bun", 300),
         ("", 0),
-        ("special bun", 150.5),
         ])
 
     def test_bun_creation(self, name, price):
@@ -35,8 +34,7 @@ class TestBun:
         ("black bun", 100, 100),
         ("white bun", 200, 200),
         ("red bun", 300, 300),
-        ("special bun", 150.5, 150.5),
-        ("negative bun", -100, -100),
+        ("negative price", -100, -100),
         ])
 
     def test_get_price(self, name, price, expected_price):

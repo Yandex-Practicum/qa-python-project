@@ -9,30 +9,25 @@ class IngredientTypes:
     SAUCE = INGREDIENT_TYPE_SAUCE
     FILLING = INGREDIENT_TYPE_FILLING
 
+@pytest.fixture
+def test_bun():
+    return Bun("Test Bun (dont eat!)", 100)
 
 @pytest.fixture
-def sample_bun():
-    return Bun("test bun", 100)
-
-
-@pytest.fixture
-def sample_sauce():
-    return Ingredient(IngredientTypes.SAUCE, "test sauce", 50)
-
+def test_sauce_ingredient():
+    return Ingredient(IngredientTypes.SAUCE, "Souce emulator", 50)
 
 @pytest.fixture
-def sample_filling():
-    return Ingredient(IngredientTypes.FILLING, "test filling", 150)
-
+def test_filling():
+    return Ingredient(IngredientTypes.FILLING, "Velociraptor meat", 150)
 
 @pytest.fixture
-def sample_burger(sample_bun, sample_sauce, sample_filling):
+def test_burger(test_bun, test_sauce_ingredient, test_filling):
     burger = Burger()
-    burger.set_buns(sample_bun)
-    burger.add_ingredient(sample_sauce)
-    burger.add_ingredient(sample_filling)
+    burger.set_buns(test_bun)
+    burger.add_ingredient(test_sauce_ingredient)
+    burger.add_ingredient(test_filling)
     return burger
-
 
 @pytest.fixture
 def empty_burger():
