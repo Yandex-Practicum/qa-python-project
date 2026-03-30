@@ -22,3 +22,6 @@
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
 >  `$ pytest --cov=praktikum --cov-report=html`
+
+
+python -m pytest tests/burger_test.py -v
