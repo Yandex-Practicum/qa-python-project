@@ -40,21 +40,27 @@ def mock_two_ingredient():
 
 @pytest.fixture
 def mock_ingredient_a():
-    ingredient_a_mock = Mock()
-    ingredient_a_mock.get_name.return_value = "A"
-    return ingredient_a_mock
+    ing_a = Mock()
+    ing_a.get_name.return_value = "Ingredient_A"
+    ing_a.get_type.return_value = "FILLING"
+    ing_a.get_price.return_value = 10
+    return ing_a
 
 
 @pytest.fixture
 def mock_ingredient_b():
-    ingredient_b_mock = Mock()
-    ingredient_b_mock.get_name.return_value = "B"
-    return ingredient_b_mock
+    ing_b = Mock()
+    ing_b.get_name.return_value = "Ingredient_B"
+    ing_b.get_type.return_value = "FILLING"
+    ing_b.get_price.return_value = 10
+    return ing_b
 
 
 @pytest.fixture
 def mock_ingredient_c():
-    ingredient_c_mock = Mock()
-    ingredient_c_mock.get_name.return_value = "C"
-    return ingredient_c_mock
+    ing_c = Mock()
+    ing_c.get_name.return_value = "Ingredient_C"
+    ing_c.get_type.return_value = "FILLING"
+    ing_c.get_price.return_value = 10
+    return ing_c
 
