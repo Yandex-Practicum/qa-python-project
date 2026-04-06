@@ -12,5 +12,4 @@ __pycache__/
 .idea/
 .vscode/
 
-# HTML-отчёт о покрытии
-htmlcov/
+.coverage
