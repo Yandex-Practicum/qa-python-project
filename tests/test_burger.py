@@ -1,5 +1,6 @@
 from burger import Burger
 import pytest
+from conftest import mock_bun, mock_ingredients
 from parametrize_data import MOVE_DATA
 
 
@@ -46,9 +47,16 @@ class TestBurger:
         for ing in mock_ingredients:
             burger.add_ingredient(ing)
         receipt = burger.get_receipt()
-        lines = receipt.split("\n")
-        assert lines[0] == f"(==== {mock_bun.get_name()} ====)"
-        assert lines[-3] == f"(==== {mock_bun.get_name()} ====)"
-        assert lines[-1] == f"Price: {burger.get_price()}"
+        expected_lines = [
+        f"(==== {mock_bun.get_name()} ====)"
+    ]
+
         for ing in mock_ingredients:
-            assert any(ing.get_name() in line for line in lines)
+            expected_lines.append(
+            f"= {ing.get_type().lower()} {ing.get_name()} =")
+
+        expected_lines.append(f"(==== {mock_bun.get_name()} ====)")
+        expected_lines.append("")  # из-за \n в коде
+        expected_lines.append(f"Price: {burger.get_price()}")
+
+        assert receipt.splitlines() == expected_lines
