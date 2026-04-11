@@ -1,0 +1,46 @@
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Отчёты тестов
+allure-results/
+allure-report/
+htmlcov/
+.coverage
+.coverage.*
+.pytest_cache/
+.tox/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+.DS_Store
+
+# Логи
+*.log
+
+# Системные файлы
+Thumbs.db
+desktop.ini
+
+# Секреты
+.env
+*.key
+
+# Временные файлы
+*.tmp
+*.temp
+*.cache
+
+# Скомпилированные файлы
+*.exe
+*.dll
+*.so
