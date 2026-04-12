@@ -20,13 +20,54 @@ class TestBun:
         mock_bun.get_price.return_value = 200.5
         assert mock_bun.get_price() == 200.5    
 
-    @allure.title("Проверка на создание булочки с правильными именем, ценой и разными данными")     
+    @allure.title("Проверка установки имени булочки")
+    @pytest.mark.parametrize("name", [
+        "Black Bun",
+        "White Bun",
+        "Gluten-Free Bun",
+        ""
+    ])
+    def test_bun_name_initialization(self, name):
+        bun = Bun(name, 0.0)
+        assert bun.get_name() == name
+
+    @allure.title("Проверка установки цены булочки")
+    @pytest.mark.parametrize("price", [
+        100.0,
+        80.5,
+        777.77,
+        0.0
+    ])
+    def test_bun_price_initialization(self, price):
+        bun = Bun("Test Bun", price)
+        assert bun.get_price() == price
+
+    @allure.title("Проверка возврата имени после полной инициализации с валидными данными")
     @pytest.mark.parametrize("name,price", [
         ("Black Bun", 100.0),
         ("White Bun", 80.5),
-        ("Gluten-Free Bun", 777.77),
-        ("", 0.0)
+        ("Gluten-Free Bun", 777.77)
     ])
-    def test_bun_initialization(self, name, price):
+    def test_bun_get_name_after_full_initialization(self, name, price):
         bun = Bun(name, price)
-        assert bun.get_name() == name and bun.get_price() == price
+        assert bun.get_name() == name
+
+    @allure.title("Проверка возврата цены после полной инициализации с валидными данными")
+    @pytest.mark.parametrize("name,price", [
+        ("Black Bun", 100.0),
+        ("White Bun", 80.5),
+        ("Gluten-Free Bun", 777.77)
+    ])
+    def test_bun_get_price_after_full_initialization(self, name, price):
+        bun = Bun(name, price)
+        assert bun.get_price() == price
+
+    @allure.title("Проверка возврата имени при пустом имени и нулевой цене")
+    def test_bun_get_name_empty_name_zero_price(self):
+        bun = Bun("", 0.0)
+        assert bun.get_name() == ""
+
+    @allure.title("Проверка возврата цены при пустом имени и нулевой цене")
+    def test_bun_get_price_empty_name_zero_price(self):
+        bun = Bun("", 0.0)
+        assert bun.get_price() == 0.0

@@ -82,9 +82,4 @@ class TestBurger:
             f"(==== {bun_name} ====)\n\n"               #
             f"Price: {expected_price}"
     )
-        #print("Фактический чек:")
-        #print(receipt)
-        #print("Ожидаемый чек:")
-        #print(expected_receipt)
-
         assert receipt == expected_receipt

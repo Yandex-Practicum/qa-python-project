@@ -11,20 +11,18 @@
 * Расчёт итоговой цены.
 * Формирование чека с детализацией.
 
-
-
-
 ### Структура проекта
 
     praktikum/
         │
-        ├── README.md
+        ├── README.md  
         ├── praktikum.py
         ├──.gitignore
         ├── requirements.txt
         ├── praktikum/ 
         │   ├── init.py 
-        │   ├── burger.py 
+        │   ├── burger.py
+        │   ├── database.py        
         │   ├── bun.py 
         │   ├── ingredient.py 
         │   └── ingredient_types.py 
