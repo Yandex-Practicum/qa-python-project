@@ -1,34 +1,23 @@
-# Автотесты для учебного приложения Stellar Burgers
+# 🧪 Stellar Burgers UI Tests
 
-Проект по автоматизации тестирования фронтенд-части веб-приложения [Stellar Burgers](https://stellarburgers.education-services.ru/).  
-Тесты написаны на языке **Python** с использованием библиотеки **Selenium** и фреймворка **Pytest**.
+Автоматизированные UI тесты для веб-приложения:
+https://stellarburgers.education-services.ru/
 
-## 🏗 Архитектура проекта
+---
 
-В проекте реализован паттерн **Page Object Model (POM)** с глубоким разделением ответственности:
+## ⚙️ Технологии
 
-1.  **BasePage**: Инкапсулирует работу с `WebDriver` и явными ожиданиями (`WebDriverWait`). Ни один тест или объект страницы не обращается к драйверу напрямую.
-2.  **Locators**: Все селекторы (XPath) вынесены в отдельный файл `locators.py`. Это упрощает поддержку проекта при изменении верстки.
-3.  **Pages**: Классы страниц содержат только логику взаимодействия с элементами (методы), используя локаторы и методы `BasePage`.
-4.  **Tests**: Тестовые сценарии, написанные на человекопонятном языке бизнес-логики.
+- Python 3.10+
+- Pytest
+- Selenium WebDriver
+- Page Object Model
+- Allure Report
+- Chrome / Firefox
 
-## 🛠 Технологический стек
-- **Python 3.x**
-- **Selenium WebDriver**
-- **Pytest** (тестовый фреймворк)
-- **Allure** (формирование отчетов)
+---
+pytest --browser=chrome
+pytest --browser=firefox
 
-## 🚀 Настройка и запуск
-
-### 1. Подготовка окружения
-Убедитесь, что у вас установлены драйверы для браузеров (**ChromeDriver** для Chrome и **GeckoDriver** для Firefox).
-
-
-# Установите зависимости
-pip install -r requirements.txt
-
-# Запуск с генерацией данных для Allure-отчета
 pytest --alluredir=allure-results
 
-# генерация отчета
 allure serve allure-results
