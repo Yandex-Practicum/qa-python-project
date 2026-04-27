@@ -33,4 +33,18 @@ class TestBurger:
 
         assert burger.ingredients == [ingredient_2]
 
+    def test_move_ingredient_moves_ingredient_to_new_index(self):
+        burger = Burger()
+        ingredient_1 = Mock(name='ingredient_1')
+        ingredient_2 = Mock(name='ingredient_2')
+        ingredient_3 = Mock(name='ingredient_3')
+
+        burger.add_ingredient(ingredient_1)
+        burger.add_ingredient(ingredient_2)
+        burger.add_ingredient(ingredient_3)
+
+        burger.move_ingredient(0, 2)
+
+        assert burger.ingredients == [ingredient_2, ingredient_3, ingredient_1]
+
     
