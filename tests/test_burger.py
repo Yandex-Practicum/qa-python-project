@@ -1,6 +1,5 @@
 import pytest
 from unittest.mock import Mock
-
 from burger import Burger
 
 
