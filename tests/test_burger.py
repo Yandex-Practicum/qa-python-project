@@ -74,30 +74,30 @@ class TestBurger:
         burger = Burger()
 
         bun = Mock()
-        bun.get_name.return_value = 'Флюоресцентная булка R2-D3'
-        bun.get_price.return_value = 988
+        bun.get_name.return_value = 'black bun'
+        bun.get_price.return_value = 100
         burger.set_buns(bun)
 
         ingredient_1 = Mock()
-        ingredient_1.get_type.return_value = 'Соусы'
-        ingredient_1.get_name.return_value = 'Соус Spicy-X'
-        ingredient_1.get_price.return_value = 90
+        ingredient_1.get_type.return_value = 'SAUCE'
+        ingredient_1.get_name.return_value = 'hot sauce'
+        ingredient_1.get_price.return_value = 100
 
         ingredient_2 = Mock()
-        ingredient_2.get_type.return_value = 'Начинки'
-        ingredient_2.get_name.return_value = 'Мясо бессмертных моллюсков Protostomia'
-        ingredient_2.get_price.return_value = 1337
+        ingredient_2.get_type.return_value = 'FILLING'
+        ingredient_2.get_name.return_value = 'cutlet'
+        ingredient_2.get_price.return_value = 100
 
         burger.add_ingredient(ingredient_1)
         burger.add_ingredient(ingredient_2)
 
         expected_receipt = (
-            '(==== Флюоресцентная булка R2-D3 ====)\n'
-            '= Соусы Соус Spicy-X =\n'
-            '= Начинки Мясо бессмертных моллюсков Protostomia =\n'
-            '(==== Флюоресцентная булка R2-D3 ====)\n'
+            '(==== black bun ====)\n'
+            '= sauce hot sauce =\n'
+            '= filling cutlet =\n'
+            '(==== black bun ====)\n'
             '\n'
-            'Price: 3403'
+            'Price: 400'
         )
 
         actual_receipt = burger.get_receipt()
