@@ -70,4 +70,38 @@ class TestBurger:
 
         assert actual_price == expected_price
 
-    
+    def test_get_receipt_returns_correct_receipt(self):
+        burger = Burger()
+
+        bun = Mock()
+        bun.get_name.return_value = 'Флюоресцентная булка R2-D3'
+        bun.get_price.return_value = 988
+        burger.set_buns(bun)
+
+        ingredient_1 = Mock()
+        ingredient_1.get_type.return_value = 'Соусы'
+        ingredient_1.get_name.return_value = 'Соус Spicy-X'
+        ingredient_1.get_price.return_value = 90
+
+        ingredient_2 = Mock()
+        ingredient_2.get_type.return_value = 'Начинки'
+        ingredient_2.get_name.return_value = 'Мясо бессмертных моллюсков Protostomia'
+        ingredient_2.get_price.return_value = 1337
+
+        burger.add_ingredient(ingredient_1)
+        burger.add_ingredient(ingredient_2)
+
+        expected_receipt = (
+            '(==== Флюоресцентная булка R2-D3 ====)\n'
+            '= Соусы Соус Spicy-X =\n'
+            '= Начинки Мясо бессмертных моллюсков Protostomia =\n'
+            '(==== Флюоресцентная булка R2-D3 ====)\n'
+            '\n'
+            'Price: 3403'
+        )
+
+        actual_receipt = burger.get_receipt()
+
+        assert actual_receipt == expected_receipt
+
+
