@@ -21,3 +21,16 @@ class TestBurger:
 
         assert ingredient in burger.ingredients
         assert len(burger.ingredients) == 1
+
+    def test_remove_ingredient_removes_ingredient_by_index(self):
+        burger = Burger()
+        ingredient_1 = Mock()
+        ingredient_2 = Mock()
+        burger.add_ingredient(ingredient_1)
+        burger.add_ingredient(ingredient_2)
+
+        burger.remove_ingredient(0)
+
+        assert burger.ingredients == [ingredient_2]
+
+    
