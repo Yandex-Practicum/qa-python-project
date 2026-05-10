@@ -1,0 +1,12 @@
+.pytest_cache/
+.DS_Store
+target/allure-results/
+target/allure-report/
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.idea/
+.vscode/*
