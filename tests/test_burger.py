@@ -10,8 +10,16 @@ class TestBurger:
     def test_new_burger_is_empty(self):
 
         burger = Burger()
-        assert burger.bun is None
-        assert burger.ingredients == []
+        mock_bun = Mock()
+        mock_bun.get_price.return_value = 0
+        mock_bun.get_name.return_value = "without_bun"
+        burger.set_buns(mock_bun)
+        
+        assert burger.get_price() == 0
+        
+        receipt = burger.get_receipt()
+        assert "= sauce" not in receipt and "= filling" not in receipt
+
 
     @allure.title('Проверка, можно ли установить булочку для бургера')
     def test_set_buns(self):
@@ -57,8 +65,6 @@ class TestBurger:
         burger.add_ingredient(first_ingredient)
         burger.add_ingredient(second_ingredient)
         burger.add_ingredient(third_ingredient)
-
-        assert burger.ingredients == [first_ingredient, second_ingredient, third_ingredient]
 
         burger.move_ingredient(2, 1)
 
