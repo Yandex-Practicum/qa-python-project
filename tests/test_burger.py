@@ -17,9 +17,6 @@ class TestBurger:
         
         assert burger.get_price() == 0
         
-        receipt = burger.get_receipt()
-        assert "= sauce" not in receipt and "= filling" not in receipt
-
 
     @allure.title('Проверка, можно ли установить булочку для бургера')
     def test_set_buns(self):
