@@ -44,3 +44,12 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient_2)
         burger.move_ingredient(1, 0)
         assert burger.ingredients == [mock_ingredient_2, mock_ingredient_1]
+
+    # Тест на получение цены бургера
+    def test_get_price(self):
+        burger = Burger()
+        database = Database()
+        burger.set_buns(database.available_buns()[0])
+        burger.add_ingredient(database.available_ingredients()[0])
+        burger.add_ingredient(database.available_ingredients()[2])
+        assert burger.get_price() == 600.0
