@@ -34,3 +34,13 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient)
         burger.remove_ingredient(0)
         assert len(burger.ingredients) == 0
+
+    # Тест на перемещение слоя с ингридиентом
+    def test_move_ingredient(self):
+        burger = Burger()
+        mock_ingredient_1 = Mock()
+        mock_ingredient_2 = Mock()
+        burger.add_ingredient(mock_ingredient_1)
+        burger.add_ingredient(mock_ingredient_2)
+        burger.move_ingredient(1, 0)
+        assert burger.ingredients == [mock_ingredient_2, mock_ingredient_1]
