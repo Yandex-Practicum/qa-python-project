@@ -8,6 +8,13 @@ from praktikum.database import Database
 
 class TestBurger:
 
+    # Тест на конструктор
+    def test_init(self):
+        burger = Burger()
+        assert burger.bun is None
+        assert isinstance(burger.ingredients, list)
+        assert len(burger.ingredients) == 0
+
     # Тест на установку булочек
     def test_set_buns(self):
         burger = Burger()
@@ -51,5 +58,19 @@ class TestBurger:
         database = Database()
         burger.set_buns(database.available_buns()[0])
         burger.add_ingredient(database.available_ingredients()[0])
-        burger.add_ingredient(database.available_ingredients()[2])
-        assert burger.get_price() == 600.0
+        burger.add_ingredient(database.available_ingredients()[3])
+        assert burger.get_price() == 400.0
+
+    # Тест на получение рецепта бургера
+    def test_get_receipt(self):
+        burger = Burger()
+        database = Database()
+        burger.set_buns(database.available_buns()[0])
+        burger.add_ingredient(database.available_ingredients()[0])
+        burger.add_ingredient(database.available_ingredients()[3])
+        expected_receipt = "(==== black bun ====)\n"\
+                           "= sauce hot sauce =\n"\
+                           "= filling cutlet =\n"\
+                           "(==== black bun ====)\n\n"\
+                           "Price: 400"
+        assert expected_receipt == burger.get_receipt()
