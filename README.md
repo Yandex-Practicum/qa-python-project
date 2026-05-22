@@ -1,24 +1,18 @@
-## Задание 1: Юнит-тесты
+Diplom Задание 1
 
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
+praktikum - пакет, содержащий код программы
 
-### Реализованные сценарии
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+tests:
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+test_bun.py -          тест класса "Bun"
+test_burger.py -       тест класса "Burger"
+test_database.py -     тест класса "Database"
+test_ingredient.py -   тест класса "Ingredient"
 
-### Структура проекта
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+Вспомогательные файлы:
 
-### Запуск автотестов
+conftest.py - хранит фикстуры
 
-**Установка зависимостей**
-
-> `$ pip install -r requirements.txt`
-
-**Запуск автотестов и создание HTML-отчета о покрытии**
-
->  `$ pytest --cov=praktikum --cov-report=html`
+requirements.txt - хранит библиотеки тестового стенда

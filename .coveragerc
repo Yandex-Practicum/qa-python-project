@@ -1,0 +1,9 @@
+[run]
+branch = True
+source = praktikum
+omit =
+    praktikum/praktikum.py
+    tests/*
+
+[report]
+show_missing = True
