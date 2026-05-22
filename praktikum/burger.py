@@ -9,7 +9,7 @@ class Burger:
     Модель бургера.
     Бургер состоит из булочек и ингредиентов (начинка или соус).
     Ингредиенты можно перемещать и удалять.
-    Можно распечать чек с информацией о бургере.
+    Можно распечатать чек с информацией о бургере.
     """
 
     def __init__(self):
@@ -37,12 +37,14 @@ class Burger:
         return price
 
     def get_receipt(self) -> str:
-        receipt: List[str] = [f'(==== {self.bun.get_name()} ====)']
+        receipt: List[str] = [f"(==== {self.bun.get_name()} ====)"]
 
         for ingredient in self.ingredients:
-            receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
+            receipt.append(
+                f"= {str(ingredient.get_type()).lower()} {ingredient.get_name()} ="
+            )
 
-        receipt.append(f'(==== {self.bun.get_name()} ====)\n')
-        receipt.append(f'Price: {self.get_price()}')
+        receipt.append(f"(==== {self.bun.get_name()} ====)\n")
+        receipt.append(f"Price: {self.get_price()}")
 
-        return '\n'.join(receipt)
+        return "\n".join(receipt)
