@@ -1,0 +1,12 @@
+# Виртуальное окружение
+venv/
+.venv/
+
+# Кеш Python
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Отчёты покрытия
+.coverage
+htmlcov/
