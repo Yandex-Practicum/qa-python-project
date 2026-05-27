@@ -29,11 +29,17 @@ class TestDatabase:
         assert len(buns) == 3
 
     @pytest.mark.parametrize("index, expected_name, expected_price", EXPECTED_BUNS)
-    def test_available_buns_returns_correct_buns(self, index, expected_name, expected_price):
+    def test_available_buns_returns_buns_with_correct_name(self, index, expected_name, expected_price):
         database = Database()
         bun = database.available_buns()[index]
 
         assert bun.get_name() == expected_name
+
+    @pytest.mark.parametrize("index, expected_name, expected_price", EXPECTED_BUNS)
+    def test_available_buns_returns_buns_with_correct_price(self, index, expected_name, expected_price):
+        database = Database()
+        bun = database.available_buns()[index]
+
         assert bun.get_price() == expected_price
 
     def test_available_ingredients_returns_six_ingredients(self):
@@ -46,7 +52,7 @@ class TestDatabase:
         "index, expected_type, expected_name, expected_price",
         EXPECTED_INGREDIENTS
     )
-    def test_available_ingredients_returns_correct_ingredients(
+    def test_available_ingredients_returns_ingredients_with_correct_type(
         self,
         index,
         expected_type,
@@ -57,5 +63,35 @@ class TestDatabase:
         ingredient = database.available_ingredients()[index]
 
         assert ingredient.get_type() == expected_type
+
+    @pytest.mark.parametrize(
+        "index, expected_type, expected_name, expected_price",
+        EXPECTED_INGREDIENTS
+    )
+    def test_available_ingredients_returns_ingredients_with_correct_name(
+        self,
+        index,
+        expected_type,
+        expected_name,
+        expected_price
+    ):
+        database = Database()
+        ingredient = database.available_ingredients()[index]
+
         assert ingredient.get_name() == expected_name
+
+    @pytest.mark.parametrize(
+        "index, expected_type, expected_name, expected_price",
+        EXPECTED_INGREDIENTS
+    )
+    def test_available_ingredients_returns_ingredients_with_correct_price(
+        self,
+        index,
+        expected_type,
+        expected_name,
+        expected_price
+    ):
+        database = Database()
+        ingredient = database.available_ingredients()[index]
+
         assert ingredient.get_price() == expected_price
