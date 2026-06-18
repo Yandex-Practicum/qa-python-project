@@ -1,5 +1,5 @@
 import pytest
-from src.bun import Bun
+from src.praktikum.bun import Bun
 
 
 class TestBun:
@@ -15,14 +15,14 @@ class TestBun:
     def test_bun_creation(self, name, price):
         """Тест создания булочки с разными параметрами"""
         bun = Bun(name, price)
-        assert bun.get_name() == name
-        assert bun.get_price() == price
+        assert (bun.get_name() == name
+                and bun.get_price() == price)
 
     def test_bun_get_name(self):
         """Тест получения названия булочки"""
         bun = Bun("black bun", 100)
-        assert bun.get_name() == "black bun"
-        assert isinstance(bun.get_name(), str)
+        assert (bun.get_name() == "black bun"
+                and isinstance(bun.get_name(), str))
 
     def test_bun_get_price(self):
         """Тест получения цены булочки"""

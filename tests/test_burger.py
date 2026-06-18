@@ -1,9 +1,11 @@
-import pytest
 from unittest.mock import Mock, patch
-from src.burger import Burger
-from src.bun import Bun
-from src.ingredient import Ingredient
-from ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+
+import pytest
+
+from src.praktikum.bun import Bun
+from src.praktikum.burger import Burger
+from src.praktikum.ingredient import Ingredient
+from src.praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
 
 class TestBurger:
@@ -34,27 +36,32 @@ class TestBurger:
     def test_add_ingredient(self):
         """Тест добавления ингредиента"""
         self.burger.add_ingredient(self.ingredient1)
-        assert len(self.burger.ingredients) == 1
-        assert self.burger.ingredients[0] == self.ingredient1
+        assert (len(self.burger.ingredients) == 1
+                and self.burger.ingredients[0] == self.ingredient1)
 
     def test_add_multiple_ingredients(self):
         """Тест добавления нескольких ингредиентов"""
         self.burger.add_ingredient(self.ingredient1)
         self.burger.add_ingredient(self.ingredient2)
-        assert len(self.burger.ingredients) == 2
+        ingredients = self.burger.ingredients
+        assert (len(ingredients) == 2
+                and ingredients.count(self.ingredient1)
+                and ingredients.count(self.ingredient2))
 
     def test_remove_ingredient(self):
         """Тест удаления ингредиента"""
         self.burger.add_ingredient(self.ingredient1)
         self.burger.add_ingredient(self.ingredient2)
         self.burger.remove_ingredient(0)
-        assert len(self.burger.ingredients) == 1
-        assert self.burger.ingredients[0] == self.ingredient2
+        ingredients = self.burger.ingredients
+        assert (len(ingredients) == 1
+                and ingredients.count(self.ingredient2))
 
-    def test_remove_ingredient_invalid_index(self):
+    def test_remove_ingredient_invalid_index(self, exc_info=None):
         """Тест удаления ингредиента по неверному индексу"""
         with pytest.raises(IndexError):
             self.burger.remove_ingredient(0)
+            assert str(exc_info.value) == "list index out of range"
 
     def test_move_ingredient(self):
         """Тест перемещения ингредиента"""
@@ -63,8 +70,12 @@ class TestBurger:
         self.burger.add_ingredient(self.ingredient1)
 
         self.burger.move_ingredient(2, 0)
-        assert self.burger.ingredients[0] == self.ingredient1
-        assert len(self.burger.ingredients) == 3
+
+        ingredients = self.burger.ingredients
+        assert (len(ingredients) == 3
+                and ingredients[0] == self.ingredient1
+                and ingredients[1] == self.ingredient1
+                and ingredients[2] == self.ingredient2)
 
     def test_move_ingredient_same_position(self):
         """Тест перемещения ингредиента на ту же позицию"""
@@ -72,7 +83,10 @@ class TestBurger:
         self.burger.add_ingredient(self.ingredient2)
 
         self.burger.move_ingredient(1, 1)
-        assert self.burger.ingredients[1] == self.ingredient2
+
+        ingredients = self.burger.ingredients
+        assert (len(ingredients) == 2
+                and ingredients[1] == self.ingredient2)
 
     def test_get_price_without_bun(self):
         """Тест получения цены без булочки"""
@@ -96,12 +110,12 @@ class TestBurger:
 
         receipt = self.burger.get_receipt()
 
-        assert "(==== black bun ====)" in receipt
-        assert "= sauce hot sauce =" in receipt
-        assert "= filling cutlet =" in receipt
-        assert "Price: 350.0" in receipt
+        assert ("(==== black bun ====)" in receipt
+                and "= sauce hot sauce =" in receipt
+                and "= filling cutlet =" in receipt
+                and "Price: 350.0" in receipt)
 
-    @patch('src.burger.Burger.get_price')
+    @patch('src.praktikum.burger.Burger.get_price')
     def test_get_receipt_with_mock(self, mock_get_price):
         """Тест чека с использованием мока цены"""
         mock_get_price.return_value = 500.0

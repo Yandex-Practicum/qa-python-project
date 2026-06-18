@@ -1,7 +1,7 @@
-from src.database import Database
-from src.bun import Bun
-from src.ingredient import Ingredient
-from ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+from src.praktikum.database import Database
+from src.praktikum.bun import Bun
+from src.praktikum.ingredient import Ingredient
+from src.praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
 
 class TestDatabase:
@@ -10,28 +10,28 @@ class TestDatabase:
     def test_database_initialization(self):
         """Тест инициализации базы данных"""
         db = Database()
-        assert len(db.buns) == 3
-        assert len(db.ingredients) == 6
+        assert (len(db.buns) == 3
+                and len(db.ingredients) == 6)
 
     def test_available_buns(self):
         """Тест получения доступных булок"""
         db = Database()
         buns = db.available_buns()
 
-        assert len(buns) == 3
+        assert (len(buns) == 3
+                and buns[0].get_name() == "black bun"
+                and buns[1].get_name() == "white bun"
+                and  buns[2].get_name() == "red bun")
         assert all(isinstance(bun, Bun) for bun in buns)
-        assert buns[0].get_name() == "black bun"
-        assert buns[1].get_name() == "white bun"
-        assert buns[2].get_name() == "red bun"
 
     def test_available_buns_prices(self):
         """Тест цен доступных булок"""
         db = Database()
         buns = db.available_buns()
 
-        assert buns[0].get_price() == 100
-        assert buns[1].get_price() == 200
-        assert buns[2].get_price() == 300
+        assert (buns[0].get_price() == 100
+                and buns[1].get_price() == 200
+                and buns[2].get_price() == 300)
 
     def test_available_ingredients(self):
         """Тест получения доступных ингредиентов"""

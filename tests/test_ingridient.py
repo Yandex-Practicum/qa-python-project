@@ -1,6 +1,6 @@
 import pytest
-from src.ingredient import Ingredient
-from ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+from src.praktikum.ingredient import Ingredient
+from src.praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
 
 class TestIngredient:
@@ -15,9 +15,9 @@ class TestIngredient:
     def test_ingredient_creation(self, ingredient_type, name, price):
         """Тест создания ингредиента с разными параметрами"""
         ingredient = Ingredient(ingredient_type, name, price)
-        assert ingredient.get_type() == ingredient_type
-        assert ingredient.get_name() == name
-        assert ingredient.get_price() == price
+        assert ((ingredient.get_type() == ingredient_type
+                and ingredient.get_name() == name)
+                and ingredient.get_price() == price)
 
     def test_ingredient_get_type(self):
         """Тест получения типа ингредиента"""
