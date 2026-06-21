@@ -7,7 +7,18 @@ INGR_TYPE = "Начинка"
 INGR_NAME = "Котлета"
 INGR_PRICE = 150.0
 
-RECEIPT = "(==== Бородинская ====)\n= начинка Сало =\n= начинка Сало =\n= начинка Сало =\n(==== Бородинская ====)\n\nPrice: 100.0"
+RECEIPT_BUN_NAME = "Бородинская"
+RECEIPT_INGR_TYPE = "Начинка"
+RECEIPT_INGR_NAME = "Сало"
+RECEIPT_GET_PRICE = 100.0
+RECEIPT_LIST = []
+RECEIPT_LIST.append(f"(==== {RECEIPT_BUN_NAME} ====)")
+RECEIPT_LIST.append(f"= {RECEIPT_INGR_TYPE.lower()} {RECEIPT_INGR_NAME} =")
+RECEIPT_LIST.append(f"= {RECEIPT_INGR_TYPE.lower()} {RECEIPT_INGR_NAME} =")
+RECEIPT_LIST.append(f"= {RECEIPT_INGR_TYPE.lower()} {RECEIPT_INGR_NAME} =")
+RECEIPT_LIST.append(f"(==== {RECEIPT_BUN_NAME} ====)\n")
+RECEIPT_LIST.append(f"Price: {RECEIPT_GET_PRICE}")
+RECEIPT = '\n'.join(RECEIPT_LIST)
 
 AVAILABLE_BUNS = [{"name": "black bun", "price": 100, "id": 0},
                   {"name": "white bun", "price": 200, "id": 1},
