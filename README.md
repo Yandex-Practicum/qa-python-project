@@ -1,24 +1,23 @@
-## Задание 1: Юнит-тесты
+Проект содержит юнит-тесты для класса Burger.
 
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
+Проверяются методы:
+- set_buns
+- add_ingredient
+- remove_ingredient
+- move_ingredient
+- get_price
+- get_receipt
 
-### Реализованные сценарии
+В тестах используются:
+- pytest
+- pytest-cov
+- unittest.mock.Mock
+- pytest.mark.parametrize
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+Запуск тестов:
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+python -m pytest -v
 
-### Структура проекта
+Проверка покрытия класса Burger:
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
-
-### Запуск автотестов
-
-**Установка зависимостей**
-
-> `$ pip install -r requirements.txt`
-
-**Запуск автотестов и создание HTML-отчета о покрытии**
-
->  `$ pytest --cov=praktikum --cov-report=html`
+python -m pytest --cov=praktikum.burger --cov-report=term-missing
