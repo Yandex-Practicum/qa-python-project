@@ -1,0 +1,1 @@
+{"uuid": "374f681a-6279-4b99-a088-59e6e565725a", "befores": [{"name": "ingredients_prices", "status": "passed", "start": 1782751252739, "stop": 1782751252739}], "afters": [{"name": "ingredients_prices::<lambda>", "start": 1782751252755}], "start": 1782751252739, "stop": 1782751252755}
