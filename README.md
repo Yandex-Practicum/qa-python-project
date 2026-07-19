@@ -10,8 +10,11 @@
 
 ### Структура проекта
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- Исходные файлы (`bun.py`, `burger.py`, `ingredient.py`, `ingredient_types.py`, `database.py`) находятся в корне проекта
+- `praktikum.py` — демонстрационный скрипт (не тестируется)
+- `tests/` — тесты (`test_bun.py`, `test_burger.py`, `test_ingredient.py`, `test_database.py`)
+- `testdata/` — тестовые данные (`data_bun.py`, `data_burger.py`, `data_ingredient.py`, `data_database.py`)
+- Конфигурация pytest в `pyproject.toml`
 
 ### Запуск автотестов
 
@@ -19,6 +22,12 @@
 
 > `$ pip install -r requirements.txt`
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+**Запуск автотестов**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+> `$ pytest`
+
+**Проверка линтером и типизации**
+
+> `$ ruff check tests/ testdata/`
+
+> `$ mypy tests/ testdata/ --explicit-package-bases --check-untyped-defs`
