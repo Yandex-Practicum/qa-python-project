@@ -1,3 +1,5 @@
+import pytest
+
 from database import Database
 import ingredient_types as types
 
