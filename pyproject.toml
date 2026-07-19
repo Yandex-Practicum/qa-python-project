@@ -1,0 +1,41 @@
+[tool.pytest.ini_options]
+pythonpath = ["./"]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py", "*_tests.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+addopts = [
+    "-v",
+    "-s",
+    "--tb=short",
+    "--strict-markers",
+    "--maxfail=1",
+    "--disable-warnings",
+    "-p", "no:cacheprovider",
+    "--cov=bun",
+    "--cov=burger",
+    "--cov=ingredient",
+    "--cov=database",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-branch",
+]
+
+markers = [
+    "unit: Тесты на уровне отдельных классов/функций (быстрые)",
+    "integration: Тесты, требующие БД, API, файловой системы",
+    "e2e: End-to-end тесты (медленные, полные сценарии)",
+    "smoke: Дымовые тесты (критические пути)",
+    "regression: Регрессионные тесты (полный набор)",
+    "performance: Нагрузочные/производительные тесты",
+    "slow: Медленные тесты (> 1 секунды)",
+    "fast: Быстрые тесты (< 100ms)",
+    "flaky: Нестабильные тесты (требуют retry)",
+    "critical: Критические тесты (блокирующие релиз)",
+]
+
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)s] %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"

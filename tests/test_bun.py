@@ -1,61 +1,114 @@
 import pytest
-import numbers
+from unittest.mock import patch
+import bun
 from bun import Bun
-from testdata.data_bun import BunData
+from testdata.data_bun import BUN_VALID_DATA, BUN_BOUNDARY_PRICES, BUN_BOUNDARY_NAMES
 
-# ============================================================
-# ОСНОВНЫЕ ТЕСТЫ
-# ============================================================
+
 class TestBunValid:
     """Тесты корректного создания и работы булочки."""
-    
+
     @pytest.mark.unit
-    @pytest.mark.parametrize("name, price, expected_name, expected_price", BunData.BUN_VALID_DATA)
-    def test_bun_should_store_and_return_correct_values(self, name, price, expected_name, expected_price):
+    @pytest.mark.parametrize("name, price, expected_name, expected_price", BUN_VALID_DATA)
+    def test_constructor_valid_data_stores_correctly(self, name, price, expected_name, expected_price):
         """
         Given: имя и цена булочки
         When: создаем объект Bun
-        Then: значения сохраняются в атрибутах и возвращаются через геттеры
+        Then: атрибуты name и price сохраняются корректно
         """
         bun = Bun(name, price)
-        
-        # Проверка конструктора
-        assert bun.name == expected_name, f"Expected name '{expected_name}', got '{bun.name}'"
-        assert bun.price == expected_price, f"Expected price {expected_price}, got {bun.price}"
-        
-        # Проверка геттеров
-        assert bun.get_name() == expected_name, f"get_name() returned '{bun.get_name()}'"
-        assert bun.get_price() == expected_price, f"get_price() returned {bun.get_price()}"
-        
-        # Проверка типов
-        assert isinstance(bun.get_name(), str), "get_name() should return str"
-        assert isinstance(bun.get_price(), numbers.Number), "get_price() should return a number"
+
+        assert bun.name == expected_name
+        assert bun.price == expected_price
+
+    @pytest.mark.unit
+    @pytest.mark.parametrize("name, price, expected_name, expected_price", BUN_VALID_DATA)
+    def test_get_name_valid_name_returns_name(self, name, price, expected_name, expected_price):
+        """
+        Given: булочка с заданными значениями
+        When: вызываем get_name
+        Then: геттер возвращает корректное значение
+        """
+        bun = Bun(name, price)
+
+        assert bun.get_name() == expected_name
+
+    @pytest.mark.unit
+    @pytest.mark.parametrize("name, price, expected_name, expected_price", BUN_VALID_DATA)
+    def test_get_price_valid_price_returns_price(self, name, price, expected_name, expected_price):
+        """
+        Given: булочка с заданными значениями
+        When: вызываем get_price
+        Then: геттер возвращает корректное значение
+        """
+        bun = Bun(name, price)
+
+        assert bun.get_price() == expected_price
+
+    @pytest.mark.unit
+    @pytest.mark.parametrize("name, price", [(d[0], d[1]) for d in BUN_VALID_DATA])
+    def test_get_name_valid_name_returns_str(self, name, price):
+        """
+        Given: булочка
+        When: вызываем get_name
+        Then: геттер возвращает str
+        """
+        bun = Bun(name, price)
+
+        assert isinstance(bun.get_name(), str)
+
+    @pytest.mark.unit
+    @pytest.mark.parametrize("name, price", [(d[0], d[1]) for d in BUN_VALID_DATA])
+    def test_get_price_valid_price_returns_number(self, name, price):
+        """
+        Given: булочка
+        When: вызываем get_price
+        Then: геттер возвращает число
+        """
+        bun = Bun(name, price)
+
+        assert isinstance(bun.get_price(), (int, float))
 
 
-# ============================================================
-# ТЕСТЫ НА ГРАНИЧНЫЕ ЗНАЧЕНИЯ
-# ============================================================
 class TestBunBoundary:
     """Тесты граничных значений и нестандартных входных данных."""
-    
+
     @pytest.mark.unit
-    @pytest.mark.parametrize("price", BunData.BUN_BOUNDARY_PRICES)
-    def test_bun_should_handle_boundary_prices(self, price):
+    @pytest.mark.parametrize("price", BUN_BOUNDARY_PRICES)
+    def test_get_price_boundary_value_stores_correctly(self, price):
         """
-        Given: граничное значение цены (0, отрицательное, очень большое)
+        Given: граничное значение цены
         When: создаем булочку
-        Then: цена сохраняется без изменений (валидация отсутствует)
+        Then: цена сохраняется без изменений
         """
         bun = Bun("Test", price)
-        assert bun.get_price() == price, f"Expected {price}, got {bun.get_price()}"
-    
+
+        assert bun.get_price() == price
+
     @pytest.mark.unit
-    @pytest.mark.parametrize("name", BunData.BUN_BOUNDARY_NAMES)
-    def test_bun_should_handle_boundary_names(self, name):
+    @pytest.mark.parametrize("name", BUN_BOUNDARY_NAMES)
+    def test_get_name_boundary_value_stores_correctly(self, name):
         """
-        Given: граничное значение имени (пустое, пробелы, длинное, спецсимволы)
+        Given: граничное значение имени
         When: создаем булочку
         Then: имя сохраняется без изменений
         """
         bun = Bun(name, 10.0)
-        assert bun.get_name() == name, f"Expected '{name}', got '{bun.get_name()}'"
+
+        assert bun.get_name() == name
+
+
+class TestBunMock:
+    """Тесты с использованием mock-объектов."""
+
+    @pytest.mark.unit
+    @patch('bun.Bun')
+    def test_constructor_called_with_correct_args(self, mock_bun_class):
+        """
+        Given: имя и цена булочки
+        When: создаем объект Bun через замоканный класс
+        Then: конструктор вызывается с правильными аргументами
+        """
+        bun.Bun("black bun", 100)
+
+        mock_bun_class.assert_called_once_with("black bun", 100)
