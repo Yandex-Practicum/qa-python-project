@@ -104,7 +104,7 @@ class TestBurger:
 
         assert "(==== black bun ====)" in receipt
         assert "= filling cutlet =" in receipt
-        assert "Price: 250" in receipt  # 100*2 + 50
+        assert "Price: 250" in receipt              # 100*2 + 50
 
     def test_get_receipt_empty_burger(self):
         burger = Burger()
@@ -140,7 +140,7 @@ class TestBurger:
         receipt = burger.get_receipt()
         assert "= sauce hot sauce =" in receipt
         assert "= filling cutlet =" in receipt
-        assert "Price: 350" in receipt  # 100*2 + 50 + 100
+        assert "Price: 350" in receipt              # 100*2 + 50 + 100
 
     def test_get_price_only_bun(self):
         burger = Burger()
