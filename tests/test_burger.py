@@ -7,7 +7,6 @@ from praktikum.ingredient import Ingredient
 
 class TestBurger:
 
-    # === set_buns ===
     def test_set_buns(self):
         burger = Burger()
         bun = Mock(spec=Bun)
@@ -18,7 +17,6 @@ class TestBurger:
 
         assert burger.bun == bun
 
-    # === add_ingredient ===
     def test_add_ingredient(self):
         burger = Burger()
         ingredient = Mock(spec=Ingredient)
@@ -31,7 +29,6 @@ class TestBurger:
         assert len(burger.ingredients) == 1
         assert burger.ingredients[0] == ingredient
 
-    # === remove_ingredient ===
     def test_remove_ingredient(self):
         burger = Burger()
         ingredient1 = Mock(spec=Ingredient)
@@ -44,7 +41,6 @@ class TestBurger:
         assert len(burger.ingredients) == 1
         assert burger.ingredients[0] == ingredient2
 
-    # === move_ingredient ===
     def test_move_ingredient(self):
         burger = Burger()
         ing1 = Mock(spec=Ingredient)
@@ -60,7 +56,6 @@ class TestBurger:
         assert burger.ingredients[1] == ing3
         assert burger.ingredients[2] == ing1
 
-    # === get_price (с моками) ===
     def test_get_price(self):
         burger = Burger()
         bun = Mock(spec=Bun)
@@ -74,7 +69,6 @@ class TestBurger:
 
         assert burger.get_price() == 100 * 2 + 50 + 50 == 300
 
-    # === get_price с параметризацией ===
     @pytest.mark.parametrize("bun_price, ing_prices, expected", [
         (100, [50, 50], 300),
         (200, [100], 500),
@@ -93,7 +87,6 @@ class TestBurger:
 
         assert burger.get_price() == expected
 
-    # === get_receipt ===
     def test_get_receipt(self):
         burger = Burger()
         bun = Mock(spec=Bun)
@@ -113,7 +106,6 @@ class TestBurger:
         assert "= filling cutlet =" in receipt
         assert "Price: 250" in receipt  # 100*2 + 50
 
-    # === get_receipt пустой бургер (проверка, что нет ошибок) ===
     def test_get_receipt_empty_burger(self):
         burger = Burger()
         bun = Mock(spec=Bun)
@@ -125,7 +117,6 @@ class TestBurger:
         assert "(==== white bun ====)" in receipt
         assert "Price: 400" in receipt
 
-        # === get_receipt с несколькими ингредиентами ===
     def test_get_receipt_with_multiple_ingredients(self):
         burger = Burger()
         bun = Mock(spec=Bun)
@@ -151,7 +142,6 @@ class TestBurger:
         assert "= filling cutlet =" in receipt
         assert "Price: 350" in receipt  # 100*2 + 50 + 100
 
-    # === get_price только с булкой (без ингредиентов) ===
     def test_get_price_only_bun(self):
         burger = Burger()
         bun = Mock(spec=Bun)
@@ -160,7 +150,6 @@ class TestBurger:
 
         assert burger.get_price() == 300
 
-    # === get_receipt без ингредиентов (только булка) ===
     def test_get_receipt_no_ingredients(self):
         burger = Burger()
         bun = Mock(spec=Bun)
@@ -172,7 +161,6 @@ class TestBurger:
         assert "(==== red bun ====)" in receipt
         assert "Price: 240" in receipt
 
-    # === move_ingredient на тот же индекс (граничный случай) ===
     def test_move_ingredient_same_index(self):
         burger = Burger()
         ing1 = Mock(spec=Ingredient)
@@ -186,4 +174,3 @@ class TestBurger:
         assert burger.ingredients[1] == ing2
 
 
-        
