@@ -6,62 +6,90 @@ from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FI
 
 class TestDatabase:
 
-
-    def test_database_initialized_with_buns(self):
+    def test_database_initialized_with_buns_checks_length(self):
         db = Database()
         buns = db.available_buns()
-
         assert len(buns) == 3
+
+    def test_database_initialized_with_buns_checks_type(self):
+        db = Database()
+        buns = db.available_buns()
         assert isinstance(buns[0], Bun)
 
-
-    def test_database_initialized_with_ingredients(self):
+    def test_database_initialized_with_ingredients_checks_length(self):
         db = Database()
         ingredients = db.available_ingredients()
-
         assert len(ingredients) == 6
+
+    def test_database_initialized_with_ingredients_checks_type(self):
+        db = Database()
+        ingredients = db.available_ingredients()
         assert isinstance(ingredients[0], Ingredient)
 
-
-    def test_buns_content(self):
+    def test_buns_content_black_bun(self):
         db = Database()
         buns = db.available_buns()
+        assert buns[0].get_name() == "black bun"
+        assert buns[0].get_price() == 100
 
-        expected_buns = [
-            ("black bun", 100),
-            ("white bun", 200),
-            ("red bun", 300),
-        ]
+    def test_buns_content_white_bun(self):
+        db = Database()
+        buns = db.available_buns()
+        assert buns[1].get_name() == "white bun"
+        assert buns[1].get_price() == 200
 
-        for i, (name, price) in enumerate(expected_buns):
-            assert buns[i].get_name() == name
-            assert buns[i].get_price() == price
+    def test_buns_content_red_bun(self):
+        db = Database()
+        buns = db.available_buns()
+        assert buns[2].get_name() == "red bun"
+        assert buns[2].get_price() == 300
 
-
-    def test_ingredients_content(self):
+    def test_ingredients_content_hot_sauce(self):
         db = Database()
         ingredients = db.available_ingredients()
+        assert ingredients[0].get_type() == INGREDIENT_TYPE_SAUCE
+        assert ingredients[0].get_name() == "hot sauce"
+        assert ingredients[0].get_price() == 100
 
-        expected_ingredients = [
-            (INGREDIENT_TYPE_SAUCE, "hot sauce", 100),
-            (INGREDIENT_TYPE_SAUCE, "sour cream", 200),
-            (INGREDIENT_TYPE_SAUCE, "chili sauce", 300),
-            (INGREDIENT_TYPE_FILLING, "cutlet", 100),
-            (INGREDIENT_TYPE_FILLING, "dinosaur", 200),
-            (INGREDIENT_TYPE_FILLING, "sausage", 300),
-        ]
+    def test_ingredients_content_sour_cream(self):
+        db = Database()
+        ingredients = db.available_ingredients()
+        assert ingredients[1].get_type() == INGREDIENT_TYPE_SAUCE
+        assert ingredients[1].get_name() == "sour cream"
+        assert ingredients[1].get_price() == 200
 
-        for i, (ing_type, name, price) in enumerate(expected_ingredients):
-            assert ingredients[i].get_type() == ing_type
-            assert ingredients[i].get_name() == name
-            assert ingredients[i].get_price() == price
+    def test_ingredients_content_chili_sauce(self):
+        db = Database()
+        ingredients = db.available_ingredients()
+        assert ingredients[2].get_type() == INGREDIENT_TYPE_SAUCE
+        assert ingredients[2].get_name() == "chili sauce"
+        assert ingredients[2].get_price() == 300
 
+    def test_ingredients_content_cutlet(self):
+        db = Database()
+        ingredients = db.available_ingredients()
+        assert ingredients[3].get_type() == INGREDIENT_TYPE_FILLING
+        assert ingredients[3].get_name() == "cutlet"
+        assert ingredients[3].get_price() == 100
+
+    def test_ingredients_content_dinosaur(self):
+        db = Database()
+        ingredients = db.available_ingredients()
+        assert ingredients[4].get_type() == INGREDIENT_TYPE_FILLING
+        assert ingredients[4].get_name() == "dinosaur"
+        assert ingredients[4].get_price() == 200
+
+    def test_ingredients_content_sausage(self):
+        db = Database()
+        ingredients = db.available_ingredients()
+        assert ingredients[5].get_type() == INGREDIENT_TYPE_FILLING
+        assert ingredients[5].get_name() == "sausage"
+        assert ingredients[5].get_price() == 300
 
     def test_available_buns_returns_list(self):
         db = Database()
         buns = db.available_buns()
         assert isinstance(buns, list)
-
 
     def test_available_ingredients_returns_list(self):
         db = Database()

@@ -17,7 +17,7 @@ class TestBurger:
 
         assert burger.bun == bun
 
-    def test_add_ingredient(self):
+    def test_add_ingredient_checks_length(self):
         burger = Burger()
         ingredient = Mock(spec=Ingredient)
         ingredient.get_name.return_value = "cutlet"
@@ -27,9 +27,19 @@ class TestBurger:
         burger.add_ingredient(ingredient)
 
         assert len(burger.ingredients) == 1
+
+    def test_add_ingredient_checks_element(self):
+        burger = Burger()
+        ingredient = Mock(spec=Ingredient)
+        ingredient.get_name.return_value = "cutlet"
+        ingredient.get_price.return_value = 100
+        ingredient.get_type.return_value = "FILLING"
+
+        burger.add_ingredient(ingredient)
+
         assert burger.ingredients[0] == ingredient
 
-    def test_remove_ingredient(self):
+    def test_remove_ingredient_checks_length(self):
         burger = Burger()
         ingredient1 = Mock(spec=Ingredient)
         ingredient2 = Mock(spec=Ingredient)
@@ -39,9 +49,19 @@ class TestBurger:
         burger.remove_ingredient(0)
 
         assert len(burger.ingredients) == 1
+
+    def test_remove_ingredient_checks_remaining_element(self):
+        burger = Burger()
+        ingredient1 = Mock(spec=Ingredient)
+        ingredient2 = Mock(spec=Ingredient)
+        burger.add_ingredient(ingredient1)
+        burger.add_ingredient(ingredient2)
+
+        burger.remove_ingredient(0)
+
         assert burger.ingredients[0] == ingredient2
 
-    def test_move_ingredient(self):
+    def test_move_ingredient_checks_position_0(self):
         burger = Burger()
         ing1 = Mock(spec=Ingredient)
         ing2 = Mock(spec=Ingredient)
@@ -53,7 +73,31 @@ class TestBurger:
         burger.move_ingredient(0, 2)
 
         assert burger.ingredients[0] == ing2
+
+    def test_move_ingredient_checks_position_1(self):
+        burger = Burger()
+        ing1 = Mock(spec=Ingredient)
+        ing2 = Mock(spec=Ingredient)
+        ing3 = Mock(spec=Ingredient)
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+        burger.add_ingredient(ing3)
+
+        burger.move_ingredient(0, 2)
+
         assert burger.ingredients[1] == ing3
+
+    def test_move_ingredient_checks_position_2(self):
+        burger = Burger()
+        ing1 = Mock(spec=Ingredient)
+        ing2 = Mock(spec=Ingredient)
+        ing3 = Mock(spec=Ingredient)
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+        burger.add_ingredient(ing3)
+
+        burger.move_ingredient(0, 2)
+
         assert burger.ingredients[2] == ing1
 
     def test_get_price(self):
@@ -67,27 +111,47 @@ class TestBurger:
         burger.add_ingredient(ingredient)
         burger.add_ingredient(ingredient)
 
-        assert burger.get_price() == 100 * 2 + 50 + 50 == 300
+        assert burger.get_price() == 300
 
-    @pytest.mark.parametrize("bun_price, ing_prices, expected", [
-        (100, [50, 50], 300),
-        (200, [100], 500),
-        (150, [30, 40, 50], 420),
-    ])
-    def test_get_price_parametrized(self, bun_price, ing_prices, expected):
+    def test_get_price_with_50_and_50(self):
         burger = Burger()
         bun = Mock(spec=Bun)
-        bun.get_price.return_value = bun_price
+        bun.get_price.return_value = 100
         burger.set_buns(bun)
 
-        for price in ing_prices:
+        ing = Mock(spec=Ingredient)
+        ing.get_price.return_value = 50
+        burger.add_ingredient(ing)
+        burger.add_ingredient(ing)
+
+        assert burger.get_price() == 300
+
+    def test_get_price_with_100(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_price.return_value = 200
+        burger.set_buns(bun)
+
+        ing = Mock(spec=Ingredient)
+        ing.get_price.return_value = 100
+        burger.add_ingredient(ing)
+
+        assert burger.get_price() == 500
+
+    def test_get_price_with_30_40_50(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_price.return_value = 150
+        burger.set_buns(bun)
+
+        for price in [30, 40, 50]:
             ing = Mock(spec=Ingredient)
             ing.get_price.return_value = price
             burger.add_ingredient(ing)
 
-        assert burger.get_price() == expected
+        assert burger.get_price() == 420
 
-    def test_get_receipt(self):
+    def test_get_receipt_contains_top_bun(self):
         burger = Burger()
         bun = Mock(spec=Bun)
         bun.get_name.return_value = "black bun"
@@ -101,12 +165,41 @@ class TestBurger:
         burger.add_ingredient(ingredient)
 
         receipt = burger.get_receipt()
-
         assert "(==== black bun ====)" in receipt
-        assert "= filling cutlet =" in receipt
-        assert "Price: 250" in receipt              # 100*2 + 50
 
-    def test_get_receipt_empty_burger(self):
+    def test_get_receipt_contains_ingredient(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_name.return_value = "black bun"
+        bun.get_price.return_value = 100
+        burger.set_buns(bun)
+
+        ingredient = Mock(spec=Ingredient)
+        ingredient.get_type.return_value = "FILLING"
+        ingredient.get_name.return_value = "cutlet"
+        ingredient.get_price.return_value = 50
+        burger.add_ingredient(ingredient)
+
+        receipt = burger.get_receipt()
+        assert "= filling cutlet =" in receipt
+
+    def test_get_receipt_contains_price(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_name.return_value = "black bun"
+        bun.get_price.return_value = 100
+        burger.set_buns(bun)
+
+        ingredient = Mock(spec=Ingredient)
+        ingredient.get_type.return_value = "FILLING"
+        ingredient.get_name.return_value = "cutlet"
+        ingredient.get_price.return_value = 50
+        burger.add_ingredient(ingredient)
+
+        receipt = burger.get_receipt()
+        assert "Price: 250" in receipt
+
+    def test_get_receipt_empty_burger_contains_bun(self):
         burger = Burger()
         bun = Mock(spec=Bun)
         bun.get_name.return_value = "white bun"
@@ -115,9 +208,18 @@ class TestBurger:
 
         receipt = burger.get_receipt()
         assert "(==== white bun ====)" in receipt
+
+    def test_get_receipt_empty_burger_contains_price(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_name.return_value = "white bun"
+        bun.get_price.return_value = 200
+        burger.set_buns(bun)
+
+        receipt = burger.get_receipt()
         assert "Price: 400" in receipt
 
-    def test_get_receipt_with_multiple_ingredients(self):
+    def test_get_receipt_multiple_ingredients_contains_sauce(self):
         burger = Burger()
         bun = Mock(spec=Bun)
         bun.get_name.return_value = "black bun"
@@ -139,8 +241,52 @@ class TestBurger:
 
         receipt = burger.get_receipt()
         assert "= sauce hot sauce =" in receipt
+
+    def test_get_receipt_multiple_ingredients_contains_filling(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_name.return_value = "black bun"
+        bun.get_price.return_value = 100
+        burger.set_buns(bun)
+
+        ing1 = Mock(spec=Ingredient)
+        ing1.get_type.return_value = "SAUCE"
+        ing1.get_name.return_value = "hot sauce"
+        ing1.get_price.return_value = 50
+
+        ing2 = Mock(spec=Ingredient)
+        ing2.get_type.return_value = "FILLING"
+        ing2.get_name.return_value = "cutlet"
+        ing2.get_price.return_value = 100
+
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+
+        receipt = burger.get_receipt()
         assert "= filling cutlet =" in receipt
-        assert "Price: 350" in receipt              # 100*2 + 50 + 100
+
+    def test_get_receipt_multiple_ingredients_contains_price(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_name.return_value = "black bun"
+        bun.get_price.return_value = 100
+        burger.set_buns(bun)
+
+        ing1 = Mock(spec=Ingredient)
+        ing1.get_type.return_value = "SAUCE"
+        ing1.get_name.return_value = "hot sauce"
+        ing1.get_price.return_value = 50
+
+        ing2 = Mock(spec=Ingredient)
+        ing2.get_type.return_value = "FILLING"
+        ing2.get_name.return_value = "cutlet"
+        ing2.get_price.return_value = 100
+
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+
+        receipt = burger.get_receipt()
+        assert "Price: 350" in receipt
 
     def test_get_price_only_bun(self):
         burger = Burger()
@@ -150,7 +296,7 @@ class TestBurger:
 
         assert burger.get_price() == 300
 
-    def test_get_receipt_no_ingredients(self):
+    def test_get_receipt_no_ingredients_contains_bun(self):
         burger = Burger()
         bun = Mock(spec=Bun)
         bun.get_name.return_value = "red bun"
@@ -159,9 +305,18 @@ class TestBurger:
 
         receipt = burger.get_receipt()
         assert "(==== red bun ====)" in receipt
+
+    def test_get_receipt_no_ingredients_contains_price(self):
+        burger = Burger()
+        bun = Mock(spec=Bun)
+        bun.get_name.return_value = "red bun"
+        bun.get_price.return_value = 120
+        burger.set_buns(bun)
+
+        receipt = burger.get_receipt()
         assert "Price: 240" in receipt
 
-    def test_move_ingredient_same_index(self):
+    def test_move_ingredient_same_index_checks_position_0(self):
         burger = Burger()
         ing1 = Mock(spec=Ingredient)
         ing2 = Mock(spec=Ingredient)
@@ -171,6 +326,16 @@ class TestBurger:
         burger.move_ingredient(0, 0)
 
         assert burger.ingredients[0] == ing1
+
+    def test_move_ingredient_same_index_checks_position_1(self):
+        burger = Burger()
+        ing1 = Mock(spec=Ingredient)
+        ing2 = Mock(spec=Ingredient)
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+
+        burger.move_ingredient(0, 0)
+
         assert burger.ingredients[1] == ing2
 
 
