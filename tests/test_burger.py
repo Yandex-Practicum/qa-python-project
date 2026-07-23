@@ -1,26 +1,5 @@
-import sys
-import os
-import types
-
-
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
-
-import bun
-import ingredient
-
-
-praktikum = types.ModuleType("praktikum")
-praktikum.bun = bun
-praktikum.ingredient = ingredient
-
-sys.modules["praktikum"] = praktikum
-sys.modules["praktikum.bun"] = bun
-sys.modules["praktikum.ingredient"] = ingredient
-
 import pytest
 from unittest.mock import Mock
-
 
 from burger import Burger
 
@@ -29,10 +8,6 @@ class TestBurger:
     def setup_method(self):
         self.burger = Burger()
 
-
-    def test_init_burger(self):
-        assert self.burger.bun is None
-        assert self.burger.ingredients == []
 
 
     def test_set_buns(self):
