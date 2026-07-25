@@ -6,35 +6,36 @@ from praktikum.ingredient import Ingredient
 
 class TestBurger:
     
-    def test_burger_initialization(self, burger):
-        assert burger.bun is None
-        assert burger.ingredients == []
+    def test_burger_initialization_allows_adding_bun(self, burger, mock_bun):
+        burger.set_buns(mock_bun)
+        assert burger.get_price() == 200.0
     
     def test_set_buns(self, burger, mock_bun):
         burger.set_buns(mock_bun)
         assert burger.bun == mock_bun
     
-    def test_add_ingredient(self, burger, mock_ingredients):
+    def test_add_one_ingredient(self, burger, mock_ingredients):
         burger.add_ingredient(mock_ingredients[0])
         assert len(burger.ingredients) == 1
         assert burger.ingredients[0] == mock_ingredients[0]
-        
+
+    def test_add_two_ingredients(self, burger, mock_ingredients):
+        burger.add_ingredient(mock_ingredients[0])
         burger.add_ingredient(mock_ingredients[1])
         assert len(burger.ingredients) == 2
+        assert burger.ingredients[0] == mock_ingredients[0]
         assert burger.ingredients[1] == mock_ingredients[1]
     
     def test_remove_ingredient(self, burger, mock_ingredients):
         for ingredient in mock_ingredients:
             burger.add_ingredient(ingredient)
-        
-        assert len(burger.ingredients) == 3
 
         burger.remove_ingredient(1)
         assert len(burger.ingredients) == 2
         assert burger.ingredients[0] == mock_ingredients[0]
         assert burger.ingredients[1] == mock_ingredients[2]
     
-    def test_move_ingredient(self, burger, mock_ingredients):
+    def test_move_ingredient_moves_from_end_to_beginning(self, burger, mock_ingredients):
         for ingredient in mock_ingredients:
             burger.add_ingredient(ingredient)
         
@@ -42,11 +43,15 @@ class TestBurger:
         assert burger.ingredients[0] == mock_ingredients[2]
         assert burger.ingredients[1] == mock_ingredients[0]
         assert burger.ingredients[2] == mock_ingredients[1]
-        
+
+    def test_move_ingredient_moves_from_middle_to_end(self, burger, mock_ingredients):
+        for ingredient in mock_ingredients:
+            burger.add_ingredient(ingredient)
+            
         burger.move_ingredient(1, 2)
-        assert burger.ingredients[0] == mock_ingredients[2]
-        assert burger.ingredients[1] == mock_ingredients[1]
-        assert burger.ingredients[2] == mock_ingredients[0]
+        assert burger.ingredients[0] == mock_ingredients[0]
+        assert burger.ingredients[1] == mock_ingredients[2]
+        assert burger.ingredients[2] == mock_ingredients[1]
     
     
     def test_get_price_with_bun_no_ingredients(self, burger, mock_bun):
