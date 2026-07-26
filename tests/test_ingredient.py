@@ -5,15 +5,37 @@ from praktikum.ingredient_types import (
     INGREDIENT_TYPE_SAUCE
 )
 
-@pytest.mark.parametrize(
-    "ingredient_type, name, price",
-    [
-        (INGREDIENT_TYPE_SAUCE, "hot sauce", 100),
-        (INGREDIENT_TYPE_FILLING, "cutlet", 300),
-    ]
-)
-def test_ingredient_fields(ingredient_type, name, price):
-    ingredient = Ingredient(ingredient_type, name, price)
-    assert ingredient.get_type() == ingredient_type
-    assert ingredient.get_name() == name
-    assert ingredient.get_price() == price
+class TestIngredient:
+    @pytest.mark.parametrize(
+        "ingredient_type",
+        [
+            INGREDIENT_TYPE_SAUCE,
+            INGREDIENT_TYPE_FILLING,
+      ]
+    )
+    def test_get_type(self, ingredient_type):
+        ingredient = Ingredient(ingredient_type, "test", 100)
+        assert ingredient.get_type() == ingredient_type
+
+    @pytest.mark.parametrize(
+        "name",
+        [
+            "hot sauce",
+            "cutlet"
+        ]
+    )
+    def test_get_name(self, name):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, name, 100)
+        assert ingredient.get_name() == name
+
+    @pytest.mark.parametrize(
+        "price",
+        [
+            100,
+            300
+        ]
+    )
+    def test_get_price(self, price):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, "test", price)
+        assert ingredient.get_price() == price
+        
