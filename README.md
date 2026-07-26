@@ -1,24 +1,67 @@
-## Задание 1: Юнит-тесты
-
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
-
+# Задание 1. Юнит-тесты
+## Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
 ### Реализованные сценарии
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+Разработаны юнит-тесты для следующих классов:
+- `Bun`
+- `Burger`
+- `Ingredient`
+- `Database`
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+Использованы:
+- `pytest`
+- параметризация (`pytest.mark.parametrize`)
+- моки (`unittest.mock`)
 
-### Структура проекта
+Процент покрытия кода — **78%**.
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+HTML-отчет о покрытии можно сгенерировать командой:
 
-### Запуск автотестов
+```bash
+python3 -m pytest --cov=praktikum --cov-report=html
+```
 
-**Установка зависимостей**
+## Структура проекта
 
-> `$ pip install -r requirements.txt`
+```text
+praktikum/
+    bun.py
+    burger.py
+    database.py
+    ingredient.py
+    ingredient_types.py
+    praktikum.py
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+tests/
+    conftest.py
+    test_bun.py
+    test_burger.py
+    test_database.py
+    test_ingredient.py
+```
 
->  `$ pytest --cov=praktikum --cov-report=html`
+## Установка зависимостей
+
+```bash
+pip install -r requirements.txt
+```
+
+## Запуск тестов
+
+```bash
+python3 -m pytest
+```
+
+## Запуск тестов с отчетом о покрытии
+
+Отчет в консоли:
+
+```bash
+python3 -m pytest --cov=praktikum --cov-report=term-missing
+```
+
+HTML-отчет:
+
+```bash
+python3 -m pytest --cov=praktikum --cov-report=html
+```
