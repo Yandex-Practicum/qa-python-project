@@ -50,3 +50,39 @@ def test_move_ingredient_moves_ingredient_to_new_index():
     burger.move_ingredient(0, 2)
 
     assert burger.ingredients == [second_ingredient, third_ingredient, first_ingredient]
+
+
+def test_get_price_returns_total_price_with_two_buns_and_all_ingredients():
+    burger = Burger()
+    bun = Bun("black bun", 100.0)
+    sauce = Ingredient(INGREDIENT_TYPE_SAUCE, "hot sauce", 50.0)
+    filling = Ingredient(INGREDIENT_TYPE_FILLING, "cutlet", 200.0)
+    burger.set_buns(bun)
+    burger.add_ingredient(sauce)
+    burger.add_ingredient(filling)
+
+    price = burger.get_price()
+
+    assert price == 450.0
+
+
+def test_get_receipt_returns_formatted_receipt():
+    burger = Burger()
+    bun = Bun("black bun", 100.0)
+    sauce = Ingredient(INGREDIENT_TYPE_SAUCE, "hot sauce", 50.0)
+    filling = Ingredient(INGREDIENT_TYPE_FILLING, "cutlet", 200.0)
+    burger.set_buns(bun)
+    burger.add_ingredient(sauce)
+    burger.add_ingredient(filling)
+
+    receipt = burger.get_receipt()
+
+    expected_receipt = (
+        "(==== black bun ====)\n"
+        "= sauce hot sauce =\n"
+        "= filling cutlet =\n"
+        "(==== black bun ====)\n"
+        "\n"
+        "Price: 450.0"
+    )
+    assert receipt == expected_receipt
