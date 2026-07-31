@@ -3,17 +3,31 @@ from bun import Bun
 
 class TestBun:
 
+    # Тестируем только разные имена (цена всегда 100)
     @pytest.mark.parametrize(
-        "name, price",
+        "name",
         [
-            ("Краторная булка", 100),
-            ("Флюоресцентная булка", 999.99),
-            ("", 0),
-            ("A", -50),
-            ("Очень-очень длинное название для булочки бургера", 1000)
+            "Краторная булка",
+            "Флюоресцентная булка",
+            "",
+            "A",
+            "Очень-очень длинное название для булочки бургера"
         ]
     )
-    def test_bun_init_and_getters(self, name, price):
-        bun = Bun(name, price)
+    def test_bun_get_name(self, name):
+        bun = Bun(name, 100)
         assert bun.get_name() == name
+
+    # Тестируем только разные цены (имя всегда "Стандартная булка")
+    @pytest.mark.parametrize(
+        "price",
+        [
+            100,
+            999.99,
+            0,
+            -100
+        ]
+    )
+    def test_bun_get_price(self, price):
+        bun = Bun("Стандартная булка", price)
         assert bun.get_price() == price
