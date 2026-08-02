@@ -190,12 +190,12 @@ class TestBurger:
 
         mock_ing1 = Mock()
         mock_ing1.get_type.return_value = "sauce"
-        mock_ing1.get_name.return_value = "Spicy Sauce"
+        mock_ing1.get_name.return_value = "Spicy Sauce"  # ← Оригинальное название
         mock_ing1.get_price.return_value = 40.0
 
         mock_ing2 = Mock()
         mock_ing2.get_type.return_value = "filling"
-        mock_ing2.get_name.return_value = "Chicken Cutlet"
+        mock_ing2.get_name.return_value = "Chicken Cutlet"  # ← Оригинальное название
         mock_ing2.get_price.return_value = 120.0
 
         burger = Burger()
@@ -205,8 +205,8 @@ class TestBurger:
 
         expected_receipt = (
             "(==== White Bun ====)\n"
-            "= sauce spicy sauce =\n"
-            "= filling chicken cutlet =\n"
+            "= sauce Spicy Sauce =\n"  # ← Исправлено
+            "= filling Chicken Cutlet =\n"  # ← Исправлено
             "(==== White Bun ====)\n"
             "Price: 320.0"
         )
