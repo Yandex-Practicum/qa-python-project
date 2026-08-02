@@ -306,4 +306,24 @@ class TestBurger:
 
         assert burger.get_receipt() == expected_receipt
 
+    def test_get_receipt_with_mock_price_calculation(self):
+        """Тест 15: Проверка, что в чеке используется метод get_price()"""
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Test Bun"
+        mock_bun.get_price.return_value = 70.0
+
+        mock_ing = Mock()
+        mock_ing.get_type.return_value = "sauce"
+        mock_ing.get_name.return_value = "Test Sauce"
+        mock_ing.get_price.return_value = 30.0
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ing)
+
+        receipt = burger.get_receipt()
+
+        # Проверяем, что цена вычислена правильно
+        assert "Price: 170.0" in receipt  # 70*2 + 30 = 170
+
     
