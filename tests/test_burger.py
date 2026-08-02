@@ -177,6 +177,7 @@ class TestBurger:
             expected_receipt = (
                 "(==== Black Bun ====)\n"
                 "(==== Black Bun ====)\n"
+                "\n"
                 "Price: 200.0"
         )
 
@@ -208,6 +209,7 @@ class TestBurger:
             "= sauce Spicy Sauce =\n"  
             "= filling Chicken Cutlet =\n"  
             "(==== White Bun ====)\n"
+            "\n"
             "Price: 320.0"
         )
 
@@ -231,6 +233,8 @@ class TestBurger:
         expected_receipt = (
             "(==== Rye Bun ====)\n"
             "= sauce BBQ Sauce =\n"  
+            "(==== Rye Bun ====)\n"
+            "\n"
             "Price: 150.0"
         )
 
@@ -262,6 +266,7 @@ class TestBurger:
             "= sauce Ketchup =\n"  
             "= filling Cheese =\n"  
             "(==== Bun ====)\n"
+            "\n"
             "Price: 150.0"
         )
 
@@ -299,6 +304,7 @@ class TestBurger:
             "= filling Bacon =\n"  
             "= sauce Garlic Sauce =\n"  
             "(==== Sesame Bun ====)\n"
+            "\n"
             "Price: 470.0"
         )
 
