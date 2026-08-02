@@ -269,5 +269,41 @@ class TestBurger:
 
         assert burger.get_receipt() == expected_receipt
     
+    def test_get_receipt_complex_scenario(self):
+        """Тест 14: Сложный сценарий со многими ингредиентами"""
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Sesame Bun"
+        mock_bun.get_price.return_value = 90.0
+
+        ingredients_data = [
+            ("sauce", "Mayo", 25.0),
+            ("filling", "Beef Patty", 150.0),
+            ("sauce", "Mustard", 15.0),
+            ("filling", "Bacon", 80.0),
+            ("sauce", "Garlic Sauce", 20.0),
+        ]
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+
+        for ing_type, ing_name, ing_price in ingredients_data:
+            mock_ing = Mock()
+            mock_ing.get_type.return_value = ing_type
+            mock_ing.get_name.return_value = ing_name
+            mock_ing.get_price.return_value = ing_price
+            burger.add_ingredient(mock_ing)
+
+        expected_receipt = (
+            "(==== Sesame Bun ====)\n"
+            "= sauce mayo =\n"
+            "= filling beef patty =\n"
+            "= sauce mustard =\n"
+            "= filling bacon =\n"
+            "= sauce garlic sauce =\n"
+            "(==== Sesame Bun ====)\n"
+            "Price: 470.0"
+        )
+
+        assert burger.get_receipt() == expected_receipt
 
     
