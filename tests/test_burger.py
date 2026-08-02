@@ -68,7 +68,7 @@ class TestBurger:
         assert len(burger.ingredients) == 2, "Должно остаться 2 ингредиента"
         assert burger.ingredients == [mock_ing1, mock_ing3], "Порядок должен сохраниться"
 
-     def test_remove_ingredient_first(self):
+    def test_remove_ingredient_first(self):
         """Тест 6: Удаление первого ингредиента"""
         mock_ing1 = Mock()
         mock_ing2 = Mock()
@@ -109,3 +109,58 @@ class TestBurger:
         (0, 0, [0, 1, 2]),
         (1, 1, [0, 1, 2]),
     ])
+
+    def test_move_ingredient(self, from_idx, to_idx, expected_order):
+        """Тест 8: Перемещение ингредиента с параметризацией"""
+        # Создаем 3 разных мока
+        mock_ing1 = Mock()
+        mock_ing2 = Mock()
+        mock_ing3 = Mock()
+        ingredients = [mock_ing1, mock_ing2, mock_ing3]
+
+        burger = Burger()
+        for ing in ingredients:
+            burger.add_ingredient(ing)
+
+        burger.move_ingredient(from_idx, to_idx)
+
+        # Проверяем порядок
+        expected_ingredients = [ingredients[i] for i in expected_order]
+        assert burger.ingredients == expected_ingredients, f"Неверный порядок при перемещении с {from_idx} на {to_idx}"
+
+    @pytest.mark.parametrize("bun_price,ingredient_prices,expected_price", [
+        # Только булочка
+        (100.0, [], 200.0),
+        # Булочка + один ингредиент
+        (100.0, [50.0], 250.0),
+        # Булочка + два ингредиента
+        (100.0, [50.0, 30.0], 280.0),
+        # Дешевая булочка
+        (10.0, [5.0, 3.0], 28.0),
+        # Бесплатная булочка
+        (0.0, [50.0], 50.0),
+        # Бесплатные ингредиенты
+        (100.0, [0.0, 0.0], 200.0),
+        # Только бесплатная булочка
+        (0.0, [], 0.0),
+        # Много ингредиентов
+        (50.0, [10.0, 20.0, 30.0, 40.0], 200.0),
+    ])
+
+    def test_get_price(self, bun_price, ingredient_prices, expected_price):
+        """Тест 9: Расчет цены бургера с параметризацией"""
+        # Создаем мок для булочки
+        mock_bun = Mock()
+        mock_bun.get_price.return_value = bun_price
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+
+        # Добавляем ингредиенты с заданными ценами
+        for price in ingredient_prices:
+            mock_ing = Mock()
+            mock_ing.get_price.return_value = price
+            burger.add_ingredient(mock_ing)
+
+        assert burger.get_price() == expected_price, \
+            f"Цена {burger.get_price()} не совпадает с ожидаемой {expected_price}"
