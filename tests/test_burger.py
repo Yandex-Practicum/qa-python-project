@@ -237,6 +237,37 @@ class TestBurger:
 
         assert burger.get_receipt() == expected_receipt
 
+    def test_get_receipt_with_mixed_case_types(self):
+        """Тест 13: Чек с разным регистром типов ингредиентов"""
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Bun"
+        mock_bun.get_price.return_value = 50.0
+
+        mock_ing1 = Mock()
+        mock_ing1.get_type.return_value = "SAUCE"  # Верхний регистр
+        mock_ing1.get_name.return_value = "Ketchup"
+        mock_ing1.get_price.return_value = 20.0
+
+        mock_ing2 = Mock()
+        mock_ing2.get_type.return_value = "FILLING"  # Верхний регистр
+        mock_ing2.get_name.return_value = "Cheese"
+        mock_ing2.get_price.return_value = 30.0
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ing1)
+        burger.add_ingredient(mock_ing2)
+
+        # Проверяем, что тип приводится к нижнему регистру
+        expected_receipt = (
+            "(==== Bun ====)\n"
+            "= sauce ketchup =\n"
+            "= filling cheese =\n"
+            "(==== Bun ====)\n"
+            "Price: 150.0"
+        )
+
+        assert burger.get_receipt() == expected_receipt
     
 
     
