@@ -23,3 +23,17 @@ class TestBurger:
         assert burger.bun == mock_bun, "Булочка должна сохраниться в объекте"
         assert burger.bun.get_name() == "Test Bun", "Название булочки должно совпадать"
         assert burger.bun.get_price() == 50.0, "Цена булочки должна совпадать"
+
+    def test_add_ingredient(self):
+        """Тест 3: Добавление одного ингредиента"""
+        mock_ingredient = Mock()
+        mock_ingredient.get_name.return_value = "Test Ingredient"
+        mock_ingredient.get_price.return_value = 30.0
+        mock_ingredient.get_type.return_value = "sauce"
+
+        burger = Burger()
+        burger.add_ingredient(mock_ingredient)
+
+        assert len(burger.ingredients) == 1, "Должен быть 1 ингредиент"
+        assert burger.ingredients[0] == mock_ingredient, "Ингредиент должен сохраниться"
+        assert burger.ingredients[0].get_name() == "Test Ingredient"
