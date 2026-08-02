@@ -51,3 +51,19 @@ class TestBurger:
 
         assert len(burger.ingredients) == 3, "Должно быть 3 ингредиента"
         assert burger.ingredients == [mock_ing1, mock_ing2, mock_ing3], "Порядок должен сохраняться"
+
+    def test_remove_ingredient(self):
+        """Тест 5: Удаление ингредиента по индексу"""
+        mock_ing1 = Mock()
+        mock_ing2 = Mock()
+        mock_ing3 = Mock()
+
+        burger = Burger()
+        burger.add_ingredient(mock_ing1)
+        burger.add_ingredient(mock_ing2)
+        burger.add_ingredient(mock_ing3)
+
+        burger.remove_ingredient(1)  # Удаляем второй ингредиент
+
+        assert len(burger.ingredients) == 2, "Должно остаться 2 ингредиента"
+        assert burger.ingredients == [mock_ing1, mock_ing3], "Порядок должен сохраниться"
