@@ -212,3 +212,31 @@ class TestBurger:
         )
 
         assert burger.get_receipt() == expected_receipt
+
+    def test_get_receipt_with_one_ingredient(self):
+        """Тест 12: Чек с одним ингредиентом"""
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Rye Bun"
+        mock_bun.get_price.return_value = 60.0
+
+        mock_ing = Mock()
+        mock_ing.get_type.return_value = "sauce"
+        mock_ing.get_name.return_value = "BBQ Sauce"
+        mock_ing.get_price.return_value = 30.0
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ing)
+
+        expected_receipt = (
+            "(==== Rye Bun ====)\n"
+            "= sauce bbq sauce =\n"
+            "(==== Rye Bun ====)\n"
+            "Price: 150.0"
+        )
+
+        assert burger.get_receipt() == expected_receipt
+
+    
+
+    
