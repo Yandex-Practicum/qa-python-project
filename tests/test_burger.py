@@ -190,12 +190,12 @@ class TestBurger:
 
         mock_ing1 = Mock()
         mock_ing1.get_type.return_value = "sauce"
-        mock_ing1.get_name.return_value = "Spicy Sauce"  # ← Оригинальное название
+        mock_ing1.get_name.return_value = "Spicy Sauce"  
         mock_ing1.get_price.return_value = 40.0
 
         mock_ing2 = Mock()
         mock_ing2.get_type.return_value = "filling"
-        mock_ing2.get_name.return_value = "Chicken Cutlet"  # ← Оригинальное название
+        mock_ing2.get_name.return_value = "Chicken Cutlet"  
         mock_ing2.get_price.return_value = 120.0
 
         burger = Burger()
@@ -205,8 +205,8 @@ class TestBurger:
 
         expected_receipt = (
             "(==== White Bun ====)\n"
-            "= sauce Spicy Sauce =\n"  # ← Исправлено
-            "= filling Chicken Cutlet =\n"  # ← Исправлено
+            "= sauce Spicy Sauce =\n"  
+            "= filling Chicken Cutlet =\n"  
             "(==== White Bun ====)\n"
             "Price: 320.0"
         )
@@ -221,7 +221,7 @@ class TestBurger:
 
         mock_ing = Mock()
         mock_ing.get_type.return_value = "sauce"
-        mock_ing.get_name.return_value = "BBQ Sauce"  # ← Оригинальное название
+        mock_ing.get_name.return_value = "BBQ Sauce" 
         mock_ing.get_price.return_value = 30.0
 
         burger = Burger()
@@ -230,8 +230,7 @@ class TestBurger:
 
         expected_receipt = (
             "(==== Rye Bun ====)\n"
-            "= sauce BBQ Sauce =\n"  # ← Исправлено
-            "(==== Rye Bun ====)\n"
+            "= sauce BBQ Sauce =\n"  
             "Price: 150.0"
         )
 
@@ -260,8 +259,8 @@ class TestBurger:
 
         expected_receipt = (
             "(==== Bun ====)\n"
-            "= sauce Ketchup =\n"  # ← Исправлено (Ketchup с заглавной)
-            "= filling Cheese =\n"  # ← Исправлено (Cheese с заглавной)
+            "= sauce Ketchup =\n"  
+            "= filling Cheese =\n"  
             "(==== Bun ====)\n"
             "Price: 150.0"
         )
@@ -294,11 +293,11 @@ class TestBurger:
 
         expected_receipt = (
             "(==== Sesame Bun ====)\n"
-            "= sauce Mayo =\n"  # ← Исправлено
-            "= filling Beef Patty =\n"  # ← Исправлено
-            "= sauce Mustard =\n"  # ← Исправлено
-            "= filling Bacon =\n"  # ← Исправлено
-            "= sauce Garlic Sauce =\n"  # ← Исправлено
+            "= sauce Mayo =\n"  
+            "= filling Beef Patty =\n"  
+            "= sauce Mustard =\n"  
+            "= filling Bacon =\n"  
+            "= sauce Garlic Sauce =\n"  
             "(==== Sesame Bun ====)\n"
             "Price: 470.0"
         )
