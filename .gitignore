@@ -1,0 +1,74 @@
+# Виртуальное окружение
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+
+# Логи и отчеты
+*.log
+*.xml
+*.html
+*.xml
+# allure-results/
+# allure-report/
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Настройки IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.settings/
+.project
+.classpath
+
+# Файлы с секретами
+.env
+.secrets
+secrets.py
+config_local.py
+config_local.json
+
+# Драйверы браузеров
+chromedriver.exe
+chromedriver
+geckodriver.exe
+geckodriver
+msedgedriver.exe
+msedgedriver
+
+# OS файлы
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Файлы проекта
+*.db
+*.sqlite
+*.sqlite3
+
+# Временные файлы
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Файлы отчетов
+pytest*.txt
+output.json
