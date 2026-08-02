@@ -182,3 +182,33 @@ class TestBurger:
 
             assert burger.get_receipt() == expected_receipt
 
+    def test_get_receipt_with_ingredients(self):
+        """Тест 11: Чек с ингредиентами"""
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "White Bun"
+        mock_bun.get_price.return_value = 80.0
+
+        mock_ing1 = Mock()
+        mock_ing1.get_type.return_value = "sauce"
+        mock_ing1.get_name.return_value = "Spicy Sauce"
+        mock_ing1.get_price.return_value = 40.0
+
+        mock_ing2 = Mock()
+        mock_ing2.get_type.return_value = "filling"
+        mock_ing2.get_name.return_value = "Chicken Cutlet"
+        mock_ing2.get_price.return_value = 120.0
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ing1)
+        burger.add_ingredient(mock_ing2)
+
+        expected_receipt = (
+            "(==== White Bun ====)\n"
+            "= sauce spicy sauce =\n"
+            "= filling chicken cutlet =\n"
+            "(==== White Bun ====)\n"
+            "Price: 320.0"
+        )
+
+        assert burger.get_receipt() == expected_receipt
