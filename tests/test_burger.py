@@ -37,3 +37,17 @@ class TestBurger:
         assert len(burger.ingredients) == 1, "Должен быть 1 ингредиент"
         assert burger.ingredients[0] == mock_ingredient, "Ингредиент должен сохраниться"
         assert burger.ingredients[0].get_name() == "Test Ingredient"
+
+    def test_add_multiple_ingredients(self):
+        """Тест 4: Добавление нескольких ингредиентов"""
+        mock_ing1 = Mock()
+        mock_ing2 = Mock()
+        mock_ing3 = Mock()
+
+        burger = Burger()
+        burger.add_ingredient(mock_ing1)
+        burger.add_ingredient(mock_ing2)
+        burger.add_ingredient(mock_ing3)
+
+        assert len(burger.ingredients) == 3, "Должно быть 3 ингредиента"
+        assert burger.ingredients == [mock_ing1, mock_ing2, mock_ing3], "Порядок должен сохраняться"
