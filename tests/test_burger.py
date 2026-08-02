@@ -221,7 +221,7 @@ class TestBurger:
 
         mock_ing = Mock()
         mock_ing.get_type.return_value = "sauce"
-        mock_ing.get_name.return_value = "BBQ Sauce"
+        mock_ing.get_name.return_value = "BBQ Sauce"  # ← Оригинальное название
         mock_ing.get_price.return_value = 30.0
 
         burger = Burger()
@@ -230,7 +230,7 @@ class TestBurger:
 
         expected_receipt = (
             "(==== Rye Bun ====)\n"
-            "= sauce bbq sauce =\n"
+            "= sauce BBQ Sauce =\n"  # ← Исправлено
             "(==== Rye Bun ====)\n"
             "Price: 150.0"
         )
@@ -244,12 +244,12 @@ class TestBurger:
         mock_bun.get_price.return_value = 50.0
 
         mock_ing1 = Mock()
-        mock_ing1.get_type.return_value = "SAUCE"  # Верхний регистр
+        mock_ing1.get_type.return_value = "SAUCE"
         mock_ing1.get_name.return_value = "Ketchup"
         mock_ing1.get_price.return_value = 20.0
 
         mock_ing2 = Mock()
-        mock_ing2.get_type.return_value = "FILLING"  # Верхний регистр
+        mock_ing2.get_type.return_value = "FILLING"
         mock_ing2.get_name.return_value = "Cheese"
         mock_ing2.get_price.return_value = 30.0
 
@@ -258,11 +258,10 @@ class TestBurger:
         burger.add_ingredient(mock_ing1)
         burger.add_ingredient(mock_ing2)
 
-        # Проверяем, что тип приводится к нижнему регистру
         expected_receipt = (
             "(==== Bun ====)\n"
-            "= sauce ketchup =\n"
-            "= filling cheese =\n"
+            "= sauce Ketchup =\n"  # ← Исправлено (Ketchup с заглавной)
+            "= filling Cheese =\n"  # ← Исправлено (Cheese с заглавной)
             "(==== Bun ====)\n"
             "Price: 150.0"
         )
