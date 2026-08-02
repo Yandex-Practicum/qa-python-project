@@ -294,11 +294,11 @@ class TestBurger:
 
         expected_receipt = (
             "(==== Sesame Bun ====)\n"
-            "= sauce mayo =\n"
-            "= filling beef patty =\n"
-            "= sauce mustard =\n"
-            "= filling bacon =\n"
-            "= sauce garlic sauce =\n"
+            "= sauce Mayo =\n"  # ← Исправлено
+            "= filling Beef Patty =\n"  # ← Исправлено
+            "= sauce Mustard =\n"  # ← Исправлено
+            "= filling Bacon =\n"  # ← Исправлено
+            "= sauce Garlic Sauce =\n"  # ← Исправлено
             "(==== Sesame Bun ====)\n"
             "Price: 470.0"
         )
