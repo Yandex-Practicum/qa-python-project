@@ -81,3 +81,31 @@ class TestBurger:
 
         assert len(burger.ingredients) == 1
         assert burger.ingredients[0] == mock_ing2
+
+    def test_remove_ingredient_last(self):
+        """Тест 7: Удаление последнего ингредиента"""
+        mock_ing1 = Mock()
+        mock_ing2 = Mock()
+
+        burger = Burger()
+        burger.add_ingredient(mock_ing1)
+        burger.add_ingredient(mock_ing2)
+
+        burger.remove_ingredient(1)
+
+        assert len(burger.ingredients) == 1
+        assert burger.ingredients[0] == mock_ing1
+
+    @pytest.mark.parametrize("from_idx,to_idx,expected_order", [
+        # Перемещение первого на второе место
+        (0, 1, [1, 0, 2]),
+        # Перемещение второго на первое место
+        (1, 0, [1, 0, 2]),
+        # Перемещение первого в конец
+        (0, 2, [1, 2, 0]),
+        # Перемещение последнего на первое место
+        (2, 0, [2, 0, 1]),
+        # Перемещение в ту же позицию (ничего не меняется)
+        (0, 0, [0, 1, 2]),
+        (1, 1, [0, 1, 2]),
+    ])
