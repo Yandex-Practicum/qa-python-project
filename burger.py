@@ -1,6 +1,6 @@
 from typing import List
 
-from praktikum.bun import Bun
+from bun import Bun
 from praktikum.ingredient import Ingredient
 
 
