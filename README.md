@@ -4,21 +4,25 @@
 
 ### Реализованные сценарии
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+Созданы юнит-тесты для класса `Burger`. В тестах используются реальные объекты `Bun` и `Ingredient`, а также моки и параметризация там, где это уместно.
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+Покрытие класса `Burger` — 100%.
 
 ### Структура проекта
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- `praktikum` — пакет, содержащий код программы
+- `tests/test_burger.py` — юнит-тесты класса `Burger`
 
 ### Запуск автотестов
 
 **Установка зависимостей**
 
-> `$ pip install -r requirements.txt`
+`pip install -r requirements.txt`
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+**Запуск автотестов**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+`pytest -v`
+
+**Проверка покрытия класса Burger**
+
+`pytest --cov=praktikum.burger --cov-report=term-missing`
