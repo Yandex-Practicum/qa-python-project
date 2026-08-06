@@ -1,3 +1,4 @@
+import pytest
 from unittest.mock import Mock
 
 from burger import Burger
@@ -5,10 +6,15 @@ from burger import Burger
 
 class TestBurger:
 
-    def test_constructor_creates_empty_burger(self):
+    def test_constructor_sets_bun_to_none(self):
         burger = Burger()
 
         assert burger.bun is None
+
+
+    def test_constructor_creates_empty_ingredients_list(self):
+        burger = Burger()
+
         assert burger.ingredients == []
 
 
@@ -53,8 +59,33 @@ class TestBurger:
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_ingredient)
 
-        receipt = burger.get_receipt()
+        expected_receipt = (
+            "(==== big bun ====)\n"
+            "= sauce chilli sauce =\n"
+            "(==== big bun ====)\n"
+            "\n"
+            "Price: 250"
+        )
 
-        assert "big bun" in receipt
-        assert "sauce chilli sauce" in receipt
-        assert "250" in receipt
+        assert burger.get_receipt() == expected_receipt
+
+    # Негативные проверки
+
+    def test_remove_ingredient_raises_index_error_for_invalid_index(self, burger):
+        with pytest.raises(IndexError):
+            burger.remove_ingredient(0)
+
+
+    def test_move_ingredient_raises_index_error_for_invalid_index(self, burger):
+        with pytest.raises(IndexError):
+            burger.move_ingredient(0, 1)
+
+
+    def test_get_price_raises_attribute_error_without_bun(self, burger):
+        with pytest.raises(AttributeError):
+            burger.get_price()
+
+
+    def test_get_receipt_raises_attribute_error_without_bun(self, burger):
+        with pytest.raises(AttributeError):
+            burger.get_receipt()
