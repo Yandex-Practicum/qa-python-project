@@ -1,0 +1,14 @@
+игнорирем все файлы с расширением
+.env
+.coverage
+*.pyc
+*.bak
+
+игнорируем файлы
+Thumbs.db
+Desktop.ini
+
+игнорируем директории
+.pytest_cache/
+venv/
+__pycache__/
