@@ -1,16 +1,12 @@
-import pytest
 from praktikum.database import Database
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
-
 
 class TestDatabase:
 
     def test_database_initialization(self):
         db = Database()
-        # Проверяем, что булочки созданы (их 3)
-        assert len(db.buns) == 3
-        # Проверяем, что ингредиенты созданы (их 6)
-        assert len(db.ingredients) == 6
+        assert len(db.buns) == 3              # Проверка того, что булочки созданы (3 шт.)
+        assert len(db.ingredients) == 6       # Проверка того, что ингредиенты созданы (6 шт.)
 
     def test_available_buns(self):
         db = Database()
@@ -25,11 +21,13 @@ class TestDatabase:
         db = Database()
         ingredients = db.available_ingredients()
         assert len(ingredients) == 6
-        # Проверим первые три соуса
+
+        # Проверка первых трех соусов
         assert ingredients[0].get_type() == INGREDIENT_TYPE_SAUCE
         assert ingredients[0].get_name() == "hot sauce"
         assert ingredients[0].get_price() == 100
-        # Проверим первые три начинки (индексы 3,4,5)
+        
+        # Проверка первых трех начинок (индексы 3,4,5)
         assert ingredients[3].get_type() == INGREDIENT_TYPE_FILLING
         assert ingredients[3].get_name() == "cutlet"
         assert ingredients[3].get_price() == 100
