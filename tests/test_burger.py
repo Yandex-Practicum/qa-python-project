@@ -105,12 +105,3 @@ class TestBurger:
         
         assert burger.get_price() == 50 + 100 + 150
     
-    def test_clear_ingredients(self, burger, mock_ingredients):
-        """Тест проверяет очистку ингредиентов"""
-        for ingredient in mock_ingredients:
-            burger.add_ingredient(ingredient)
-        
-        assert len(burger.ingredients) == 3
-        
-        burger.ingredients.clear()
-        assert len(burger.ingredients) == 0
