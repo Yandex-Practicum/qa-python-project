@@ -1,34 +1,84 @@
 import builtins
-from unittest.mock import Mock
-
-import pytest
+from unittest.mock import Mock, call
 
 import praktikum
 
 
-def test_main_builds_burger_using_database_and_prints_receipt(monkeypatch):
-    fake_bun = Mock(get_name=Mock(return_value="dummy bun"), get_price=Mock(return_value=10.0))
-    fake_ingredient = Mock(
-        get_type=Mock(return_value="FILLING"),
-        get_name=Mock(return_value="dummy filling"),
-        get_price=Mock(return_value=5.0),
-    )
+def _prepare_main_dependencies(monkeypatch):
+    fake_buns = [Mock(name="bun_0"), Mock(name="bun_1")]
+    fake_ingredients = [Mock(name=f"ingredient_{index}") for index in range(6)]
     fake_database = Mock(
-        available_buns=Mock(return_value=[fake_bun]),
-        available_ingredients=Mock(return_value=[fake_ingredient] * 6),
+        available_buns=Mock(return_value=fake_buns),
+        available_ingredients=Mock(return_value=fake_ingredients),
     )
+    fake_burger = Mock()
+    fake_burger.get_receipt = Mock(return_value="test receipt")
 
-    monkeypatch.setattr(praktikum, "Database", Mock(return_value=fake_database))
+    database_ctor = Mock(return_value=fake_database)
+    burger_ctor = Mock(return_value=fake_burger)
+    print_mock = Mock()
 
-    printed_lines = []
+    monkeypatch.setattr(praktikum, "Database", database_ctor)
+    monkeypatch.setattr(praktikum, "Burger", burger_ctor)
+    monkeypatch.setattr(builtins, "print", print_mock)
 
-    def fake_print(*args, **kwargs):
-        printed_lines.append(" ".join(str(item) for item in args))
+    return {
+        "database_ctor": database_ctor,
+        "burger_ctor": burger_ctor,
+        "database": fake_database,
+        "burger": fake_burger,
+        "buns": fake_buns,
+        "ingredients": fake_ingredients,
+        "print_mock": print_mock,
+    }
 
-    monkeypatch.setattr(builtins, "print", fake_print)
+
+def test_main_requests_buns_and_ingredients_from_database(monkeypatch):
+    deps = _prepare_main_dependencies(monkeypatch)
 
     praktikum.main()
 
-    assert any("dummy bun" in line for line in printed_lines)
-    assert any("dummy filling" in line for line in printed_lines)
-    assert any("Price:" in line for line in printed_lines)
+    deps["database_ctor"].assert_called_once_with()
+    deps["database"].available_buns.assert_called_once_with()
+    deps["database"].available_ingredients.assert_called_once_with()
+
+
+def test_main_sets_first_bun_from_database(monkeypatch):
+    deps = _prepare_main_dependencies(monkeypatch)
+
+    praktikum.main()
+
+    deps["burger"].set_buns.assert_called_once_with(deps["buns"][0])
+
+
+def test_main_adds_expected_ingredients(monkeypatch):
+    deps = _prepare_main_dependencies(monkeypatch)
+
+    praktikum.main()
+
+    deps["burger"].add_ingredient.assert_has_calls(
+        [
+            call(deps["ingredients"][1]),
+            call(deps["ingredients"][4]),
+            call(deps["ingredients"][3]),
+            call(deps["ingredients"][5]),
+        ]
+    )
+
+
+def test_main_moves_and_removes_ingredient(monkeypatch):
+    deps = _prepare_main_dependencies(monkeypatch)
+
+    praktikum.main()
+
+    deps["burger"].move_ingredient.assert_called_once_with(2, 1)
+    deps["burger"].remove_ingredient.assert_called_once_with(3)
+
+
+def test_main_prints_burger_receipt(monkeypatch):
+    deps = _prepare_main_dependencies(monkeypatch)
+
+    praktikum.main()
+
+    deps["burger"].get_receipt.assert_called_once_with()
+    deps["print_mock"].assert_called_once_with("test receipt")

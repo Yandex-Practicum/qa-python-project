@@ -5,6 +5,43 @@ from burger import Burger
 from ingredient import Ingredient
 
 
+def test_burger_init_sets_empty_state():
+    burger = Burger()
+
+    assert burger.bun is None
+    assert burger.ingredients == []
+
+
+def test_set_buns_assigns_bun_object():
+    bun = Mock(get_name=Mock(return_value="plain bun"), get_price=Mock(return_value=100.0))
+    burger = Burger()
+
+    burger.set_buns(bun)
+
+    assert burger.bun is bun
+
+
+def test_add_ingredient_appends_ingredient_to_list():
+    ingredient = Ingredient("FILLING", "cutlet", 35.0)
+    burger = Burger()
+
+    burger.add_ingredient(ingredient)
+
+    assert burger.ingredients == [ingredient]
+
+
+def test_remove_ingredient_deletes_item_by_index():
+    first = Ingredient("SAUCE", "hot sauce", 10.0)
+    second = Ingredient("FILLING", "cutlet", 35.0)
+    burger = Burger()
+    burger.add_ingredient(first)
+    burger.add_ingredient(second)
+
+    burger.remove_ingredient(0)
+
+    assert burger.ingredients == [second]
+
+
 @pytest.mark.parametrize(
     "ingredient_prices,expected_total",
     [
@@ -38,9 +75,7 @@ def test_get_price_includes_bun_twice_and_all_ingredient_prices(
 def test_move_ingredient_reorders_list_correctly(
     initial_names, move_from, move_to, expected_names
 ):
-    bun = Mock(get_name=Mock(return_value="plain bun"), get_price=Mock(return_value=100.0))
     burger = Burger()
-    burger.set_buns(bun)
 
     for name in initial_names:
         burger.add_ingredient(Ingredient("FILLING", name, 1.0))
