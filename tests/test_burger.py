@@ -17,8 +17,7 @@ class TestBurger:
         mock_ingredient = Mock()
         burger.add_ingredient(mock_ingredient)
 
-        assert len(burger.ingredients) == 1
-        assert burger.ingredients[0] == mock_ingredient
+        assert burger.ingredients == [mock_ingredient]
 
     def test_remove_ingredient_success(self):
         burger = Burger()
@@ -29,8 +28,7 @@ class TestBurger:
 
         burger.remove_ingredient(0)
 
-        assert len(burger.ingredients) == 1
-        assert burger.ingredients[0] == mock_ing_2
+        assert burger.ingredients == [mock_ing_2]
 
     def test_move_ingredient_success(self):
         burger = Burger()
