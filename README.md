@@ -4,21 +4,35 @@
 
 ### Реализованные сценарии
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+Класс `Burger` покрыт unit-тестами с использованием моков и параметризации:
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+- создание бургера;
+- установка булочки;
+- добавление и удаление ингредиента;
+- перемещение ингредиента;
+- расчёт цены;
+- формирование чека.
+
+Покрытие файла `burger.py` — 100%.
 
 ### Структура проекта
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- `burger.py` — тестируемый класс `Burger`;
+- `bun.py`, `ingredient.py` — модели, используемые классом `Burger`;
+- `tests/test_burger.py` — unit-тесты;
+- `requirements.txt` — зависимости проекта;
+- `pytest.ini` — настройки pytest.
 
 ### Запуск автотестов
 
 **Установка зависимостей**
 
-> `$ pip install -r requirements.txt`
+> `$ python -m pip install -r requirements.txt`
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+**Запуск автотестов с проверкой обязательного покрытия 100%**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+> `$ pytest tests --cov=burger --cov-report=term-missing --cov-fail-under=100`
+
+**Создание HTML-отчёта**
+
+> `$ pytest tests --cov=burger --cov-report=html --cov-fail-under=100`
