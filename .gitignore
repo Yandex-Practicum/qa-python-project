@@ -1,0 +1,78 @@
+# Виртуальные окружения
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Файлы кеша Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+*.pyo
+
+# Папки IDE и редакторов
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+desktop.ini
+
+# Файлы с секретами и паролями
+.env
+*.pem
+*.key
+*.crt
+*.p12
+secrets.py
+config.py
+
+# Драйверы браузеров (если случайно положили в проект)
+chromedriver.exe
+chromedriver
+geckodriver.exe
+geckodriver
+yandexdriver.exe
+yandexdriver
+msedgedriver.exe
+msedgedriver
+*.driver
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+*.cache
+*.pid
+
+# Отчеты о тестах и покрытии
+htmlcov/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.tox/
+*.xml
+*.trx
+allure-results/
+allure-report/
+
+# Файлы сборок и дистрибутивов
+dist/
+build/
+*.egg-info/
+*.egg
+MANIFEST
+site-packages/
+target/
+
+# Файлы, создаваемые Selenium при работе
+*.screenshot
+*.har
+*.png
