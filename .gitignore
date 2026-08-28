@@ -4,5 +4,3 @@ __pycache__/
 .coverage
 htmlcov/
 *.pyc
-allure-results/
-allure-report/
