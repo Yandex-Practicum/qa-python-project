@@ -1,0 +1,2 @@
+HTTP 200
+{"success":true,"user":{"email":"qa_baydashev_a10ea20368254fd3b8e0a644a59c0489@yandex.ru","name":"Dmitry"},"accessToken":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhOTFkMTRlOTg0MjcwMDAxYmVjZTA3OSIsImlhdCI6MTc4Nzk0MTE5OCwiZXhwIjoxNzg3OTQyMzk4fQ.NrgzQ0C4pdMISy5lhGxKfBGW-eSZa2eoJMbqpjJssak","refreshToken":"53381dee46c84fdda724119c87d091b3f0760f231dad39d03bf3c2be00f430c2c43784ed767841eb"}
