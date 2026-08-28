@@ -9,27 +9,51 @@ from burger import Burger
 class TestBurger:
     """Тесты для класса Burger."""
 
-    def test_set_buns(self):
-        """Проверка установки булочки."""
+    def test_set_buns_assigns_bun(self):
+        """Проверка, что булочка устанавливается в поле bun."""
         burger = Burger()
         mock_bun = Mock()
-        mock_bun.get_name.return_value = "black bun"
-        mock_bun.get_price.return_value = 100.0
 
         burger.set_buns(mock_bun)
 
         assert burger.bun == mock_bun
+
+    def test_set_buns_returns_name(self):
+        """Проверка, что метод get_name булочки возвращает корректное имя."""
+        burger = Burger()
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "black bun"
+
+        burger.set_buns(mock_bun)
+
         assert burger.bun.get_name() == "black bun"
+
+    def test_set_buns_returns_price(self):
+        """Проверка, что метод get_price булочки возвращает корректную цену."""
+        burger = Burger()
+        mock_bun = Mock()
+        mock_bun.get_price.return_value = 100.0
+
+        burger.set_buns(mock_bun)
+
         assert burger.bun.get_price() == 100.0
 
-    def test_add_ingredient(self):
-        """Проверка добавления ингредиента."""
+    def test_add_ingredient_increases_count(self):
+        """Проверка, что при добавлении ингредиента его количество увеличивается."""
         burger = Burger()
         mock_ingredient = Mock()
 
         burger.add_ingredient(mock_ingredient)
 
         assert len(burger.ingredients) == 1
+
+    def test_add_ingredient_stores_value(self):
+        """Проверка, что добавленный ингредиент хранится в списке."""
+        burger = Burger()
+        mock_ingredient = Mock()
+
+        burger.add_ingredient(mock_ingredient)
+
         assert burger.ingredients[0] == mock_ingredient
 
     def test_remove_ingredient(self):
@@ -42,8 +66,8 @@ class TestBurger:
 
         assert len(burger.ingredients) == 0
 
-    def test_move_ingredient(self):
-        """Проверка перемещения ингредиента."""
+    def test_move_ingredient_first_to_second(self):
+        """Проверка, что первый ингредиент перемещается на позицию второго."""
         burger = Burger()
         mock_1 = Mock()
         mock_2 = Mock()
@@ -53,6 +77,17 @@ class TestBurger:
         burger.move_ingredient(0, 1)
 
         assert burger.ingredients[0] == mock_2
+
+    def test_move_ingredient_second_to_first(self):
+        """Проверка, что второй ингредиент перемещается на позицию первого."""
+        burger = Burger()
+        mock_1 = Mock()
+        mock_2 = Mock()
+        burger.add_ingredient(mock_1)
+        burger.add_ingredient(mock_2)
+
+        burger.move_ingredient(0, 1)
+
         assert burger.ingredients[1] == mock_1
 
     @pytest.mark.parametrize("bun_price,ingredient_prices,expected", [
@@ -79,8 +114,8 @@ class TestBurger:
         ("SAUCE", "hot sauce", "= sauce hot sauce ="),
         ("FILLING", "cutlet", "= filling cutlet ="),
     ])
-    def test_get_receipt(self, ingredient_type, ingredient_name, expected_line):
-        """Проверка формирования чека с параметризацией."""
+    def test_get_receipt_contains_bun(self, ingredient_type, ingredient_name, expected_line):
+        """Проверка, что чек содержит название булочки."""
         burger = Burger()
         mock_bun = Mock()
         mock_bun.get_name.return_value = "black bun"
@@ -96,5 +131,47 @@ class TestBurger:
         receipt = burger.get_receipt()
 
         assert "(==== black bun ====)" in receipt
+
+    @pytest.mark.parametrize("ingredient_type,ingredient_name,expected_line", [
+        ("SAUCE", "hot sauce", "= sauce hot sauce ="),
+        ("FILLING", "cutlet", "= filling cutlet ="),
+    ])
+    def test_get_receipt_contains_ingredient(self, ingredient_type, ingredient_name, expected_line):
+        """Проверка, что чек содержит ингредиент."""
+        burger = Burger()
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "black bun"
+        mock_bun.get_price.return_value = 100.0
+        burger.set_buns(mock_bun)
+
+        mock_ingredient = Mock()
+        mock_ingredient.get_type.return_value = ingredient_type
+        mock_ingredient.get_name.return_value = ingredient_name
+        mock_ingredient.get_price.return_value = 100.0
+        burger.add_ingredient(mock_ingredient)
+
+        receipt = burger.get_receipt()
+
         assert expected_line in receipt
+
+    @pytest.mark.parametrize("ingredient_type,ingredient_name,expected_line", [
+        ("SAUCE", "hot sauce", "= sauce hot sauce ="),
+        ("FILLING", "cutlet", "= filling cutlet ="),
+    ])
+    def test_get_receipt_contains_price(self, ingredient_type, ingredient_name, expected_line):
+        """Проверка, что чек содержит итоговую цену."""
+        burger = Burger()
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "black bun"
+        mock_bun.get_price.return_value = 100.0
+        burger.set_buns(mock_bun)
+
+        mock_ingredient = Mock()
+        mock_ingredient.get_type.return_value = ingredient_type
+        mock_ingredient.get_name.return_value = ingredient_name
+        mock_ingredient.get_price.return_value = 100.0
+        burger.add_ingredient(mock_ingredient)
+
+        receipt = burger.get_receipt()
+
         assert "Price: 300.0" in receipt
