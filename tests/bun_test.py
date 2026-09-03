@@ -4,9 +4,12 @@ from praktikum.bun import Bun
 
 class TestBun:
     
-    def test_bun_creation(self):
+    def test_bun_creation_name(self):
         bun = Bun("black bun", 100)
         assert bun.name == "black bun"
+    
+    def test_bun_creation_price(self):
+        bun = Bun("black bun", 100)
         assert bun.price == 100
     
     def test_get_name(self):
@@ -22,7 +25,16 @@ class TestBun:
         ("white bun", 200),
         ("red bun", 300.5),
     ])
-    def test_bun_creation_parametrized(self, name, price):
+    def test_bun_get_name_parametrized(self, name, price):
         bun = Bun(name, price)
         assert bun.get_name() == name
+    
+    @pytest.mark.parametrize("name,price", [
+        ("black bun", 100),
+        ("white bun", 200),
+        ("red bun", 300.5),
+    ])
+    def test_bun_get_price_parametrized(self, name, price):
+        bun = Bun(name, price)
         assert bun.get_price() == price
+        
