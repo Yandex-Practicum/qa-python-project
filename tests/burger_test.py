@@ -39,3 +39,28 @@ class TestBurger:
         
         # Проверяем, что длина списка равна count
         assert len(burger.ingredients) == count
+
+    @pytest.mark.parametrize("index_to_remove, expected_remaining_indices", [
+        (0, [1, 2]),   # удалили первый — остались исходные 1 и 2
+        (1, [0, 2]),   # удалили средний — остались исходные 0 и 2
+        (2, [0, 1]),   # удалили последний — остались исходные 0 и 1
+    ])
+    def test_remove_ingredient_by_index(self, index_to_remove, expected_remaining_indices):
+        # Создаём три мок-ингредиента
+        ing1 = Mock()
+        ing2 = Mock()
+        ing3 = Mock()
+        originals = [ing1, ing2, ing3]
+        
+        burger = Burger()
+        for ing in originals:
+            burger.add_ingredient(ing)
+        
+        # Удаляем ингредиент по индексу
+        burger.remove_ingredient(index_to_remove)
+        
+        # Собираем ожидаемый список — объекты по исходным индексам
+        expected = [originals[i] for i in expected_remaining_indices]
+        
+        # Проверяем, что остались именно эти объекты и в нужном порядке
+        assert burger.ingredients == expected
