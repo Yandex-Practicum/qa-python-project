@@ -91,3 +91,29 @@ class TestBurger:
         expected = [originals[i] for i in expected_order]
         
         assert burger.ingredients == expected
+
+    @pytest.mark.parametrize("bun_price, ingredient_prices, expected_total", [
+        (100, [], 200),               # только булка
+        (100, [50], 250),             # булка + один ингредиент
+        (100, [50, 75], 325),         # булка + два ингредиента
+        (0, [10], 10),                # нулевая цена булки
+        (50, [0, 0], 100),            # бесплатные ингредиенты
+        (123, [10, 20, 30], 306),     # произвольные числа
+    ])
+    def test_get_price(self, bun_price, ingredient_prices, expected_total):
+        # Создаём мок-булку с заданной ценой
+        mock_bun = Mock()
+        mock_bun.get_price.return_value = bun_price
+        
+        # Создаём бургер и устанавливаем булку
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        
+        # Добавляем мок-ингредиенты с заданными ценами
+        for price in ingredient_prices:
+            mock_ingredient = Mock()
+            mock_ingredient.get_price.return_value = price
+            burger.add_ingredient(mock_ingredient)
+        
+        # Проверяем итоговую цену
+        assert burger.get_price() == expected_total
