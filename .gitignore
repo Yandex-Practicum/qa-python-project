@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Виртуальные окружения
+.venv/
+venv/
+env/
+
+# Кэш pytest
+.pytest_cache/
+
+# Отчёты о покрытии
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Отчёты Allure (на будущее)
+allure-results/
+allure-report/

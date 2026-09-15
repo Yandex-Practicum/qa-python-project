@@ -1,0 +1,152 @@
+import pytest
+from unittest.mock import Mock
+from praktikum.burger import Burger
+
+
+class TestBurger:
+    """Тесты для класса Burger."""
+
+    def test_set_buns_saves_bun(self):
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Краторная булка"
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+
+        assert burger.bun is mock_bun
+
+    def test_add_ingredient_adds_to_list(self):
+        # Создаём мок-ингредиент
+        mock_ingredient = Mock()
+        
+        # Создаём бургер и добавляем ингредиент
+        burger = Burger()
+        burger.add_ingredient(mock_ingredient)
+        
+        # Проверяем, что ингредиент попал в список
+        assert mock_ingredient in burger.ingredients
+        assert len(burger.ingredients) == 1
+
+    @pytest.mark.parametrize("count", [1, 2, 3, 5])
+    def test_add_ingredient_adds_multiple(self, count):
+        # Создаём бургер
+        burger = Burger()
+        
+        # Добавляем count мок-ингредиентов
+        for _ in range(count):
+            mock_ingredient = Mock()
+            burger.add_ingredient(mock_ingredient)
+        
+        # Проверяем, что длина списка равна count
+        assert len(burger.ingredients) == count
+
+    @pytest.mark.parametrize("index_to_remove, expected_remaining_indices", [
+        (0, [1, 2]),   # удалили первый — остались исходные 1 и 2
+        (1, [0, 2]),   # удалили средний — остались исходные 0 и 2
+        (2, [0, 1]),   # удалили последний — остались исходные 0 и 1
+    ])
+    def test_remove_ingredient_by_index(self, index_to_remove, expected_remaining_indices):
+        # Создаём три мок-ингредиента
+        ing1 = Mock()
+        ing2 = Mock()
+        ing3 = Mock()
+        originals = [ing1, ing2, ing3]
+        
+        burger = Burger()
+        for ing in originals:
+            burger.add_ingredient(ing)
+        
+        # Удаляем ингредиент по индексу
+        burger.remove_ingredient(index_to_remove)
+        
+        # Собираем ожидаемый список — объекты по исходным индексам
+        expected = [originals[i] for i in expected_remaining_indices]
+        
+        # Проверяем, что остались именно эти объекты и в нужном порядке
+        assert burger.ingredients == expected
+
+    @pytest.mark.parametrize("from_index, to_index, expected_order", [
+        (0, 2, [1, 2, 0, 3]),   # A вперёд на позицию 2 → [B, C, A, D]
+        (3, 1, [0, 3, 1, 2]),   # D назад на позицию 1 → [A, D, B, C]
+        (1, 1, [0, 1, 2, 3]),   # B на ту же позицию → [A, B, C, D]
+        (0, 3, [1, 2, 3, 0]),   # A в самый конец → [B, C, D, A]
+        (3, 0, [3, 0, 1, 2]),   # D в самое начало → [D, A, B, C]
+    ])
+    def test_move_ingredient(self, from_index, to_index, expected_order):
+        # Создаём 4 мок-ингредиента
+        ing0 = Mock()
+        ing1 = Mock()
+        ing2 = Mock()
+        ing3 = Mock()
+        originals = [ing0, ing1, ing2, ing3]
+        
+        burger = Burger()
+        for ing in originals:
+            burger.add_ingredient(ing)
+        
+        # Перемещаем
+        burger.move_ingredient(from_index, to_index)
+        
+        # Ожидаемый порядок объектов по исходным индексам
+        expected = [originals[i] for i in expected_order]
+        
+        assert burger.ingredients == expected
+
+    @pytest.mark.parametrize("bun_price, ingredient_prices, expected_total", [
+        (100, [], 200),               # только булка
+        (100, [50], 250),             # булка + один ингредиент
+        (100, [50, 75], 325),         # булка + два ингредиента
+        (0, [10], 10),                # нулевая цена булки
+        (50, [0, 0], 100),            # бесплатные ингредиенты
+        (123, [10, 20, 30], 306),     # произвольные числа
+    ])
+    def test_get_price(self, bun_price, ingredient_prices, expected_total):
+        # Создаём мок-булку с заданной ценой
+        mock_bun = Mock()
+        mock_bun.get_price.return_value = bun_price
+        
+        # Создаём бургер и устанавливаем булку
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        
+        # Добавляем мок-ингредиенты с заданными ценами
+        for price in ingredient_prices:
+            mock_ingredient = Mock()
+            mock_ingredient.get_price.return_value = price
+            burger.add_ingredient(mock_ingredient)
+        
+        # Проверяем итоговую цену
+        assert burger.get_price() == expected_total
+    def test_get_receipt_format(self):
+        # Мок-булка
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Краторная булка"
+        mock_bun.get_price.return_value = 100
+
+        # Мок-ингредиент 1 — соус
+        ing1 = Mock()
+        ing1.get_name.return_value = "Соус фирменный"
+        ing1.get_type.return_value = "SAUCE"
+        ing1.get_price.return_value = 50
+
+        # Мок-ингредиент 2 — начинка
+        ing2 = Mock()
+        ing2.get_name.return_value = "Мясо бессмертных моллюсков"
+        ing2.get_type.return_value = "FILLING"
+        ing2.get_price.return_value = 300
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+
+        expected = (
+            "(==== Краторная булка ====)\n"
+            "= sauce Соус фирменный =\n"
+            "= filling Мясо бессмертных моллюсков =\n"
+            "(==== Краторная булка ====)\n"
+            "\n"
+            "Price: 550"
+        )
+
+        assert burger.get_receipt() == expected
