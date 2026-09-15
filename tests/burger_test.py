@@ -117,3 +117,36 @@ class TestBurger:
         
         # Проверяем итоговую цену
         assert burger.get_price() == expected_total
+    def test_get_receipt_format(self):
+        # Мок-булка
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Краторная булка"
+        mock_bun.get_price.return_value = 100
+
+        # Мок-ингредиент 1 — соус
+        ing1 = Mock()
+        ing1.get_name.return_value = "Соус фирменный"
+        ing1.get_type.return_value = "SAUCE"
+        ing1.get_price.return_value = 50
+
+        # Мок-ингредиент 2 — начинка
+        ing2 = Mock()
+        ing2.get_name.return_value = "Мясо бессмертных моллюсков"
+        ing2.get_type.return_value = "FILLING"
+        ing2.get_price.return_value = 300
+
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(ing1)
+        burger.add_ingredient(ing2)
+
+        expected = (
+            "(==== Краторная булка ====)\n"
+            "= sauce Соус фирменный =\n"
+            "= filling Мясо бессмертных моллюсков =\n"
+            "(==== Краторная булка ====)\n"
+            "\n"
+            "Price: 550"
+        )
+
+        assert burger.get_receipt() == expected
