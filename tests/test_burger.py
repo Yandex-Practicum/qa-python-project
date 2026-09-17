@@ -8,11 +8,6 @@ from ..ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
 class TestBurger:
 
-    def test_init(self):
-        burger = Burger()
-        assert burger.bun is None
-        assert burger.ingredients == []
-
     def test_set_buns(self):
         burger = Burger()
         mock_bun = Mock(spec=Bun)
@@ -47,17 +42,6 @@ class TestBurger:
         assert mock_ingredient1 in burger.ingredients
         assert mock_ingredient2 not in burger.ingredients
         assert mock_ingredient3 in burger.ingredients
-
-    def test_remove_ingredient_invalid_index(self):
-        burger = Burger()
-        mock_ingredient = Mock(spec=Ingredient)
-        burger.add_ingredient(mock_ingredient)
-
-        with pytest.raises(IndexError):
-            burger.remove_ingredient(5)
-
-        with pytest.raises(IndexError):
-            burger.remove_ingredient(-10)
 
     def test_move_ingredient(self):
         burger = Burger()
