@@ -1,0 +1,6 @@
+[run]
+omit =
+    praktikum.py
+    tests/*
+    conftest.py
+    __init__.py

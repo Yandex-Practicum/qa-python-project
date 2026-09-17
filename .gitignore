@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Coverage
+.coverage
+htmlcov/
+
+# Allure
+allure-results/
+
+# Virtualenv
+venv/
+.env
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+*.zip
