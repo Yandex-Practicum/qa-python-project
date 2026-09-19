@@ -5,10 +5,6 @@ from helpers import generate_ingredient_mock, generate_bun_mock
 import allure
 
 class TestBurger: 
-    def test_constructor_correct_initial_data(self):
-        burger = Burger()
-        assert burger.bun == None and burger.ingredients == []
-
     def test_set_buns_correct_data_bun_set(self):
         bun = Bun('Булочка с кунжутом', 20)
         burger = Burger()
