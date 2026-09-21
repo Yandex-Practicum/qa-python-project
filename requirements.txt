@@ -1,0 +1,8 @@
+certifi
+coverage
+iniconfig
+packaging
+pillow
+pluggy
+pytest
+pytest-cov
