@@ -1,0 +1,7 @@
+tests/.pytest_cache
+tests/__pycache__
+praktikum/__pycache__
+htmlcov
+.coverage
+.pytest_cache
+pytest-cov
