@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environment
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Testing & reports
+.pytest_cache/
+.coverage
+htmlcov/
+allure-report/
+
+# OS
+.DS_Store
+Thumbs.db
