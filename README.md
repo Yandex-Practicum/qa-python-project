@@ -8,17 +8,34 @@
 
 Процент покрытия 100% (отчет: `htmlcov/index.html`)
 
+Всего реализован 31 тест, все тесты проходят успешно
+
 ### Структура проекта
 
 - `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- `conftest.py` - фикстуры pytest для создания тестовых объектов
+- `data.py` - тестовые данные для параметризации тестов
+- `requirements.txt` - зависимости проекта и их версии
+- `tests` - пакет, содержащий тесты, разделенные по классам: 
+  - `test_bun.py`
+  - `test_burger.py`
+  - `test_database.py`
+  - `test_ingredient.py`
 
 ### Запуск автотестов
 
 **Установка зависимостей**
 
-> `$ pip install -r requirements.txt`
+```bash
+pip install -r requirements.txt
+```
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+```bash
+pytest --cov=praktikum --cov-report=html
+```
+
+### Результат
+31 passed
+TOTAL: 100%
