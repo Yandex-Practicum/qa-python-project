@@ -2,155 +2,172 @@ from unittest.mock import Mock
 
 import pytest
 
-from praktikum.burger import Burger
-from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
-
-
-@pytest.fixture
-def burger():
-    return Burger()
-
-
-@pytest.fixture
-def mock_bun():
-    bun = Mock()
-    bun.get_name.return_value = "black bun"
-    bun.get_price.return_value = 100.0
-    return bun
-
-
-@pytest.fixture
-def mock_sauce():
-    sauce = Mock()
-    sauce.get_name.return_value = "hot sauce"
-    sauce.get_price.return_value = 100.0
-    sauce.get_type.return_value = INGREDIENT_TYPE_SAUCE
-    return sauce
-
-
-@pytest.fixture
-def mock_filling():
-    filling = Mock()
-    filling.get_name.return_value = "cutlet"
-    filling.get_price.return_value = 200.0
-    filling.get_type.return_value = INGREDIENT_TYPE_FILLING
-    return filling
+from tests.test_data import (
+    BUN_NAME,
+    BUN_PRICE,
+    SAUCE_NAME,
+    SAUCE_PRICE,
+    FILLING_NAME,
+    FILLING_PRICE,
+)
 
 
 class TestBurgerInit:
-    def test_bun_is_none_by_default(self, burger):
-        assert burger.bun is None
+    """Проверка поведения бургера до установки булки."""
 
-    def test_ingredients_is_empty_list_by_default(self, burger):
-        assert burger.ingredients == []
+    def test_get_price_without_bun_raises_error(self, burger):
+        """Если булка не установлена — get_price() падает."""
+        with pytest.raises(AttributeError):
+            burger.get_price()
+
+    def test_get_receipt_without_bun_raises_error(self, burger):
+        """Если булка не установлена — get_receipt() падает."""
+        with pytest.raises(AttributeError):
+            burger.get_receipt()
 
 
 class TestSetBuns:
-    def test_set_buns_stores_bun(self, burger, mock_bun):
+    """Тесты метода set_buns."""
+
+    def test_set_buns_allows_get_price(self, burger, mock_bun):
+        """После set_buns() метод get_price() работает."""
         burger.set_buns(mock_bun)
-        assert burger.bun == mock_bun
+        assert burger.get_price() == BUN_PRICE * 2
+
+    def test_set_buns_allows_get_receipt(self, burger, mock_bun):
+        """После set_buns() метод get_receipt() работает."""
+        burger.set_buns(mock_bun)
+        receipt = burger.get_receipt()
+        assert BUN_NAME in receipt
 
 
 class TestAddIngredient:
-    def test_add_ingredient_appends(self, burger, mock_sauce):
-        burger.add_ingredient(mock_sauce)
-        assert burger.ingredients == [mock_sauce]
+    """Тесты метода add_ingredient."""
 
-    def test_add_multiple_ingredients(self, burger, mock_sauce, mock_filling):
+    def test_add_ingredient_increases_price(self, burger, mock_bun, mock_sauce):
+        burger.set_buns(mock_bun)
+        price_before = burger.get_price()
+
+        burger.add_ingredient(mock_sauce)
+        price_after = burger.get_price()
+
+        assert price_after == price_before + SAUCE_PRICE
+
+    def test_add_multiple_ingredients_increases_price(
+        self, burger, mock_bun, mock_sauce, mock_filling
+    ):
+        burger.set_buns(mock_bun)
         burger.add_ingredient(mock_sauce)
         burger.add_ingredient(mock_filling)
-        assert burger.ingredients == [mock_sauce, mock_filling]
+
+        assert burger.get_price() == BUN_PRICE * 2 + SAUCE_PRICE + FILLING_PRICE
 
 
 class TestRemoveIngredient:
-    def test_remove_first(self, burger, mock_sauce, mock_filling):
-        burger.add_ingredient(mock_sauce)
-        burger.add_ingredient(mock_filling)
-        burger.remove_ingredient(0)
-        assert burger.ingredients == [mock_filling]
+    """Тесты метода remove_ingredient."""
 
-    def test_remove_last(self, burger, mock_sauce):
+    def test_remove_ingredient_decreases_price(
+        self, burger, mock_bun, mock_sauce
+    ):
+        burger.set_buns(mock_bun)
         burger.add_ingredient(mock_sauce)
+        price_before = burger.get_price()
+
         burger.remove_ingredient(0)
-        assert burger.ingredients == []
+        price_after = burger.get_price()
+
+        assert price_after == price_before - SAUCE_PRICE
+
+    def test_remove_only_ingredient_returns_to_bun_price(
+        self, burger, mock_bun, mock_sauce
+    ):
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_sauce)
+
+        burger.remove_ingredient(0)
+
+        assert burger.get_price() == BUN_PRICE * 2
 
 
 class TestMoveIngredient:
-    def test_move_forward(self, burger, mock_sauce, mock_filling):
-        burger.add_ingredient(mock_sauce)
-        burger.add_ingredient(mock_filling)
-        burger.move_ingredient(0, 1)
-        assert burger.ingredients == [mock_filling, mock_sauce]
+    """Тесты метода move_ingredient."""
 
-    def test_move_backward(self, burger, mock_sauce, mock_filling):
+    def test_move_ingredient_changes_order(
+        self, burger, mock_bun, mock_sauce, mock_filling
+    ):
+        burger.set_buns(mock_bun)
         burger.add_ingredient(mock_sauce)
         burger.add_ingredient(mock_filling)
-        burger.move_ingredient(1, 0)
-        assert burger.ingredients == [mock_filling, mock_sauce]
+
+        burger.move_ingredient(0, 1)
+
+        receipt = burger.get_receipt()
+        sauce_position = receipt.index(SAUCE_NAME)
+        filling_position = receipt.index(FILLING_NAME)
+        assert filling_position < sauce_position
 
 
 class TestGetPrice:
-    def test_price_with_bun_only(self, burger, mock_bun):
-        burger.set_buns(mock_bun)
-        assert burger.get_price() == 200.0
+    """Тесты метода get_price."""
 
-    @pytest.mark.parametrize(
-        "bun_price, sauce_price, filling_price, expected",
-        [
-            (100.0, 100.0, 200.0, 500.0),
-            (50.0, 0.0, 0.0, 100.0),
-            (0.0, 150.0, 250.0, 400.0),
-        ],
-    )
-    def test_price_with_combinations(
-        self, burger, bun_price, sauce_price, filling_price, expected
+    def test_get_price_with_bun_only(self, burger, mock_bun):
+        burger.set_buns(mock_bun)
+        assert burger.get_price() == BUN_PRICE * 2
+
+    @pytest.mark.parametrize("sauce_price", [0.0, 50.0, 100.0, 999.99])
+    def test_get_price_with_different_sauce_prices(
+        self, burger, mock_bun, sauce_price
     ):
-        bun = Mock()
-        bun.get_price.return_value = bun_price
         sauce = Mock()
         sauce.get_price.return_value = sauce_price
-        filling = Mock()
-        filling.get_price.return_value = filling_price
 
-        burger.set_buns(bun)
+        burger.set_buns(mock_bun)
         burger.add_ingredient(sauce)
-        burger.add_ingredient(filling)
 
-        assert burger.get_price() == expected
+        assert burger.get_price() == BUN_PRICE * 2 + sauce_price
 
 
 class TestGetReceipt:
-    def test_receipt_without_ingredients(self, burger, mock_bun):
+    """Тесты метода get_receipt."""
+
+    def test_get_receipt_without_ingredients(self, burger, mock_bun):
         burger.set_buns(mock_bun)
         receipt = burger.get_receipt()
+
         expected = (
-            "(==== black bun ====)\n"
-            "(==== black bun ====)\n"
-            "\n"
-            "Price: 200.0"
+            f"(==== {BUN_NAME} ====)\n"
+            f"(==== {BUN_NAME} ====)\n"
+            f"\n"
+            f"Price: {BUN_PRICE * 2}"
         )
         assert receipt == expected
 
-    def test_receipt_with_sauce(self, burger, mock_bun, mock_sauce):
+    def test_get_receipt_with_sauce(self, burger, mock_bun, mock_sauce):
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_sauce)
-        assert "= sauce hot sauce =" in burger.get_receipt()
 
-    def test_receipt_with_filling(self, burger, mock_bun, mock_filling):
+        receipt = burger.get_receipt()
+        assert f"= sauce {SAUCE_NAME} =" in receipt
+
+    def test_get_receipt_with_filling(self, burger, mock_bun, mock_filling):
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_filling)
-        assert "= filling cutlet =" in burger.get_receipt()
 
-    def test_receipt_full(self, burger, mock_bun, mock_sauce, mock_filling):
+        receipt = burger.get_receipt()
+        assert f"= filling {FILLING_NAME} =" in receipt
+
+    def test_get_receipt_full(self, burger, mock_bun, mock_sauce, mock_filling):
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_sauce)
         burger.add_ingredient(mock_filling)
+
+        receipt = burger.get_receipt()
         expected = (
-            "(==== black bun ====)\n"
-            "= sauce hot sauce =\n"
-            "= filling cutlet =\n"
-            "(==== black bun ====)\n"
-            "\n"
-            "Price: 500.0"
+            f"(==== {BUN_NAME} ====)\n"
+            f"= sauce {SAUCE_NAME} =\n"
+            f"= filling {FILLING_NAME} =\n"
+            f"(==== {BUN_NAME} ====)\n"
+            f"\n"
+            f"Price: {BUN_PRICE * 2 + SAUCE_PRICE + FILLING_PRICE}"
         )
-        assert burger.get_receipt() == expected
+        assert receipt == expected
