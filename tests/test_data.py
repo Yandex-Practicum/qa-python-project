@@ -1,0 +1,15 @@
+BUN_NAME = "black bun"
+BUN_PRICE = 100
+
+INGREDIENT_TYPE = "SAUCE"
+INGREDIENT_NAME = "hot sauce"
+INGREDIENT_PRICE = 50
+
+EXPECTED_BURGER_PRICE = BUN_PRICE * 2 + INGREDIENT_PRICE
+EXPECTED_RECEIPT = (
+    f"(==== {BUN_NAME} ====)\n"
+    f"= sauce {INGREDIENT_NAME} =\n"
+    f"(==== {BUN_NAME} ====)\n"
+    "\n"
+    f"Price: {EXPECTED_BURGER_PRICE}"
+)
