@@ -1,0 +1,18 @@
+
+# Виртуальное окружение
+venv/
+.venv/
+
+# Кеш Python
+__pycache__/
+*.pyc
+
+# Кеш pytest
+.pytest_cache/
+
+# Служебные файлы покрытия
+.coverage
+.coverage.*
+
+# Настройки VS Code
+.vscode/
