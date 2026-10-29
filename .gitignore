@@ -1,0 +1,18 @@
+
+# Виртуальные окружения
+venv/
+.venv/
+
+# Кеш Python
+__pycache__/
+*.pyc
+
+# Кеш pytest
+.pytest_cache/
+
+# Отчеты покрытия
+.coverage
+htmlcov/
+
+# Настройки редактора
+.vscode/

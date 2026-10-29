@@ -1,24 +1,65 @@
-## Задание 1: Юнит-тесты
+# Задание 1. Юнит-тесты Stellar Burgers
 
-### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
+## Описание проекта
 
-### Реализованные сценарии
+Автоматизированное тестирование класса `Burger` приложения Stellar Burgers.
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
+Тесты написаны на Python с использованием `pytest`, `unittest.mock.Mock` и параметризации `pytest.mark.parametrize`.
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+## Реализованные проверки
 
-### Структура проекта
+Созданы тесты для методов класса `Burger`:
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+- `__init__` — создание бургера.
+- `set_buns` — установка булочки.
+- `add_ingredient` — добавление ингредиента.
+- `remove_ingredient` — удаление ингредиента.
+- `move_ingredient` — перемещение ингредиента.
+- `get_price` — расчёт стоимости бургера.
+- `get_receipt` — формирование чека.
 
-### Запуск автотестов
+Всего реализовано 16 тестовых сценариев.
 
-**Установка зависимостей**
+**Результаты:**
+- Успешно пройдено: 16 тестов.
+- Покрытие `praktikum/burger.py`: 100%.
+- Непокрытых строк: 0.
 
-> `$ pip install -r requirements.txt`
+## Структура проекта
 
-**Запуск автотестов и создание HTML-отчета о покрытии**
+- `praktikum/` — пакет с исходным кодом приложения.
+- `tests/test_burger.py` — юнит-тесты класса `Burger`.
+- `pytest.ini` — настройки pytest.
+- `requirements.txt` — зависимости проекта.
+- `.gitignore` — исключения для Git.
 
->  `$ pytest --cov=praktikum --cov-report=html`
+## Установка зависимостей
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+## Запуск тестов
+
+```bash
+python -m pytest tests/ -v
+```
+
+## Проверка покрытия кода
+
+```bash
+python -m pytest tests/ --cov=praktikum.burger --cov-report=term-missing
+```
+
+Результат: 100% покрытия файла `burger.py`.
+
+## Используемые технологии
+
+- Python
+- pytest
+- pytest-cov
+- unittest.mock
+
+## Ветка проекта
+
+`develop1`
