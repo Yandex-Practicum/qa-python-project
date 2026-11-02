@@ -6,4 +6,3 @@ __pycache__/
 allure-results/
 .coverage
 htmlcov/
-EOF
