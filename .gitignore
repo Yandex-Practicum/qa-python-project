@@ -1,5 +1,9 @@
-pycache/
+__pycache__/
+*.pyc
 .venv/
 .vscode/
 .pytest_cache/
 allure-results/
+.coverage
+htmlcov/
+EOF
