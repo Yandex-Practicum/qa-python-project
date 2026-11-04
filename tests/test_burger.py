@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import MagicMock
-from burger import Burger 
+from burger import Burger
 
 
 @pytest.fixture
@@ -17,42 +17,45 @@ def test_set_buns(mock_bun):
     assert burger.bun is mock_bun
 
 
-def test_add_ingredient():
+def test_add_ingredient_adds_to_list():
     burger = Burger()
     ing = MagicMock()
-    ing.get_price.return_value = 30.0
     burger.add_ingredient(ing)
     assert len(burger.ingredients) == 1
+
+
+def test_add_ingredient_stores_same_object():
+    burger = Burger()
+    ing = MagicMock()
+    burger.add_ingredient(ing)
     assert burger.ingredients[0] is ing
 
-@pytest.mark.parametrize(
-    "index_to_remove, expected_len",
-    [
-        (0, 2),   
-        (1, 2),   
-        (2, 2),  
-    ],
-)
-def test_remove_ingredient_valid_cases(index_to_remove, expected_len):
+
+@pytest.mark.parametrize("index_to_remove", [0, 1, 2])
+def test_remove_ingredient_reduces_count(index_to_remove):
+    burger = Burger()
+    for _ in range(3):
+        burger.add_ingredient(MagicMock())
+    burger.remove_ingredient(index_to_remove)
+    assert len(burger.ingredients) == 2
+
+
+@pytest.mark.parametrize("index_to_remove", [0, 1, 2])
+def test_remove_ingredient_deletes_right_item(index_to_remove):
     burger = Burger()
     ings = [MagicMock(), MagicMock(), MagicMock()]
-    for i, ing in enumerate(ings):
-        ing.get_type.return_value = f"type_{i}"
-        ing.get_name.return_value = f"name_{i}"
-        ing.get_price.return_value = i * 10
+    for ing in ings:
         burger.add_ingredient(ing)
-
     burger.remove_ingredient(index_to_remove)
-    
-    assert len(burger.ingredients) == expected_len
-    removed_item = ings[index_to_remove]
-    assert removed_item not in burger.ingredients
+    assert ings[index_to_remove] not in burger.ingredients
+
 
 def test_remove_ingredient_invalid():
     burger = Burger()
     burger.add_ingredient(MagicMock())
     with pytest.raises(IndexError):
         burger.remove_ingredient(5)
+
 
 @pytest.mark.parametrize(
     "from_idx, to_idx, expected_prices_order",
@@ -64,13 +67,11 @@ def test_remove_ingredient_invalid():
 )
 def test_move_ingredient_cases(from_idx, to_idx, expected_prices_order):
     burger = Burger()
-    ings = []
     prices = [10.0, 20.0, 30.0]
-    for i in range(3):
+    for price in prices:
         ing = MagicMock()
-        ing.get_price.return_value = prices[i]
+        ing.get_price.return_value = price
         burger.add_ingredient(ing)
-        ings.append(ing)
 
     burger.move_ingredient(from_idx, to_idx)
 
@@ -94,7 +95,6 @@ def test_get_price(mock_bun):
     expected = (mock_bun.get_price.return_value * 2) + 20.0 + 40.0
     assert price == expected
 
-
 def test_get_receipt(mock_bun):
     burger = Burger()
     burger.set_buns(mock_bun)
@@ -102,11 +102,15 @@ def test_get_receipt(mock_bun):
     ing = MagicMock()
     ing.get_type.return_value = "sauce"
     ing.get_name.return_value = "Spicy Sauce"
+    ing.get_price.return_value = 20.0
     burger.add_ingredient(ing)
 
-    receipt = burger.get_receipt()
-    lines = receipt.splitlines()
+    expected_receipt = (
+        "(==== Classic Bun ====)\n"
+        "= sauce Spicy Sauce =\n"
+        "(==== Classic Bun ====)\n"
+        "\n"
+        "Price: 120.0"
+    )
 
-    assert lines[0] == "(==== Classic Bun ====)"
-    assert "Spicy Sauce" in lines[1]
-    assert lines[-1].startswith("Price: ")
+    assert burger.get_receipt() == expected_receipt
