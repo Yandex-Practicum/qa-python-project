@@ -82,16 +82,16 @@ class TestBurger:
         assert Data.expect_burger(choise) == result_burger
 
     @pytest.mark.parametrize('choise',[0,1,2])
-    def test_set_buns(self, things, choise):  
-        buns, ingredients, burger = things
+    def test_set_buns(self, things_bus, choise):  
+        buns, burger = things_bus
         burger.set_buns(buns[choise])
         result_burger = burger.bun.get_name()
 
         assert Data.expect_bun(choise) == result_burger
 
     @pytest.mark.parametrize('choise',[0,1,2,3,4,5])
-    def test_add_ingredient(self, things, choise):
-        buns, ingredients, burger = things
+    def test_add_ingredient(self, things_ingredients, choise):
+        ingredients, burger = things_ingredients
         burger.add_ingredient(ingredients[choise])
         result_burger = burger.ingredients[0].get_name()
 
