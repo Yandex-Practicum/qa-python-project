@@ -11,27 +11,36 @@ class TestIngredient:
     """Тесты для класса Ingredient."""
 
     @pytest.mark.parametrize(
-        "ingredient_type, name, price",
-        [
-            (INGREDIENT_TYPE_SAUCE, "hot sauce", 100),
-            (INGREDIENT_TYPE_SAUCE, "sour cream", 200.5),
-            (INGREDIENT_TYPE_FILLING, "cutlet", 99.99),
-            (INGREDIENT_TYPE_FILLING, "", 0),
-            (INGREDIENT_TYPE_SAUCE, "длинное название соуса", 1e3),
-        ],
-        ids=[
-            "sauce_standard",
-            "sauce_float",
-            "filling_float",
-            "filling_empty_zero",
-            "sauce_long_exp",
-        ],
+        "ingredient_type",
+        [INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING],
+        ids=["sauce", "filling"],
     )
-    def test_ingredient_stores_and_returns_data(
-        self, ingredient_type, name, price
-    ):
-        ingredient = Ingredient(ingredient_type, name, price)
+    def test_get_type_returns_type(self, ingredient_type):
+        ingredient = Ingredient(ingredient_type, "hot sauce", 100)
 
         assert ingredient.get_type() == ingredient_type
+
+    @pytest.mark.parametrize(
+        "name",
+        [
+            "hot sauce",
+            "cutlet",
+            "",
+            "длинное название соуса",
+        ],
+        ids=["sauce", "cutlet", "empty", "long"],
+    )
+    def test_get_name_returns_name(self, name):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, name, 100)
+
         assert ingredient.get_name() == name
+
+    @pytest.mark.parametrize(
+        "price",
+        [100, 200.5, 0, 99.99, 1e3],
+        ids=["int", "float", "zero", "high", "exp"],
+    )
+    def test_get_price_returns_price(self, price):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, "hot sauce", price)
+
         assert ingredient.get_price() == price

@@ -49,42 +49,67 @@ class TestDatabaseContent:
         assert len(Database().available_ingredients()) == 6
 
     @pytest.mark.parametrize(
-        "index, expected_name, expected_price",
-        [(0, "black bun", 100), (1, "white bun", 200), (2, "red bun", 300)],
+        "index, expected_name",
+        [(0, "black bun"), (1, "white bun"), (2, "red bun")],
         ids=["black", "white", "red"],
     )
-    def test_bun_content(self, index, expected_name, expected_price):
+    def test_bun_name(self, index, expected_name):
         bun = Database().available_buns()[index]
 
         assert bun.get_name() == expected_name
+
+    @pytest.mark.parametrize(
+        "index, expected_price",
+        [(0, 100), (1, 200), (2, 300)],
+        ids=["black", "white", "red"],
+    )
+    def test_bun_price(self, index, expected_price):
+        bun = Database().available_buns()[index]
+
         assert bun.get_price() == expected_price
 
     @pytest.mark.parametrize(
-        "index, expected_type, expected_name, expected_price",
+        "index, expected_type",
         [
-            (0, INGREDIENT_TYPE_SAUCE, "hot sauce", 100),
-            (1, INGREDIENT_TYPE_SAUCE, "sour cream", 200),
-            (2, INGREDIENT_TYPE_SAUCE, "chili sauce", 300),
-            (3, INGREDIENT_TYPE_FILLING, "cutlet", 100),
-            (4, INGREDIENT_TYPE_FILLING, "dinosaur", 200),
-            (5, INGREDIENT_TYPE_FILLING, "sausage", 300),
+            (0, INGREDIENT_TYPE_SAUCE),
+            (1, INGREDIENT_TYPE_SAUCE),
+            (2, INGREDIENT_TYPE_SAUCE),
+            (3, INGREDIENT_TYPE_FILLING),
+            (4, INGREDIENT_TYPE_FILLING),
+            (5, INGREDIENT_TYPE_FILLING),
         ],
-        ids=[
-            "hot_sauce",
-            "sour_cream",
-            "chili_sauce",
-            "cutlet",
-            "dinosaur",
-            "sausage",
-        ],
+        ids=["hot_sauce", "sour_cream", "chili_sauce", "cutlet", "dinosaur", "sausage"],
     )
-    def test_ingredient_content(
-        self, index, expected_type, expected_name, expected_price
-    ):
+    def test_ingredient_type(self, index, expected_type):
         ingredient = Database().available_ingredients()[index]
 
         assert ingredient.get_type() == expected_type
+
+    @pytest.mark.parametrize(
+        "index, expected_name",
+        [
+            (0, "hot sauce"),
+            (1, "sour cream"),
+            (2, "chili sauce"),
+            (3, "cutlet"),
+            (4, "dinosaur"),
+            (5, "sausage"),
+        ],
+        ids=["hot_sauce", "sour_cream", "chili_sauce", "cutlet", "dinosaur", "sausage"],
+    )
+    def test_ingredient_name(self, index, expected_name):
+        ingredient = Database().available_ingredients()[index]
+
         assert ingredient.get_name() == expected_name
+
+    @pytest.mark.parametrize(
+        "index, expected_price",
+        [(0, 100), (1, 200), (2, 300), (3, 100), (4, 200), (5, 300)],
+        ids=["hot_sauce", "sour_cream", "chili_sauce", "cutlet", "dinosaur", "sausage"],
+    )
+    def test_ingredient_price(self, index, expected_price):
+        ingredient = Database().available_ingredients()[index]
+
         assert ingredient.get_price() == expected_price
 
 
@@ -99,13 +124,20 @@ class TestDatabaseGetters:
 
         assert db.available_ingredients() is db.ingredients
 
-    def test_instances_are_independent(self):
+    def test_buns_list_not_shared(self):
         db1 = Database()
         db2 = Database()
 
         assert db1.buns is not db2.buns
-        assert db1.ingredients is not db2.ingredients
 
         db1.buns.append("fake")
-        assert len(db1.buns) == 4
         assert len(db2.buns) == 3
+
+    def test_ingredients_list_not_shared(self):
+        db1 = Database()
+        db2 = Database()
+
+        assert db1.ingredients is not db2.ingredients
+
+        db1.ingredients.append("fake")
+        assert len(db2.ingredients) == 6
