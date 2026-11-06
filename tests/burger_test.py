@@ -33,8 +33,10 @@ def make_ingredient(name: str, ingredient_type: str, price: float) -> Mock:
 
 class TestBurgerInit:
 
-    def test_new_burger_has_no_bun_and_no_ingredients(self, burger):
+    def test_new_burger_has_no_bun(self, burger):
         assert burger.bun is None
+
+    def test_new_burger_has_no_ingredients(self, burger):
         assert burger.ingredients == []
 
 
