@@ -3,13 +3,14 @@ import pytest
 from unittest.mock import Mock
 from bun import Bun
 from burger import Burger
+from data import Data
 from ingredient import Ingredient
 from ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
 class TestBurger:
 
     @pytest.mark.parametrize('choise',[0,1,2])
-    def test_craete_burger_only_buns(self, things, choise):   
+    def test_create_burger_only_buns(self, things, choise):   
         buns, ingredients, burger = things
         burger.set_buns(buns[choise])
         burger.add_ingredient(ingredients[1])
@@ -27,7 +28,10 @@ class TestBurger:
 
         assert result_burger[0] == result_burger[1]        
 
-    def test_move_ingredients(self, things):
+    @pytest.mark.parametrize('result, after_move',[
+        [1,2], 
+        [2, 1] ]) 
+    def test_move_ingredients(self, things, result, after_move):
         buns, ingredients, burger = things
         burger.set_buns(buns[1])
         burger.add_ingredient(ingredients[5])
@@ -36,8 +40,7 @@ class TestBurger:
         burger.move_ingredient(0, 1)
         burger_after_move = burger.get_receipt().split('\n')
 
-        assert result_burger[1] == burger_after_move[2]   
-        assert result_burger[2] == burger_after_move[1]  
+        assert result_burger[result] == burger_after_move[after_move]    
 
     @pytest.mark.parametrize('choise, price',[
         [0, 400.0], 
@@ -52,7 +55,7 @@ class TestBurger:
         assert burger.get_price() == price
 
     @pytest.mark.parametrize('choise', [0,1,2])
-    def test_craete_burger(self, choise):
+    def test_create_burger(self, choise):
         moc_databese = Mock()
         moc_databese.available_buns.return_value = [
             Bun("black bun", 100),
@@ -76,6 +79,20 @@ class TestBurger:
         burger.add_ingredient(ingredients[3 + choise])
         result_burger = burger.get_receipt()
 
-        assert buns[choise].get_name() in result_burger
-        assert ingredients[choise].get_name() in result_burger
-        assert ingredients[3 + choise].get_name() in result_burger
+        assert Data.expect_burger(choise) == result_burger
+
+    @pytest.mark.parametrize('choise',[0,1,2])
+    def test_set_buns(self, things, choise):  
+        buns, ingredients, burger = things
+        burger.set_buns(buns[choise])
+        result_burger = burger.bun.get_name()
+
+        assert Data.expect_bun(choise) == result_burger
+
+    @pytest.mark.parametrize('choise',[0,1,2,3,4,5])
+    def test_add_ingredient(self, things, choise):
+        buns, ingredients, burger = things
+        burger.add_ingredient(ingredients[choise])
+        result_burger = burger.ingredients[0].get_name()
+
+        assert Data.expect_ingredient(choise) == result_burger
