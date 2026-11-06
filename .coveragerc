@@ -1,0 +1,4 @@
+[run]
+omit =
+    praktikum.py
+    tests/*
