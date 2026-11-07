@@ -1,79 +1,59 @@
 from unittest.mock import Mock
-from praktikum.burger import Burger
+import pytest
 
 class TestBurger:
-    def test_new_burger_has_no_bun_and_no_ingredients(self):
-        burger = Burger()
+    def test_new_burger_has_no_bun_and_no_ingredients(self, burger):
         assert burger.bun is None
         assert burger.ingredients == []
 
-    def test_set_buns_sets_bun(self):
-        burger = Burger()
-        mock_bun = Mock()
+    def test_set_buns_sets_bun(self, burger, mock_bun):
         burger.set_buns(mock_bun)
         assert burger.bun == mock_bun
 
-    def test_add_ingredient_adds_ingredient(self):
-        burger = Burger()
+    def test_add_ingredient_adds_ingredient(self, burger):
         mock_ingredient_1 = Mock()
         mock_ingredient_2 = Mock()
         burger.add_ingredient(mock_ingredient_1)
         burger.add_ingredient(mock_ingredient_2)
         assert burger.ingredients == [mock_ingredient_1, mock_ingredient_2]
 
-    def test_remove_ingredient_removes_ingredient(self):
-        burger = Burger()
-        mock_ingredient_1 = Mock()
-        mock_ingredient_2 = Mock()
-        mock_ingredient_3 = Mock()
-        burger.add_ingredient(mock_ingredient_1)
-        burger.add_ingredient(mock_ingredient_2)
-        burger.add_ingredient(mock_ingredient_3)
-        burger.remove_ingredient(1)
-        assert burger.ingredients == [mock_ingredient_1, mock_ingredient_3]
+    @pytest.mark.parametrize("index, expected_left", [
+    (0, [1, 2]),
+    (1, [0, 2]),
+    (2, [0, 1]),
+    ])
+    def test_remove_ingredient(self, burger, index, expected_left):
+        ingredients = [Mock(), Mock(), Mock()]
+        for ingredient in ingredients:
+            burger.add_ingredient(ingredient)
 
-    def test_move_ingredient_moves_ingredient(self):
-        burger = Burger()
-        mock_ingredient_1 = Mock()
-        mock_ingredient_2 = Mock()
-        mock_ingredient_3 = Mock()
-        burger.add_ingredient(mock_ingredient_1)
-        burger.add_ingredient(mock_ingredient_2)
-        burger.add_ingredient(mock_ingredient_3)
-        burger.move_ingredient(0, 2)
-        assert burger.ingredients == [mock_ingredient_2, mock_ingredient_3, mock_ingredient_1]
+        burger.remove_ingredient(index)
+        assert burger.ingredients == [ingredients[i] for i in expected_left]
 
-    def test_get_price_calculates_total_price(self):
-        burger = Burger()
-        mock_bun = Mock()
-        mock_bun.get_price.return_value = 100
-        mock_ingredient_1 = Mock()
-        mock_ingredient_1.get_price.return_value = 50
-        mock_ingredient_2 = Mock()
-        mock_ingredient_2.get_price.return_value = 30
+    @pytest.mark.parametrize("start, new, expected_order", [
+        (0, 2, [1, 2, 0]),
+        (2, 0, [2, 0, 1]),
+        (1, 1, [0, 1, 2]),
+    ])
+    def test_move_ingredient(self, burger, start, new, expected_order):
+        ingredients = [Mock(), Mock(), Mock()]
+        
+        for ingredient in ingredients:
+            burger.add_ingredient(ingredient)
+        
+        burger.move_ingredient(start, new)
+        assert burger.ingredients == [ingredients[i] for i in expected_order]
+
+    def test_get_price_calculates_total_price(self, burger, mock_bun, make_ingredient):
         burger.set_buns(mock_bun)
-        burger.add_ingredient(mock_ingredient_1)
-        burger.add_ingredient(mock_ingredient_2)
-        total_price = burger.get_price()
-        expected_price = (100 * 2) + 50 + 30
-        assert total_price == expected_price
+        burger.add_ingredient(make_ingredient(price=50))
+        burger.add_ingredient(make_ingredient(price=30))
+        assert burger.get_price() == (100 * 2) + 50 + 30
 
-    def test_get_receipt(self):
-        mock_bun = Mock()
-        mock_bun.get_name.return_value = "black_bun"
-        mock_bun.get_price.return_value = 100
-
-        mock_filling = Mock()
-        mock_filling.get_type.return_value = "FILLING"
-        mock_filling.get_name.return_value = "dinosaur"
-        mock_filling.get_price.return_value = 50
-
-        burger = Burger()
+    def test_get_receipt(self, burger, mock_bun, make_ingredient):
         burger.set_buns(mock_bun)
-        burger.add_ingredient(mock_filling)
-
+        burger.add_ingredient(make_ingredient(name="dinosaur", price=50, ingredient_type="FILLING"))
         receipt = burger.get_receipt()
-
         assert receipt == (
             "(==== black_bun ====)\n"
             "= filling dinosaur =\n"
