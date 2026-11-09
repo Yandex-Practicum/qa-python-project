@@ -2,8 +2,10 @@ from unittest.mock import Mock
 import pytest
 
 class TestBurger:
-    def test_new_burger_has_no_bun_and_no_ingredients(self, burger):
+    def test_new_burger_has_no_bun(self, burger):
         assert burger.bun is None
+
+    def test_new_burger_has_no_ingredients(self, burger):    
         assert burger.ingredients == []
 
     def test_set_buns_sets_bun(self, burger, mock_bun):
