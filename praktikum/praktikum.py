@@ -10,7 +10,7 @@ def main():
     # Инициализируем базу данных
     database: Database = Database()
 
-    # Создадим новый бургер
+    # Создаем новый бургер
     burger: Burger = Burger()
 
     # Считаем список доступных булок из базы данных
@@ -19,7 +19,7 @@ def main():
     # Считаем список доступных ингредиентов из базы данных
     ingredients: List[Ingredient] = database.available_ingredients()
 
-    # Соберём бургер
+    # Собираем бургер
     burger.set_buns(buns[0])
 
     burger.add_ingredient(ingredients[1])
